@@ -1763,114 +1763,163 @@
         width: min(100% - 1.25rem, var(--max));
       }
 
-      /* Mobile above-the-fold: fill viewport from top */
+      /* Mobile — stacked hero, no scale clipping */
       :root {
         --nav-h: 44px;
-        --ticker-h: clamp(7rem, 17svh, 8.25rem);
+        --ticker-h: clamp(6.5rem, 14svh, 7.5rem);
       }
 
       .intro-fold {
-        height: 100dvh;
-        height: 100svh;
+        min-height: 100dvh;
+        min-height: 100svh;
+        height: auto;
         box-sizing: border-box;
         padding-top: var(--nav-h);
-        display: grid;
-        grid-template-rows: minmax(0, 1fr) var(--ticker-h);
-        overflow: hidden;
-        border-bottom: none;
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
+        border-bottom: 1px solid var(--border);
         background: var(--bg);
-        --fold-h: calc(100svh - var(--nav-h) - var(--ticker-h));
-        --mobile-base: clamp(0.9375rem, calc(var(--fold-h) / 19), 1.125rem);
       }
 
       .founder-hero {
+        flex: 0 0 auto;
         min-height: 0;
-        overflow: hidden;
-        padding: 0.3rem 0 0.15rem;
+        overflow: visible;
+        padding: 1.25rem 0 1rem;
         border-bottom: none;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        font-size: var(--mobile-base);
+        display: block;
+        font-size: 1rem;
       }
 
       .founder-hero::before { display: none; }
 
       .founder-hero .container {
-        flex: 1;
+        flex: none;
         min-height: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        overflow: hidden;
+        display: block;
+        overflow: visible;
       }
 
       .founder-scale-wrap {
-        flex: 1;
+        flex: none;
         min-height: 0;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        overflow: hidden;
+        display: block;
+        overflow: visible;
+        height: auto !important;
       }
 
       .founder-hero-grid {
         width: 100%;
-        flex-shrink: 0;
-        display: grid;
-        grid-template-columns: 7.25em 1fr;
-        grid-template-areas:
-          "photo content"
-          "bio bio";
-        gap: 0.7em 0.9em;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.25rem;
         max-width: none;
         margin-inline: 0;
-        align-content: start;
-        transform-origin: top center;
-        will-change: transform;
+        transform: none !important;
+        transform-origin: unset !important;
       }
 
       .founder-copy {
-        display: contents;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        min-width: 0;
       }
 
       .founder-content {
-        grid-area: content;
-        align-self: center;
+        text-align: left;
+        width: 100%;
+        min-width: 0;
+      }
+
+      .founder-hero-photo {
+        width: min(168px, 48vw);
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 5;
+        border-radius: var(--radius);
+        margin: 0 auto;
+        border: none;
+        box-shadow: var(--shadow-md);
+        flex-shrink: 0;
+      }
+
+      .founder-hero-photo img {
+        object-position: center 15%;
+      }
+
+      .founder-eyebrow {
+        font-size: 0.8125rem;
+        letter-spacing: 0;
+        margin-bottom: 0.4rem;
+        word-wrap: break-word;
+        overflow-wrap: anywhere;
+      }
+
+      .founder-name {
+        font-size: clamp(1.75rem, 7.5vw, 2.25rem);
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+        line-height: 1.08;
+        word-wrap: break-word;
+        overflow-wrap: anywhere;
+      }
+
+      .founder-title {
+        font-size: 1rem;
+        margin: 0;
+        line-height: 1.4;
+        font-weight: 400;
+        color: var(--text-muted);
+        word-wrap: break-word;
+        overflow-wrap: anywhere;
       }
 
       .founder-bio-block {
-        grid-area: bio;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 0.55em;
+        align-items: stretch;
+        gap: 1rem;
+        width: 100%;
+        min-width: 0;
       }
 
       .founder-bio-full {
         display: block;
-        font-size: 1em;
-        line-height: 1.42;
+        font-size: 0.9375rem;
+        line-height: 1.55;
         margin: 0;
         max-width: none;
         color: var(--text-muted);
+        word-wrap: break-word;
+        overflow-wrap: anywhere;
       }
 
       .founder-cta {
-        padding: 0.5em 1.05em;
-        font-size: 0.82em;
-        font-weight: 600;
+        align-self: flex-start;
+        padding: 0.72rem 1.35rem;
+        font-size: 0.9375rem;
+        font-weight: 400;
       }
 
       .featured-in {
+        flex: 0 0 auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
         min-height: var(--ticker-h);
-        padding: 0.45rem 0 0.55rem;
-        border-top: none;
+        padding: 0.75rem 0 1rem;
+        border-top: 1px solid var(--border);
         background: var(--bg-elevated);
         overflow: hidden;
+      }
+
+      .featured-in-header {
+        margin-bottom: 0.5rem;
+        padding-top: 0;
       }
 
       .featured-in-header p {
@@ -1885,52 +1934,15 @@
       }
 
       .ticker-logo {
-        height: 48px;
-        min-width: 112px;
-        padding: 0.45rem 0.75rem;
-        border-radius: 11px;
+        height: 44px;
+        min-width: 100px;
+        padding: 0.4rem 0.7rem;
+        border-radius: 10px;
       }
 
       .ticker-logo img {
-        height: 26px;
-        max-width: 98px;
-      }
-
-      .founder-hero-photo {
-        grid-area: photo;
-        grid-column: auto;
-        grid-row: auto;
-        width: 7.25em;
-        height: auto;
-        aspect-ratio: 3 / 4;
-        border-radius: 0.85em;
-        margin: 0;
-        border: none;
-        box-shadow: var(--shadow-md);
-      }
-
-      .founder-hero-photo img {
-        object-position: center 15%;
-      }
-
-      .founder-eyebrow {
-        font-size: 0.7em;
-        letter-spacing: 0.11em;
-        margin-bottom: 0.3em;
-      }
-
-      .founder-name {
-        font-size: 1.9em;
-        font-weight: 600;
-        margin-bottom: 0.22em;
-        line-height: 1.05;
-      }
-
-      .founder-title {
-        font-size: 0.95em;
-        margin: 0;
-        line-height: 1.35;
-        font-weight: 600;
+        height: 24px;
+        max-width: 90px;
       }
 
       .ticker-group {
@@ -1942,31 +1954,41 @@
         animation-duration: 26s;
       }
 
-      @media (max-height: 700px) {
+      .reviews-section {
+        padding: 2.5rem 0 3rem;
+      }
+
+      .reviews-rating {
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      .review-card {
+        flex: 0 0 min(300px, 88vw);
+        width: min(300px, 88vw);
+      }
+
+      @media (max-height: 700px) and (max-width: 640px) {
         :root {
-          --ticker-h: 6.75rem;
+          --ticker-h: 6rem;
         }
 
-        .intro-fold {
-          --mobile-base: clamp(0.9375rem, calc(var(--fold-h) / 20), 1.0625rem);
-        }
-
-        .founder-hero-grid {
-          grid-template-columns: 6.5em 1fr;
+        .founder-hero {
+          padding-top: 0.85rem;
         }
 
         .founder-hero-photo {
-          width: 6.5em;
+          width: min(140px, 42vw);
         }
 
         .ticker-logo {
-          height: 42px;
-          min-width: 100px;
+          height: 40px;
+          min-width: 92px;
         }
 
         .ticker-logo img {
           height: 22px;
-          max-width: 88px;
+          max-width: 84px;
         }
       }
 
@@ -2659,16 +2681,7 @@
         const isMobile = window.innerWidth <= 640;
 
         if (isMobile) {
-          let scale = 1;
-          if (needed > available) {
-            scale = (available / needed) * 0.985;
-          } else if (needed < available * 0.92) {
-            scale = Math.min((available / needed) * 0.985, 1.1);
-          }
-
-          grid.style.transform = scale === 1 ? 'none' : `scale(${scale})`;
-          grid.style.transformOrigin = 'top center';
-          if (wrap) wrap.style.height = scale === 1 ? '' : `${needed * scale}px`;
+          return;
         } else if (needed > available) {
           const scale = (available / needed) * 0.985;
           grid.style.transform = `scale(${scale})`;
