@@ -1623,6 +1623,22 @@
       gap: 0.4rem;
     }
 
+    .form-grid > .form-field:not(.full) {
+      display: grid;
+      grid-template-rows: 2.5rem auto;
+      gap: 0.4rem;
+    }
+
+    .form-grid > .form-field:not(.full) label {
+      align-self: end;
+      margin: 0;
+    }
+
+    .form-grid > .form-field:not(.full) input,
+    .form-grid > .form-field:not(.full) select {
+      grid-row: 2;
+    }
+
     .form-field.full { grid-column: 1 / -1; }
 
     .form-field label {
@@ -1633,6 +1649,16 @@
     }
 
     .form-field label .hint {
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .form-field label .hint-inline {
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .form-field label .hint-block {
       display: block;
       font-weight: 400;
       color: var(--text-muted);
@@ -2685,7 +2711,7 @@
               <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@company.com">
             </div>
             <div class="form-field">
-              <label for="company">Company <span class="hint">(optional)</span></label>
+              <label for="company">Company <span class="hint-inline">(optional)</span></label>
               <input type="text" id="company" name="company" autocomplete="organization" placeholder="Your company">
             </div>
             <div class="form-field">
@@ -2706,13 +2732,13 @@
             <div class="form-field full">
               <label for="projectDescription">
                 Tell me about your project
-                <span class="hint">What are you building, and what problem does it solve?</span>
+                <span class="hint-block">What are you building, and what problem does it solve?</span>
               </label>
               <textarea id="projectDescription" name="projectDescription" required maxlength="3000" placeholder="We're looking to build..."></textarea>
             </div>
             <div class="form-field full">
               <label for="timeline">
-                Timeline &amp; budget <span class="hint">(optional)</span>
+                Timeline &amp; budget <span class="hint-inline">(optional)</span>
               </label>
               <textarea id="timeline" name="timeline" maxlength="1000" placeholder="Target launch date, budget range, or any constraints..."></textarea>
             </div>
