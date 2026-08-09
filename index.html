@@ -794,6 +794,66 @@
     /* Services */
     #services {
       background: var(--bg-elevated);
+      padding-bottom: 0;
+    }
+
+    .services-offerings {
+      padding: 3.5rem 0 5rem;
+      background: var(--bg-elevated);
+    }
+
+    .certifications-section {
+      padding: 3.5rem 0 4rem;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .certifications-section .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .certifications-ticker-wrap {
+      margin-bottom: 2rem;
+    }
+
+    .cert-label {
+      flex-shrink: 0;
+      font-size: clamp(1.125rem, 2.2vw, 1.625rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      white-space: nowrap;
+      line-height: 1.2;
+    }
+
+    .cert-dot {
+      flex-shrink: 0;
+      font-size: clamp(1.125rem, 2.2vw, 1.625rem);
+      font-weight: 700;
+      color: var(--text-muted);
+      opacity: 0.35;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .certifications-track {
+      animation-duration: 55s;
+    }
+
+    .certifications-group {
+      align-items: center;
+      gap: 1.75rem;
+      padding-right: 1.75rem;
+    }
+
+    .certifications-copy {
+      max-width: 42rem;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.0625rem;
+      line-height: 1.58824;
+      color: var(--text-muted);
     }
 
     .features-list {
@@ -1590,7 +1650,24 @@
       color: var(--text);
       font-family: var(--sans);
       font-size: 1rem;
+      line-height: 1.25;
+      box-sizing: border-box;
       transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-field input,
+    .form-field select {
+      height: 3rem;
+    }
+
+    .form-field select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 2.25rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2386868b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+      cursor: pointer;
     }
 
     .form-field textarea {
@@ -1982,6 +2059,38 @@
         width: min(300px, 88vw);
       }
 
+      .certifications-section {
+        padding: 2.75rem 0 3rem;
+      }
+
+      .certifications-section .section-header {
+        margin-bottom: 1.5rem;
+      }
+
+      .certifications-ticker-wrap {
+        margin-bottom: 1.5rem;
+      }
+
+      .cert-label,
+      .cert-dot {
+        font-size: 1.0625rem;
+      }
+
+      .certifications-group {
+        gap: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .certifications-track {
+        animation-duration: 42s;
+      }
+
+      .certifications-copy {
+        font-size: 0.9375rem;
+        line-height: 1.55;
+        padding-inline: 0.25rem;
+      }
+
       @media (max-height: 700px) {
         :root {
           --ticker-h: 6.75rem;
@@ -2365,7 +2474,71 @@
           <h2>End-to-end software development for ambitious teams</h2>
           <p>Whether you need a consumer mobile app, a complex enterprise platform, or AI integrated into your existing stack — I work as your dedicated technology partner from concept to launch.</p>
         </div>
+      </div>
+    </section>
 
+    <section class="certifications-section" id="certifications" aria-label="Certifications">
+      <div class="container">
+        <div class="section-header centered">
+          <span class="eyebrow">Certifications</span>
+          <h2>Built on credentials that scale with you</h2>
+        </div>
+      </div>
+      <div class="ticker-wrap certifications-ticker-wrap">
+        <div class="ticker-track certifications-track">
+          <div class="ticker-group certifications-group">
+            <span class="cert-label">Google Cloud</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">Microsoft Azure</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">AWS</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">iOS</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">Android</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">Swift</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">Objective-C</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">C++</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">JavaScript</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">TypeScript</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">React</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">Rust</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">Python</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">PyTorch</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">TensorFlow</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">Node.js</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">Next.js</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">HTML</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">CSS</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+            <span class="cert-label">SQL</span>
+            <span class="cert-dot" aria-hidden="true">·</span>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <p class="certifications-copy">
+          Certified across the cloud platforms enterprises trust — and fluent in every layer of the modern stack, from native mobile and full-stack web to AI, data, and infrastructure. When you hire me, you get a developer who already knows your tools, not one learning them on your dime.
+        </p>
+      </div>
+    </section>
+
+    <section class="services-offerings" aria-label="Service offerings">
+      <div class="container">
         <div class="features-list">
           <article class="feature-item">
             <span class="feature-index" aria-hidden="true">01</span>
@@ -2597,21 +2770,7 @@
   </footer>
 
   <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js';
-    import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js';
-
-    const firebaseConfig = {
-      apiKey: 'AIzaSyBdaevlhnYWq2pZpDC8Kr3x-LSfwEzSPlU',
-      authDomain: 'retention-landing-page.firebaseapp.com',
-      projectId: 'retention-landing-page',
-      storageBucket: 'retention-landing-page.firebasestorage.app',
-      messagingSenderId: '151617332838',
-      appId: '1:151617332838:web:3e88087843cae4ee382fa7',
-      measurementId: 'G-FMPJR3QK28'
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    import { db, collection, addDoc, serverTimestamp } from './firebase.js';
 
     const toggle = document.querySelector('.nav-toggle');
     const links = document.querySelector('.nav-links');
@@ -2652,21 +2811,21 @@
         return;
       }
 
+      const serviceSelect = form.serviceType;
+      const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
+
       const entry = {
         contactName: trim(form.contactName.value),
         email: trim(form.email.value),
-        serviceType: form.serviceType.value,
+        company: trim(form.company.value),
+        serviceType: serviceSelect.value,
+        serviceLabel: selectedOption ? selectedOption.textContent.trim() : '',
         projectDescription: trim(form.projectDescription.value),
+        timeline: trim(form.timeline.value),
         status: 'pending',
-        source: 'developer_site',
+        source: 'chris_walsh_dev_site',
         submittedAt: serverTimestamp()
       };
-
-      const company = trim(form.company.value);
-      const timeline = trim(form.timeline.value);
-
-      if (company) entry.company = company;
-      if (timeline) entry.timeline = timeline;
 
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending…';
@@ -2734,6 +2893,14 @@
       const clone = reviewsGroup.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
       reviewsTrack.appendChild(clone);
+    }
+
+    const certsTrack = document.querySelector('.certifications-track');
+    const certsGroup = document.querySelector('.certifications-group');
+    if (certsTrack && certsGroup) {
+      const clone = certsGroup.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      certsTrack.appendChild(clone);
     }
 
     const REVIEW_CHAR_MAX = 290;
