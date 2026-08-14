@@ -15,13 +15,6 @@
     gtag('js', new Date());
     gtag('config', 'AW-11158452612');
 
-    // Page-view conversion on main page load
-    gtag('event', 'conversion', {
-      send_to: 'AW-11158452612/ZwOHCKbroJoaEITz4cgp',
-      value: 1.0,
-      currency: 'CAD'
-    });
-
     function gtag_report_conversion(url) {
       var navigated = false;
       var callback = function () {
@@ -114,10 +107,10 @@
       width: 100%;
       height: 100%;
       color: #fff;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-transform: none;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -413,10 +406,14 @@
       margin-bottom: 0.5rem;
     }
 
+    .founder-mobile-role {
+      display: none;
+    }
+
     .founder-name {
-      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 600;
-      line-height: 1.05;
+      line-height: 1.08;
       margin: 0 0 0.5rem;
       letter-spacing: -0.03em;
     }
@@ -450,6 +447,122 @@
       font-weight: 400;
       white-space: nowrap;
     }
+
+    .founder-cred {
+      margin: 0;
+      font-size: 1.0625rem;
+      line-height: 1.58824;
+      color: var(--text-muted);
+      max-width: 42rem;
+    }
+
+    .founder-proof {
+      width: 100%;
+      max-width: 42rem;
+      margin: 0;
+      padding: 0.75rem 0;
+      border-block: 1px solid var(--border);
+    }
+
+    .proof-outcome {
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+    }
+
+    .proof-outcome strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .proof-review {
+      margin: 0.45rem 0 0;
+      font-size: 0.8125rem;
+      line-height: 1.35;
+      color: var(--text-muted);
+    }
+
+    .proof-stars {
+      color: #ff9500;
+      letter-spacing: 0.04em;
+    }
+
+    .proof-review strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .offer-panel {
+      width: 100%;
+      max-width: 42rem;
+      padding: 0.9rem 1rem;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(245, 245, 247, 0.8), rgba(245, 245, 247, 0.45));
+      border: 1px solid var(--border);
+    }
+
+    .offer-intro {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .offer-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .offer-rate {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .offer-line {
+      margin: 0 0 0.7rem;
+      font-size: 0.9375rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+    }
+
+    .offer-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    .offer-timer-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.4rem 0.55rem;
+      margin: 0;
+      min-width: 0;
+    }
+
+    .offer-timer-row [data-offer-countdown] {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .offer-timer-support {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .about-extended { display: none; }
 
     /* Featured in ticker */
     .featured-in {
@@ -595,6 +708,16 @@
 
       .founder-bio-block {
         gap: 0.85rem;
+      }
+
+      .founder-cred {
+        font-size: clamp(0.9375rem, 0.4vw + 0.82rem, 1.0625rem);
+        line-height: 1.55;
+      }
+
+      .offer-line {
+        font-size: clamp(0.9375rem, 0.4vw + 0.82rem, 1.0625rem);
+        line-height: 1.55;
       }
 
       .founder-cta {
@@ -753,6 +876,109 @@
       color: var(--text-muted);
       margin-top: 0.25rem;
       line-height: 1.42857;
+    }
+
+    /* Why work with Christopher */
+    .why-section {
+      padding: 5rem 0;
+      background: var(--bg-elevated);
+    }
+
+    .why-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: start;
+      margin-bottom: 3rem;
+    }
+
+    .why-intro h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    .why-bio {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+    }
+
+    .why-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-block: 1px solid var(--border);
+    }
+
+    .why-stat {
+      min-width: 0;
+      padding: 1.5rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .why-stat:nth-child(3n + 1) {
+      padding-left: 0;
+    }
+
+    .why-stat:nth-child(3n + 2),
+    .why-stat:nth-child(3n + 3) {
+      border-left: 1px solid var(--border);
+    }
+
+    .why-stat:nth-child(n + 4) {
+      border-bottom: none;
+    }
+
+    .why-stat-value {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .why-stat-label {
+      display: block;
+      max-width: 13rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.4;
+    }
+
+    .why-press {
+      margin-top: 2.5rem;
+    }
+
+    .why-press-label {
+      margin: 0 0 1rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .why-press-logos {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem 1.75rem;
+    }
+
+    .why-press-logos img {
+      width: auto;
+      height: 24px;
+      max-width: 110px;
+      object-fit: contain;
+      filter: grayscale(1);
+      opacity: 0.62;
     }
 
     .hero-photo-stack {
@@ -2040,84 +2266,79 @@
         width: min(100% - 1.25rem, var(--max));
       }
 
-      /* Mobile above-the-fold: fill viewport from top */
+      /* Mobile above-the-fold: identity + offer + ticker in one viewport */
       :root {
-        --promo-h: 52px;
-        --ticker-h: clamp(7rem, 17svh, 8.25rem);
+        --promo-h: 40px;
+        --ticker-h: 5.65rem;
       }
 
       .promo-banner a {
-        font-size: 0.62rem;
-        letter-spacing: 0.04em;
-        white-space: nowrap;
-        line-height: 1.2;
+        font-size: 0.68rem;
+        letter-spacing: 0.01em;
+        white-space: normal;
+        line-height: 1.25;
         text-align: center;
-        gap: 0.4rem;
+        font-weight: 400;
       }
 
+      .promo-timer { display: none; }
+
       .intro-fold {
-        height: 100dvh;
-        height: 100svh;
+        height: auto;
+        min-height: 0;
         box-sizing: border-box;
         padding-top: var(--nav-h);
-        display: grid;
-        grid-template-rows: minmax(0, 1fr) var(--ticker-h);
-        overflow: hidden;
+        display: block;
+        overflow: visible;
         border-bottom: none;
         background: var(--bg);
-        --fold-h: calc(100svh - var(--nav-h) - var(--ticker-h));
-        --mobile-base: clamp(0.9375rem, calc(var(--fold-h) / 19), 1.125rem);
       }
 
       .founder-hero {
         min-height: 0;
-        overflow: hidden;
-        padding: 0.3rem 0 0.15rem;
+        overflow: visible;
+        padding: 0.75rem 0 0.85rem;
         border-bottom: none;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        font-size: var(--mobile-base);
+        font-size: 16px;
       }
 
       .founder-hero::before { display: none; }
 
       .founder-hero .container {
-        flex: 1;
-        min-height: 0;
         min-width: 0;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        overflow: hidden;
+        overflow: visible;
       }
 
       .founder-scale-wrap {
-        flex: 1;
-        min-height: 0;
         min-width: 0;
         width: 100%;
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
-        overflow: hidden;
+        display: block;
+        overflow: visible;
       }
 
       .founder-hero-grid {
         width: 100%;
+        height: auto;
         max-width: 100%;
         min-width: 0;
-        flex-shrink: 0;
         display: grid;
-        grid-template-columns: minmax(0, 6.75em) minmax(0, 1fr);
+        grid-template-columns: 68px minmax(0, 1fr);
         grid-template-areas:
           "photo content"
-          "bio bio";
-        gap: 0.7em 0.75em;
+          "name name"
+          "title title"
+          "proof proof"
+          "offer offer";
+        gap: 0.45rem 0.65rem;
         margin-inline: 0;
         align-content: start;
-        transform-origin: top left;
-        will-change: transform;
+        transform: none !important;
       }
 
       .founder-copy {
@@ -2127,30 +2348,115 @@
       .founder-content {
         grid-area: content;
         align-self: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         min-width: 0;
         overflow-wrap: break-word;
         word-wrap: break-word;
+      }
+
+      .founder-name {
+        grid-area: name;
+        font-size: clamp(1.45rem, 6.6vw, 1.72rem);
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.08;
+      }
+
+      .founder-title {
+        grid-area: title;
+        font-size: 0.9375rem;
+        margin: 0;
+        line-height: 1.4;
+        font-weight: 400;
+      }
+
+      .founder-mobile-role {
+        display: block;
+        max-width: 16rem;
+        font-size: 0.8125rem;
+        line-height: 1.3;
+        color: var(--text-muted);
       }
 
       .founder-bio-block {
-        grid-area: bio;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.55em;
-        min-width: 0;
-        width: 100%;
+        display: contents;
       }
 
       .founder-bio-full {
-        display: block;
-        font-size: 1em;
-        line-height: 1.42;
-        margin: 0;
+        display: none;
+      }
+
+      .founder-cred {
+        display: none;
+      }
+
+      .founder-proof {
+        grid-area: proof;
         max-width: 100%;
-        color: var(--text-muted);
-        overflow-wrap: break-word;
-        word-wrap: break-word;
+        padding: 0.55rem 0;
+      }
+
+      .proof-outcome {
+        font-size: 0.75rem;
+        line-height: 1.4;
+      }
+
+      .proof-review {
+        margin-top: 0.35rem;
+        font-size: 0.6875rem;
+        line-height: 1.35;
+      }
+
+      .offer-panel {
+        grid-area: offer;
+        padding: 0.7rem 0.75rem;
+        max-width: 100%;
+        border-radius: 12px;
+      }
+
+      .offer-intro {
+        margin-bottom: 0.25rem;
+      }
+
+      .offer-label {
+        font-size: 0.6rem;
+      }
+
+      .offer-rate {
+        font-size: 0.8rem;
+      }
+
+      .offer-line {
+        font-size: 0.8125rem;
+        line-height: 1.35;
+        margin-bottom: 0.55rem;
+      }
+
+      .offer-actions {
+        gap: 0.55rem;
+      }
+
+      .offer-timer-row {
+        gap: 0.2rem 0.35rem;
+      }
+
+      .offer-timer-row [data-offer-countdown] {
+        font-size: 1rem;
+      }
+
+      .offer-timer-support {
+        font-size: 0.6875rem;
+        line-height: 1.2;
+      }
+
+      .founder-cta {
+        flex: 0 0 auto;
+        padding: 0.58rem 0.9rem;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        width: auto;
       }
 
       .founder-eyebrow,
@@ -2161,32 +2467,26 @@
         word-wrap: break-word;
       }
 
-      .founder-cta {
-        padding: 0.5em 1.05em;
-        font-size: 0.82em;
-        font-weight: 600;
-        max-width: 100%;
-      }
-
       .featured-in {
         display: flex;
         flex-direction: column;
         justify-content: center;
         min-height: var(--ticker-h);
-        padding: 0.45rem 0 0.55rem;
+        height: var(--ticker-h);
+        padding: 0.3rem 0 0.4rem;
         border-top: none;
         background: linear-gradient(180deg, var(--bg-elevated), var(--bg));
         overflow: hidden;
       }
 
       .featured-in-header {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.35rem;
         padding-top: 0;
       }
 
       .featured-in-header p {
-        font-size: 0.68rem;
-        letter-spacing: 0.15em;
+        font-size: 0.62rem;
+        letter-spacing: 0.12em;
         color: var(--text-muted);
       }
 
@@ -2196,15 +2496,15 @@
       }
 
       .ticker-logo {
-        height: 48px;
-        min-width: 112px;
-        padding: 0.45rem 0.75rem;
-        border-radius: 11px;
+        height: 40px;
+        min-width: 96px;
+        padding: 0.3rem 0.6rem;
+        border-radius: 10px;
       }
 
       .ticker-logo img {
-        height: 26px;
-        max-width: 98px;
+        height: 22px;
+        max-width: 86px;
       }
 
       .founder-hero-photo {
@@ -2212,37 +2512,24 @@
         grid-column: auto;
         grid-row: auto;
         width: 100%;
-        max-width: 6.75em;
+        max-width: 68px;
         height: auto;
-        aspect-ratio: 3 / 4;
-        border-radius: 0.85em;
+        aspect-ratio: 4 / 5;
+        border-radius: 10px;
         margin: 0;
         border: none;
-        box-shadow: var(--shadow-md);
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
       }
 
       .founder-hero-photo img {
-        object-position: center 15%;
+        object-fit: cover;
+        object-position: center 12%;
       }
 
       .founder-eyebrow {
-        font-size: 0.7em;
-        letter-spacing: 0.06em;
-        margin-bottom: 0.3em;
-      }
-
-      .founder-name {
-        font-size: 1.75em;
-        font-weight: 600;
-        margin-bottom: 0.22em;
-        line-height: 1.05;
-      }
-
-      .founder-title {
-        font-size: 0.9em;
-        margin: 0;
-        line-height: 1.35;
-        font-weight: 600;
+        font-size: 0.625rem;
+        letter-spacing: 0;
+        margin-bottom: 0.25rem;
       }
 
       .ticker-group {
@@ -2252,6 +2539,18 @@
 
       .ticker-track {
         animation-duration: 26s;
+      }
+
+      .about-extended {
+        display: block;
+        padding: 2rem 0 0.5rem;
+      }
+
+      .about-extended p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 0.9375rem;
+        line-height: 1.55;
       }
 
       .reviews-section {
@@ -2302,33 +2601,34 @@
 
       @media (max-height: 700px) {
         :root {
-          --ticker-h: 6.75rem;
-        }
-
-        .intro-fold {
-          --mobile-base: clamp(0.9375rem, calc(var(--fold-h) / 20), 1.0625rem);
+          --ticker-h: 5.15rem;
         }
 
         .founder-hero-grid {
-          grid-template-columns: minmax(0, 6em) minmax(0, 1fr);
+          grid-template-columns: 60px minmax(0, 1fr);
+          gap: 0.45rem 0.6rem;
         }
 
         .founder-hero-photo {
-          max-width: 6em;
+          max-width: 60px;
         }
 
         .founder-name {
-          font-size: 1.6em;
+          font-size: 1.35rem;
+        }
+
+        .offer-line {
+          margin-bottom: 0.4rem;
         }
 
         .ticker-logo {
-          height: 42px;
-          min-width: 100px;
+          height: 36px;
+          min-width: 88px;
         }
 
         .ticker-logo img {
-          height: 22px;
-          max-width: 88px;
+          height: 20px;
+          max-width: 80px;
         }
       }
 
@@ -2361,6 +2661,70 @@
       .steps,
       .targets-grid { grid-template-columns: 1fr; }
       .hero-stats { gap: 1.5rem; }
+
+      .why-section {
+        padding: 3.5rem 0;
+      }
+
+      .why-intro {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        margin-bottom: 2rem;
+      }
+
+      .why-intro h2 {
+        font-size: 2rem;
+      }
+
+      .why-bio {
+        font-size: 0.9375rem;
+        line-height: 1.6;
+      }
+
+      .why-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .why-stat,
+      .why-stat:nth-child(3n + 1) {
+        padding: 1.1rem 0.85rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .why-stat:nth-child(odd) {
+        padding-left: 0;
+        border-left: none;
+      }
+
+      .why-stat:nth-child(even) {
+        border-left: 1px solid var(--border);
+      }
+
+      .why-stat:nth-child(n + 5) {
+        border-bottom: none;
+      }
+
+      .why-stat-value {
+        font-size: 1.25rem;
+      }
+
+      .why-stat-label {
+        font-size: 0.8125rem;
+      }
+
+      .why-press {
+        margin-top: 2rem;
+      }
+
+      .why-press-logos {
+        gap: 1rem 1.25rem;
+      }
+
+      .why-press-logos img {
+        height: 20px;
+        max-width: 88px;
+      }
+
       .gallery-grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
@@ -2411,17 +2775,12 @@
 <body>
 
   <div class="promo-banner" role="banner">
-    <a href="offer.html">
-      <span>25% OFF first app build</span>
-      <span class="promo-timer" data-offer-countdown>01:00</span>
-      <span class="promo-claim">Claim Offer</span>
-    </a>
+    <a href="offer.html">New client introduction — 25% on the first engagement</a>
   </div>
 
   <header class="nav">
     <div class="container nav-inner">
       <a href="#" class="logo" aria-label="Christopher Walsh home">
-        <img src="public/funny-logo.png" alt="" class="logo-img" width="44" height="44">
         <span class="logo-text">Christopher <span>Walsh</span></span>
       </a>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -2432,7 +2791,7 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#process">Process</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="offer.html" class="btn btn-primary">Claim Offer</a></li>
+        <li><a href="offer.html" class="btn btn-primary">Start a Project</a></li>
       </ul>
     </div>
   </header>
@@ -2455,14 +2814,30 @@
         <div class="founder-copy">
         <div class="founder-content">
           <span class="founder-eyebrow">Software Development as a Service</span>
-          <h1 class="founder-name">Christopher Walsh</h1>
-          <p class="founder-title">Canadian application developer &amp; technology lead</p>
+          <span class="founder-mobile-role">Christopher Walsh · Canadian application developer &amp; technology lead</span>
         </div>
+        <h1 class="founder-name">Build your app with an experienced Canadian developer.</h1>
+        <p class="founder-title">From idea to production, get the technical leadership to design, build and launch your software.</p>
         <div class="founder-bio-block">
-        <p class="founder-bio founder-bio-full">
-          Looking for the right developer for your next project? Christopher has helped startups like travelspoken.com build technology that contributed to a multi-million dollar fundraise and helped businesses like American Livestock Management develop the technical edge that led to their acquisition by an industry leader. From new ideas to growing platforms, he brings the technical experience and leadership to build, launch, and scale your project into a successful product.
-        </p>
-        <a href="offer.html" class="btn btn-primary founder-cta">Claim Offer</a>
+        <p class="founder-cred">Technology behind a multi-million-dollar fundraise and a client acquisition.</p>
+        <div class="founder-proof" aria-label="Selected outcomes and client reviews">
+          <p class="proof-outcome"><strong>Proven product outcomes.</strong> Software I built contributed to a multi-million-dollar VC raise and helped position another startup for acquisition by an industry leader.</p>
+          <p class="proof-review"><span class="proof-stars" aria-hidden="true">★★★★★</span> <strong>5.0 stars</strong> from 23 verified client reviews.</p>
+        </div>
+        <div class="offer-panel">
+          <div class="offer-intro">
+            <span class="offer-label">Private new-client introduction</span>
+            <span class="offer-rate">25% preferred rate</span>
+          </div>
+          <p class="offer-line">Your first engagement includes a private consultation and application architecture session.</p>
+          <div class="offer-actions">
+            <div class="offer-timer-row">
+              <span data-offer-countdown aria-hidden="true">05:00</span>
+              <span class="offer-timer-support" data-offer-support>to reserve</span>
+            </div>
+            <a href="offer.html" class="btn btn-primary founder-cta" data-offer-cta>Discuss Your Project</a>
+          </div>
+        </div>
         </div>
         </div>
         </div>
@@ -2640,6 +3015,59 @@
               <div class="stat-value">Proven</div>
               <div class="stat-label">Acquisitions, fundraises &amp; global press</div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="why-section" id="why-christopher">
+      <div class="container">
+        <div class="why-intro">
+          <div>
+            <span class="eyebrow">Why work with Christopher?</span>
+            <h2>You’re not hiring an anonymous development agency.</h2>
+          </div>
+          <p class="why-bio">
+            Looking for the right developer for your next project? Christopher has helped startups like travelspoken.com build technology that contributed to a multi-million dollar fundraise and helped businesses like American Livestock Management develop the technical edge that led to their acquisition by an industry leader. From new ideas to growing platforms, he brings the technical experience and leadership to build, launch, and scale your project into a successful product.
+          </p>
+        </div>
+
+        <div class="why-stats" aria-label="Christopher Walsh credentials and results">
+          <div class="why-stat">
+            <strong class="why-stat-value">16+</strong>
+            <span class="why-stat-label">Apps shipped</span>
+          </div>
+          <div class="why-stat">
+            <strong class="why-stat-value">23</strong>
+            <span class="why-stat-label">Five-star reviews</span>
+          </div>
+          <div class="why-stat">
+            <strong class="why-stat-value">5.0</strong>
+            <span class="why-stat-label">Client rating</span>
+          </div>
+          <div class="why-stat">
+            <strong class="why-stat-value">Multi-million-dollar</strong>
+            <span class="why-stat-label">Client fundraising supported by a product Christopher built</span>
+          </div>
+          <div class="why-stat">
+            <strong class="why-stat-value">Acquisition</strong>
+            <span class="why-stat-label">Technology contributed to a client acquisition</span>
+          </div>
+          <div class="why-stat">
+            <strong class="why-stat-value">Canadian</strong>
+            <span class="why-stat-label">Developer &amp; technology lead</span>
+          </div>
+        </div>
+
+        <div class="why-press" aria-label="Work featured in">
+          <p class="why-press-label">Work featured in</p>
+          <div class="why-press-logos">
+            <img src="public/news/Reuters_Logo.png" alt="Reuters" height="24" loading="lazy">
+            <img src="public/news/yahoo-news-logo.png" alt="Yahoo News" height="24" loading="lazy">
+            <img src="public/news/NYP_New_York_Post_logo_wordmark.png" alt="New York Post" height="24" loading="lazy">
+            <img src="public/news/CBS_News_logo.svg" alt="CBS News" height="24" loading="lazy">
+            <img src="public/news/The_Independent_logo_wordmark.png" alt="The Independent" height="24" loading="lazy">
+            <img src="public/news/the-business-journals-logo-vector.png" alt="The Business Journals" height="24" loading="lazy">
           </div>
         </div>
       </div>
@@ -3077,6 +3505,7 @@
       }
     });
   </script>
+  <script src="ads-attribution.js"></script>
   <script src="offer-countdown.js"></script>
   <script>
     function fitIntroFold() {
@@ -3090,25 +3519,14 @@
       grid.style.transformOrigin = '';
       if (wrap) wrap.style.height = '';
 
+      if (window.innerWidth <= 640) return;
+
       requestAnimationFrame(() => {
         const available = hero.clientHeight;
         const needed = grid.offsetHeight;
         if (!available || !needed) return;
 
-        const isMobile = window.innerWidth <= 640;
-
-        if (isMobile) {
-          let scale = 1;
-          if (needed > available) {
-            scale = (available / needed) * 0.985;
-          } else if (needed < available * 0.92) {
-            scale = Math.min((available / needed) * 0.985, 1.08);
-          }
-
-          grid.style.transform = scale === 1 ? 'none' : `scale(${scale})`;
-          grid.style.transformOrigin = 'top left';
-          if (wrap) wrap.style.height = scale === 1 ? '' : `${needed * scale}px`;
-        } else if (needed > available) {
+        if (needed > available) {
           const scale = (available / needed) * 0.985;
           grid.style.transform = `scale(${scale})`;
           grid.style.transformOrigin = 'center bottom';

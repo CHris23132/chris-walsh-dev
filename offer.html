@@ -13,14 +13,6 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'AW-11158452612');
-
-    function gtag_report_conversion() {
-      gtag('event', 'conversion', {
-        send_to: 'AW-11158452612/Z1IbCNmS65waEITz4cgp',
-        value: 1.0,
-        currency: 'CAD'
-      });
-    }
   </script>
   <style>
     :root {
@@ -153,9 +145,19 @@
       line-height: 0.95;
       color: var(--accent);
     }
-    .countdown-board [data-offer-countdown].is-expired {
-      color: #d70015;
+    .countdown-restart {
+      display: none;
+      margin-top: 0.5rem;
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0;
     }
+    body.offer-expired .countdown-restart { display: inline; }
     .offer-hero h1 {
       font-size: clamp(1.35rem, 5vw, 1.85rem);
       font-weight: 600;
@@ -219,34 +221,6 @@
       border: 1px solid rgba(255, 59, 48, 0.25);
       color: #d70015;
     }
-    .claim-card.is-success .offer-form { display: none; }
-    .offer-success { display: none; text-align: center; padding: 0.35rem 0; }
-    .claim-card.is-success .offer-success { display: block; }
-    .offer-success-icon {
-      width: 3rem;
-      height: 3rem;
-      margin: 0 auto 0.75rem;
-      border-radius: 50%;
-      background: var(--accent-soft);
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-    }
-    .offer-code {
-      margin: 0.75rem auto 1rem;
-      padding: 0.75rem 1rem;
-      max-width: 18rem;
-      border-radius: 14px;
-      background: var(--bg-elevated);
-      border: 1px dashed var(--border-strong);
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-    }
-    .offer-success p { color: var(--text-muted); margin: 0 0 0.65rem; }
 
     .featured-in {
       padding: 0.85rem 0 1rem;
@@ -339,7 +313,6 @@
   <header class="nav">
     <div class="container nav-inner">
       <a href="index.html" class="logo" aria-label="Christopher Walsh home">
-        <img src="public/funny-logo.png" alt="" class="logo-img" width="44" height="44">
         <span class="logo-text">Christopher Walsh</span>
       </a>
       <a href="#claim" class="btn btn-primary" style="padding: 0.35rem 0.9rem; font-size: 0.75rem;">Claim Offer</a>
@@ -351,13 +324,18 @@
       <div class="container">
         <div class="countdown-board" aria-live="polite">
           <span class="countdown-label">Time left</span>
-          <span data-offer-countdown>01:00</span>
+          <span data-offer-countdown>05:00</span>
+          <button type="button" class="countdown-restart" data-offer-restart>Continue</button>
         </div>
         <span class="eyebrow">Limited-time offer</span>
         <h1>Claim 25% off your first app build</h1>
         <p class="offer-copy">Includes 25% off your first app build, a free consultation, and an Application Architecture Plan.</p>
         <div class="claim-card" id="claim-card">
         <form class="offer-form form-grid" id="offer-form" novalidate>
+          <div class="form-field">
+            <label for="contactName">Name</label>
+            <input type="text" id="contactName" name="contactName" required autocomplete="name" placeholder="Full name">
+          </div>
           <div class="form-field">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@company.com">
@@ -386,13 +364,6 @@
             <button type="submit" class="btn btn-primary" id="offer-submit">Claim Offer</button>
           </div>
         </form>
-        <div class="offer-success">
-          <div class="offer-success-icon" aria-hidden="true">✓</div>
-          <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Your 25% OFF offer code</h3>
-          <div class="offer-code" id="offer-code-display"></div>
-          <p>Save this code — we’ll apply it to your first app build.</p>
-          <p>We’ll follow up by phone or email to book your <strong style="color: var(--text);">free consultation</strong> and <strong style="color: var(--text);">Application Architecture Plan</strong> session.</p>
-        </div>
         </div>
       </div>
     </section>
@@ -484,6 +455,7 @@
     </div>
   </footer>
 
+  <script src="ads-attribution.js"></script>
   <script src="offer-countdown.js"></script>
   <script type="module">
     import { db, collection, addDoc, serverTimestamp } from './firebase.js';
@@ -510,14 +482,12 @@
       crypto.getRandomValues(bytes);
       let suffix = '';
       for (const byte of bytes) suffix += chars[byte % chars.length];
-      return `CW25-${suffix}`;
+      return `CW-${suffix}`;
     }
 
     const form = document.getElementById('offer-form');
-    const card = document.getElementById('claim-card');
     const submitBtn = document.getElementById('offer-submit');
     const formMessage = document.getElementById('form-message');
-    const codeDisplay = document.getElementById('offer-code-display');
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -529,8 +499,10 @@
       const serviceSelect = form.serviceType;
       const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
       const offerCode = generateOfferCode();
+      const attribution = typeof getAdAttribution === 'function' ? getAdAttribution() : {};
 
       const entry = {
+        contactName: form.contactName.value.trim(),
         email: form.email.value.trim(),
         phone: form.phone.value.trim(),
         serviceType: serviceSelect.value,
@@ -538,14 +510,25 @@
         offerCode,
         offerDiscount: 25,
         offerIncludes: [
-          '25% off first app build',
-          'Free consultation',
-          'Application Architecture Plan'
+          '25% off first development project',
+          'Free initial consultation',
+          'Free Application Architecture & Planning Session',
+          'Initial technology/architecture recommendations',
+          'Development roadmap discussion'
         ],
         status: 'pending',
         source: 'offer_claim_page',
         leadType: 'offer_claim',
-        submittedAt: serverTimestamp()
+        gclid: attribution.gclid || null,
+        utm_source: attribution.utm_source || null,
+        utm_medium: attribution.utm_medium || null,
+        utm_campaign: attribution.utm_campaign || null,
+        utm_term: attribution.utm_term || null,
+        utm_content: attribution.utm_content || null,
+        landingPage: attribution.landingPage || window.location.pathname,
+        referrer: attribution.referrer || document.referrer || null,
+        submittedAt: serverTimestamp(),
+        clientSubmittedAt: new Date().toISOString()
       };
 
       submitBtn.disabled = true;
@@ -553,12 +536,10 @@
 
       try {
         await addDoc(collection(db, 'contactInquiries'), entry);
-        if (typeof gtag_report_conversion === 'function') {
-          gtag_report_conversion();
-        }
-        codeDisplay.textContent = offerCode;
-        card.classList.add('is-success');
-        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        sessionStorage.setItem('offerCode', offerCode);
+        sessionStorage.setItem('offerConversionPending', 'true');
+        sessionStorage.removeItem('offerConversionFired');
+        window.location.href = 'offer-claimed.html';
       } catch (error) {
         console.error('Offer claim failed:', error);
         formMessage.textContent = 'Something went wrong claiming your offer. Please try again.';

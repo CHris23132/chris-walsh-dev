@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Your 25% off development offer has been claimed. Keep your unique offer code for your first project with Christopher Walsh.">
+  <title>Offer Claimed — Christopher Walsh</title>
+  <link rel="icon" href="public/funny-logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="public/funny-logo.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11158452612"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-11158452612');
+
+    function fireOfferLeadConversion() {
+      gtag('event', 'conversion', {
+        send_to: 'AW-11158452612/Z1IbCNmS65waEITz4cgp',
+        value: 1.0,
+        currency: 'CAD'
+      });
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-elevated: #f5f5f7;
+      --text: #1d1d1f;
+      --text-muted: #6e6e73;
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+      --accent-soft: rgba(0, 113, 227, 0.08);
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: #d2d2d7;
+      --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", system-ui, sans-serif;
+      --radius: 18px;
+      --max: 980px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.08);
+      --nav-bar-h: 44px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.47059;
+      letter-spacing: -0.022em;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - 2.5rem, var(--max)); margin-inline: auto; }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: var(--nav-bar-h);
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--nav-bar-h);
+    }
+    .logo { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .logo-img { height: 28px; width: auto; }
+    .logo-text { font-size: 1.0625rem; font-weight: 600; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.72rem 1.35rem;
+      border-radius: 980px;
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.25s, box-shadow 0.25s, transform 0.25s;
+    }
+    .btn-primary {
+      background: linear-gradient(180deg, #1a82ef 0%, var(--accent) 55%, #0062c7 100%);
+      color: #fff;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.18) inset,
+        0 1px 0 rgba(255, 255, 255, 0.28) inset,
+        0 4px 14px rgba(0, 113, 227, 0.35),
+        0 0 22px rgba(0, 113, 227, 0.22);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(180deg, #2a8cf5 0%, var(--accent-hover) 55%, #0068d4 100%);
+      transform: translateY(-1px);
+    }
+    .btn-ghost {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+    }
+    .btn-ghost:hover { background: var(--bg-elevated); }
+
+    main { padding-top: var(--nav-bar-h); }
+
+    .claimed-hero {
+      padding: 1.5rem 0 1.35rem;
+      background: #fff;
+      text-align: center;
+    }
+    .claimed-card {
+      max-width: 32rem;
+      margin: 0 auto;
+      padding: 1.35rem 1.15rem 1.25rem;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow-md);
+    }
+    .success-icon {
+      width: 3.1rem;
+      height: 3.1rem;
+      margin: 0 auto 0.85rem;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.45rem;
+      font-weight: 700;
+    }
+    .claimed-hero h1 {
+      font-size: clamp(1.4rem, 5vw, 1.85rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin: 0 0 0.45rem;
+    }
+    .claimed-sub {
+      margin: 0 0 1rem;
+      color: var(--accent);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .code-label {
+      margin: 0 0 0.45rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .offer-code {
+      margin: 0 auto 1.15rem;
+      padding: 0.8rem 1rem;
+      max-width: 18rem;
+      border-radius: 14px;
+      background: var(--bg-elevated);
+      border: 1px dashed var(--border-strong);
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+    .reserved {
+      text-align: left;
+      margin: 0 0 1.15rem;
+      padding: 0.9rem 1rem;
+      border-radius: 14px;
+      background: var(--bg-elevated);
+    }
+    .reserved h2 {
+      margin: 0 0 0.55rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .reserved ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .reserved li {
+      position: relative;
+      padding: 0.28rem 0 0.28rem 1.35rem;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+    .reserved li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .next-step {
+      text-align: left;
+      margin: 0 0 1.15rem;
+    }
+    .next-step h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .next-step p {
+      margin: 0 0 0.55rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .claimed-actions {
+      display: grid;
+      gap: 0.65rem;
+    }
+    .claimed-actions .btn { width: 100%; }
+    .credibility {
+      margin-top: 1.15rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+    .credibility .stars { color: #ff9500; margin-right: 0.35rem; }
+
+    .empty-state { display: none; }
+    body.is-empty .claimed-success { display: none; }
+    body.is-empty .empty-state { display: block; }
+    .empty-state h1 { margin-bottom: 0.65rem; }
+    .empty-state p {
+      margin: 0 0 1.15rem;
+      color: var(--text-muted);
+    }
+
+    .featured-in {
+      padding: 0.85rem 0 1.35rem;
+      background: var(--bg-elevated);
+      overflow: hidden;
+    }
+    .featured-in-header { text-align: center; margin-bottom: 0.55rem; }
+    .featured-in-header p {
+      margin: 0;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .ticker-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+    .ticker-track { display: flex; width: max-content; animation: ticker-scroll 45s linear infinite; }
+    .ticker-group { display: flex; align-items: center; gap: 0.85rem; padding-right: 0.85rem; }
+    .ticker-logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 42px;
+      min-width: 104px;
+      padding: 0.3rem 0.75rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: var(--shadow-sm);
+    }
+    .ticker-logo img { height: 22px; width: auto; max-width: 90px; object-fit: contain; }
+    @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    footer {
+      padding: 1.15rem 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 800px) {
+      .container { width: min(100% - 1.25rem, var(--max)); }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo" aria-label="Christopher Walsh home">
+        <span class="logo-text">Christopher Walsh</span>
+      </a>
+      <a href="index.html" class="btn btn-primary" style="padding: 0.35rem 0.9rem; font-size: 0.75rem;">Return to Website</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="claimed-hero">
+      <div class="container">
+        <div class="claimed-card claimed-success" id="claimed-success">
+          <div class="success-icon" aria-hidden="true">✓</div>
+          <h1>Your Offer Has Been Claimed</h1>
+          <p class="claimed-sub">25% OFF Your First Development Project</p>
+          <p class="code-label">Your unique offer code</p>
+          <div class="offer-code" id="offer-code-display">CW-XXXXXX</div>
+
+          <div class="reserved">
+            <h2>You’ve reserved</h2>
+            <ul>
+              <li>25% off your first development project</li>
+              <li>Free initial consultation</li>
+              <li>Free Application Architecture &amp; Planning Session</li>
+              <li>Initial technology/architecture recommendations</li>
+              <li>Development roadmap discussion</li>
+            </ul>
+          </div>
+
+          <div class="next-step">
+            <h2>What happens next?</h2>
+            <p>I’ll personally follow up by phone or email to schedule your free consultation and application planning session.</p>
+            <p>Keep your offer code for reference when we speak.</p>
+          </div>
+
+          <div class="claimed-actions">
+            <a href="tel:+19059798389" class="btn btn-primary">
+              Call Christopher Now
+            </a>
+            <a href="index.html" class="btn btn-ghost">Return to Website</a>
+          </div>
+
+          <p class="credibility">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            5.0 · 23 Client Reviews
+          </p>
+        </div>
+
+        <div class="claimed-card empty-state" id="empty-state">
+          <h1>No active offer found.</h1>
+          <p>Claim the current introduction offer to receive your unique code.</p>
+          <div class="claimed-actions">
+            <a href="offer.html" class="btn btn-primary">View Current Offer</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-in" aria-label="Work featured in">
+      <div class="container featured-in-header">
+        <p>Work Featured In</p>
+      </div>
+      <div class="ticker-wrap">
+        <div class="ticker-track">
+          <div class="ticker-group">
+            <div class="ticker-logo"><img src="public/news/yahoo-news-logo.png" alt="Yahoo News" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/NYP_New_York_Post_logo_wordmark.png" alt="New York Post" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/CBS_News_logo.svg" alt="CBS News" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/The_Independent_logo_wordmark.png" alt="The Independent" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/Reuters_Logo.png" alt="Reuters" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/the-business-journals-logo-vector.png" alt="The Business Journals" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/NewsBreak_logo.png" alt="NewsBreak" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/tin.png" alt="The News International" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/MorningBrew.png" alt="Morning Brew" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/dvoice.png" alt="D Voice" height="30"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a href="index.html" class="logo">
+        <img src="public/funny-logo.png" alt="" class="logo-img" width="36" height="36">
+        <span class="logo-text">Christopher Walsh</span>
+      </a>
+      <span>&copy; 2026 Christopher Walsh. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    const tickerTrack = document.querySelector('.ticker-track');
+    const tickerGroup = document.querySelector('.ticker-group');
+    if (tickerTrack && tickerGroup) {
+      const clone = tickerGroup.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      tickerTrack.appendChild(clone);
+    }
+
+    const offerCode = sessionStorage.getItem('offerCode');
+    const pending = sessionStorage.getItem('offerConversionPending') === 'true';
+    const alreadyFired = sessionStorage.getItem('offerConversionFired') === 'true';
+
+    if (!offerCode) {
+      document.body.classList.add('is-empty');
+    } else {
+      document.getElementById('offer-code-display').textContent = offerCode;
+      if (pending && !alreadyFired && typeof fireOfferLeadConversion === 'function') {
+        fireOfferLeadConversion();
+        sessionStorage.setItem('offerConversionPending', 'false');
+        sessionStorage.setItem('offerConversionFired', 'true');
+      }
+    }
+  </script>
+</body>
+</html>
