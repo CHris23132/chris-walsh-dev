@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Claim 25% off your first app build, a free consultation, and an Application Architecture Plan from Christopher Walsh.">
+  <title>Claim 25% Off — Christopher Walsh</title>
+  <link rel="icon" href="public/funny-logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="public/funny-logo.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11158452612"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-11158452612');
+
+    function gtag_report_conversion() {
+      gtag('event', 'conversion', {
+        send_to: 'AW-11158452612/Z1IbCNmS65waEITz4cgp',
+        value: 1.0,
+        currency: 'CAD'
+      });
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-elevated: #f5f5f7;
+      --text: #1d1d1f;
+      --text-muted: #6e6e73;
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+      --accent-soft: rgba(0, 113, 227, 0.08);
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: #d2d2d7;
+      --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", system-ui, sans-serif;
+      --radius: 18px;
+      --max: 980px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.08);
+      --nav-bar-h: 44px;
+      --ticker-h: 6.5rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.47059;
+      letter-spacing: -0.022em;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - 2.5rem, var(--max)); margin-inline: auto; }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: var(--nav-bar-h);
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--nav-bar-h);
+    }
+    .logo { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .logo-img { height: 28px; width: auto; }
+    .logo-text { font-size: 1.0625rem; font-weight: 600; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.72rem 1.35rem;
+      border-radius: 980px;
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s, box-shadow 0.25s, transform 0.25s;
+    }
+    .btn-primary {
+      background: linear-gradient(180deg, #1a82ef 0%, var(--accent) 55%, #0062c7 100%);
+      color: #fff;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.18) inset,
+        0 1px 0 rgba(255, 255, 255, 0.28) inset,
+        0 4px 14px rgba(0, 113, 227, 0.35),
+        0 0 22px rgba(0, 113, 227, 0.22);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(180deg, #2a8cf5 0%, var(--accent-hover) 55%, #0068d4 100%);
+      transform: translateY(-1px);
+    }
+    .btn-primary:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+
+    main {
+      padding-top: var(--nav-bar-h);
+    }
+
+    .offer-hero {
+      padding: 1rem 0 1.15rem;
+      background: #fff;
+      text-align: center;
+    }
+    .eyebrow {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.35rem;
+    }
+    .countdown-board {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2rem;
+      margin: 0 auto 0.85rem;
+    }
+    .countdown-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .countdown-board [data-offer-countdown] {
+      font-size: clamp(3.25rem, 14vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      font-variant-numeric: tabular-nums;
+      line-height: 0.95;
+      color: var(--accent);
+    }
+    .countdown-board [data-offer-countdown].is-expired {
+      color: #d70015;
+    }
+    .offer-hero h1 {
+      font-size: clamp(1.35rem, 5vw, 1.85rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin: 0 0 0.45rem;
+    }
+    .offer-copy {
+      max-width: 22rem;
+      margin: 0 auto 1rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .claim-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 0.85rem;
+      box-shadow: var(--shadow-md);
+      max-width: 28rem;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .claim-card h2 { display: none; }
+    .form-grid { display: grid; gap: 0.55rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.22rem; }
+    .form-field label { font-size: 0.75rem; font-weight: 600; }
+    .form-field input,
+    .form-field select {
+      width: 100%;
+      height: 2.55rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-strong);
+      background: #fff;
+      font-family: var(--sans);
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    .form-field select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 2.25rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2386868b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+    }
+    .form-field input:focus,
+    .form-field select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+    .form-submit .btn { width: 100%; padding: 0.75rem 1.25rem; font-size: 0.95rem; }
+    .form-message { padding: 0.75rem 0.9rem; border-radius: 10px; font-size: 0.85rem; display: none; }
+    .form-message.visible { display: block; }
+    .form-message.error {
+      background: rgba(255, 59, 48, 0.08);
+      border: 1px solid rgba(255, 59, 48, 0.25);
+      color: #d70015;
+    }
+    .claim-card.is-success .offer-form { display: none; }
+    .offer-success { display: none; text-align: center; padding: 0.35rem 0; }
+    .claim-card.is-success .offer-success { display: block; }
+    .offer-success-icon {
+      width: 3rem;
+      height: 3rem;
+      margin: 0 auto 0.75rem;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .offer-code {
+      margin: 0.75rem auto 1rem;
+      padding: 0.75rem 1rem;
+      max-width: 18rem;
+      border-radius: 14px;
+      background: var(--bg-elevated);
+      border: 1px dashed var(--border-strong);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+    .offer-success p { color: var(--text-muted); margin: 0 0 0.65rem; }
+
+    .featured-in {
+      padding: 0.85rem 0 1rem;
+      background: var(--bg-elevated);
+      overflow: hidden;
+    }
+    .featured-in-header { text-align: center; margin-bottom: 0.55rem; }
+    .featured-in-header p {
+      margin: 0;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .ticker-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+    .ticker-track { display: flex; width: max-content; animation: ticker-scroll 45s linear infinite; }
+    .ticker-group { display: flex; align-items: center; gap: 0.85rem; padding-right: 0.85rem; }
+    .ticker-logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 42px;
+      min-width: 104px;
+      padding: 0.3rem 0.75rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: var(--shadow-sm);
+    }
+    .ticker-logo img { height: 22px; width: auto; max-width: 90px; object-fit: contain; }
+    @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    .reviews-section { padding: 1.15rem 0 2rem; background: #fff; }
+    .reviews-header { text-align: center; margin-bottom: 0.9rem; }
+    .reviews-rating {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem 0.65rem;
+    }
+    .reviews-stars { color: #ff9500; font-size: 1rem; }
+    .reviews-score { font-weight: 600; }
+    .reviews-score-sub { color: var(--text-muted); font-size: 0.9rem; }
+    .reviews-track-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+    }
+    .reviews-track { display: flex; width: max-content; animation: reviews-scroll 90s linear infinite; }
+    .reviews-group { display: flex; gap: 0.75rem; padding-right: 0.75rem; }
+    @keyframes reviews-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .review-card {
+      flex: 0 0 min(280px, 82vw);
+      width: min(280px, 82vw);
+      padding: 1rem;
+      border-radius: 16px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+    }
+    .review-card-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.45rem; }
+    .review-card-stars { color: #ff9500; font-size: 0.8rem; }
+    .review-card-name { font-weight: 600; font-size: 0.9rem; }
+    .review-card blockquote { margin: 0; color: var(--text-muted); font-size: 0.85rem; }
+
+    footer {
+      padding: 1.15rem 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 800px) {
+      .container { width: min(100% - 1.25rem, var(--max)); }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo" aria-label="Christopher Walsh home">
+        <img src="public/funny-logo.png" alt="" class="logo-img" width="44" height="44">
+        <span class="logo-text">Christopher Walsh</span>
+      </a>
+      <a href="#claim" class="btn btn-primary" style="padding: 0.35rem 0.9rem; font-size: 0.75rem;">Claim Offer</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="offer-hero" id="claim">
+      <div class="container">
+        <div class="countdown-board" aria-live="polite">
+          <span class="countdown-label">Time left</span>
+          <span data-offer-countdown>01:00</span>
+        </div>
+        <span class="eyebrow">Limited-time offer</span>
+        <h1>Claim 25% off your first app build</h1>
+        <p class="offer-copy">Includes 25% off your first app build, a free consultation, and an Application Architecture Plan.</p>
+        <div class="claim-card" id="claim-card">
+        <form class="offer-form form-grid" id="offer-form" novalidate>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@company.com">
+          </div>
+          <div class="form-field">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="+1 555 555 5555">
+          </div>
+          <div class="form-field">
+            <label for="serviceType">Service you need</label>
+            <select id="serviceType" name="serviceType" required>
+              <option value="" disabled selected>Select one</option>
+              <option value="mobile">Mobile Application Development</option>
+              <option value="web">Website &amp; Web Application Development</option>
+              <option value="desktop">Desktop Application Development</option>
+              <option value="enterprise">Custom Enterprise Software Systems</option>
+              <option value="computer-vision">Computer Vision</option>
+              <option value="consulting">Technical Consulting</option>
+              <option value="ai-strategy">AI Strategy</option>
+              <option value="ai-implementation">AI Implementation</option>
+              <option value="other">Other / Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-message" id="form-message" role="alert" aria-live="polite"></div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary" id="offer-submit">Claim Offer</button>
+          </div>
+        </form>
+        <div class="offer-success">
+          <div class="offer-success-icon" aria-hidden="true">✓</div>
+          <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Your 25% OFF offer code</h3>
+          <div class="offer-code" id="offer-code-display"></div>
+          <p>Save this code — we’ll apply it to your first app build.</p>
+          <p>We’ll follow up by phone or email to book your <strong style="color: var(--text);">free consultation</strong> and <strong style="color: var(--text);">Application Architecture Plan</strong> session.</p>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-in" aria-label="Work featured in">
+      <div class="container featured-in-header">
+        <p>Work Featured In</p>
+      </div>
+      <div class="ticker-wrap">
+        <div class="ticker-track">
+          <div class="ticker-group">
+            <div class="ticker-logo"><img src="public/news/yahoo-news-logo.png" alt="Yahoo News" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/NYP_New_York_Post_logo_wordmark.png" alt="New York Post" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/CBS_News_logo.svg" alt="CBS News" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/The_Independent_logo_wordmark.png" alt="The Independent" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/Reuters_Logo.png" alt="Reuters" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/the-business-journals-logo-vector.png" alt="The Business Journals" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/NewsBreak_logo.png" alt="NewsBreak" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/tin.png" alt="The News International" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/MorningBrew.png" alt="Morning Brew" height="30"></div>
+            <div class="ticker-logo"><img src="public/news/dvoice.png" alt="D Voice" height="30"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews-section" id="reviews" aria-label="Client reviews">
+      <div class="container">
+        <div class="reviews-header">
+          <span class="eyebrow">Client Reviews</span>
+          <div class="reviews-rating">
+            <span class="reviews-stars" aria-hidden="true">★★★★★</span>
+            <span class="reviews-score">5.0</span>
+            <span class="reviews-score-sub">· Top Rated on Fiverr · 23 reviews</span>
+          </div>
+        </div>
+        <div class="reviews-track-wrap">
+          <div class="reviews-track">
+            <div class="reviews-group">
+              <article class="review-card">
+                <div class="review-card-header">
+                  <span class="review-card-stars">★★★★★</span>
+                  <span class="review-card-name">phdlec</span>
+                </div>
+                <blockquote>Chris was amazing to work with. Honestly, do not go with anyone else. He worked with my timeline &amp; budget. If you want your app built and delivered seamless and in less time than expected — Chris is your guy.</blockquote>
+              </article>
+              <article class="review-card">
+                <div class="review-card-header">
+                  <span class="review-card-stars">★★★★★</span>
+                  <span class="review-card-name">kurtaberle</span>
+                </div>
+                <blockquote>Chris Walsh truly impressed with exceptional mobile app development skills, EXCEEDING expectations through meticulous attention to detail and code expertise.</blockquote>
+              </article>
+              <article class="review-card">
+                <div class="review-card-header">
+                  <span class="review-card-stars">★★★★★</span>
+                  <span class="review-card-name">jensonpritchard</span>
+                </div>
+                <blockquote>His knowledge is top tier and he was able to turn my ideas into a working product quickly and cleanly. Communication was always clear and responses were fast.</blockquote>
+              </article>
+              <article class="review-card">
+                <div class="review-card-header">
+                  <span class="review-card-stars">★★★★★</span>
+                  <span class="review-card-name">travelspoken</span>
+                </div>
+                <blockquote>Chris did a great job on this project and I will continue to work with him. He always delivers and understands the task and goes above and beyond.</blockquote>
+              </article>
+              <article class="review-card">
+                <div class="review-card-header">
+                  <span class="review-card-stars">★★★★★</span>
+                  <span class="review-card-name">bgeis12</span>
+                </div>
+                <blockquote>Chris did a great job building out my software that was by no means an easy concept. He had great communication and solved any issues that came up.</blockquote>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a href="index.html" class="logo">
+        <img src="public/funny-logo.png" alt="" class="logo-img" width="36" height="36">
+        <span class="logo-text">Christopher Walsh</span>
+      </a>
+      <span>&copy; 2026 Christopher Walsh. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="offer-countdown.js"></script>
+  <script type="module">
+    import { db, collection, addDoc, serverTimestamp } from './firebase.js';
+
+    const tickerTrack = document.querySelector('.ticker-track');
+    const tickerGroup = document.querySelector('.ticker-group');
+    if (tickerTrack && tickerGroup) {
+      const clone = tickerGroup.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      tickerTrack.appendChild(clone);
+    }
+
+    const reviewsTrack = document.querySelector('.reviews-track');
+    const reviewsGroup = document.querySelector('.reviews-group');
+    if (reviewsTrack && reviewsGroup) {
+      const clone = reviewsGroup.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      reviewsTrack.appendChild(clone);
+    }
+
+    function generateOfferCode() {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      const bytes = new Uint8Array(6);
+      crypto.getRandomValues(bytes);
+      let suffix = '';
+      for (const byte of bytes) suffix += chars[byte % chars.length];
+      return `CW25-${suffix}`;
+    }
+
+    const form = document.getElementById('offer-form');
+    const card = document.getElementById('claim-card');
+    const submitBtn = document.getElementById('offer-submit');
+    const formMessage = document.getElementById('form-message');
+    const codeDisplay = document.getElementById('offer-code-display');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      formMessage.className = 'form-message';
+      formMessage.textContent = '';
+
+      if (!form.reportValidity()) return;
+
+      const serviceSelect = form.serviceType;
+      const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
+      const offerCode = generateOfferCode();
+
+      const entry = {
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        serviceType: serviceSelect.value,
+        serviceLabel: selectedOption ? selectedOption.textContent.trim() : '',
+        offerCode,
+        offerDiscount: 25,
+        offerIncludes: [
+          '25% off first app build',
+          'Free consultation',
+          'Application Architecture Plan'
+        ],
+        status: 'pending',
+        source: 'offer_claim_page',
+        leadType: 'offer_claim',
+        submittedAt: serverTimestamp()
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Claiming…';
+
+      try {
+        await addDoc(collection(db, 'contactInquiries'), entry);
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion();
+        }
+        codeDisplay.textContent = offerCode;
+        card.classList.add('is-success');
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } catch (error) {
+        console.error('Offer claim failed:', error);
+        formMessage.textContent = 'Something went wrong claiming your offer. Please try again.';
+        formMessage.className = 'form-message visible error';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Claim Offer';
+      }
+    });
+  </script>
+</body>
+</html>
