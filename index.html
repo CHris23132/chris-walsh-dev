@@ -2269,7 +2269,7 @@
       /* Mobile above-the-fold: identity + offer + ticker in one viewport */
       :root {
         --promo-h: 40px;
-        --ticker-h: 5.65rem;
+        --ticker-h: 6.35rem;
       }
 
       .promo-banner a {
@@ -2284,24 +2284,27 @@
       .promo-timer { display: none; }
 
       .intro-fold {
-        height: auto;
-        min-height: 0;
+        height: 100dvh;
+        height: 100svh;
+        min-height: 100svh;
         box-sizing: border-box;
         padding-top: var(--nav-h);
-        display: block;
-        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
         border-bottom: none;
         background: var(--bg);
       }
 
       .founder-hero {
+        flex: 1 1 auto;
         min-height: 0;
-        overflow: visible;
-        padding: 0.75rem 0 0.85rem;
+        overflow: hidden;
+        padding: 0.95rem 0 0.7rem;
         border-bottom: none;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: space-evenly;
         font-size: 16px;
       }
 
@@ -2309,10 +2312,11 @@
 
       .founder-hero .container {
         min-width: 0;
+        flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        overflow: visible;
+        justify-content: space-evenly;
+        overflow: hidden;
       }
 
       .founder-scale-wrap {
@@ -2328,14 +2332,14 @@
         max-width: 100%;
         min-width: 0;
         display: grid;
-        grid-template-columns: 68px minmax(0, 1fr);
+        grid-template-columns: 76px minmax(0, 1fr);
         grid-template-areas:
           "photo content"
           "name name"
           "title title"
           "proof proof"
           "offer offer";
-        gap: 0.45rem 0.65rem;
+        gap: 0.65rem 0.75rem;
         margin-inline: 0;
         align-content: start;
         transform: none !important;
@@ -2358,25 +2362,25 @@
 
       .founder-name {
         grid-area: name;
-        font-size: clamp(1.45rem, 6.6vw, 1.72rem);
+        font-size: clamp(1.55rem, 7vw, 1.9rem);
         font-weight: 600;
         margin: 0;
-        line-height: 1.08;
+        line-height: 1.1;
       }
 
       .founder-title {
         grid-area: title;
-        font-size: 0.9375rem;
+        font-size: 1.02rem;
         margin: 0;
-        line-height: 1.4;
+        line-height: 1.42;
         font-weight: 400;
       }
 
       .founder-mobile-role {
         display: block;
-        max-width: 16rem;
-        font-size: 0.8125rem;
-        line-height: 1.3;
+        max-width: 17rem;
+        font-size: 0.875rem;
+        line-height: 1.35;
         color: var(--text-muted);
       }
 
@@ -2395,43 +2399,43 @@
       .founder-proof {
         grid-area: proof;
         max-width: 100%;
-        padding: 0.55rem 0;
+        padding: 0.7rem 0;
       }
 
       .proof-outcome {
-        font-size: 0.75rem;
-        line-height: 1.4;
+        font-size: 0.84rem;
+        line-height: 1.45;
       }
 
       .proof-review {
-        margin-top: 0.35rem;
-        font-size: 0.6875rem;
-        line-height: 1.35;
+        margin-top: 0.4rem;
+        font-size: 0.78rem;
+        line-height: 1.4;
       }
 
       .offer-panel {
         grid-area: offer;
-        padding: 0.7rem 0.75rem;
+        padding: 0.85rem 0.9rem;
         max-width: 100%;
-        border-radius: 12px;
+        border-radius: 14px;
       }
 
       .offer-intro {
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.35rem;
       }
 
       .offer-label {
-        font-size: 0.6rem;
+        font-size: 0.66rem;
       }
 
       .offer-rate {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
 
       .offer-line {
-        font-size: 0.8125rem;
-        line-height: 1.35;
-        margin-bottom: 0.55rem;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 0.7rem;
       }
 
       .offer-actions {
@@ -2443,18 +2447,18 @@
       }
 
       .offer-timer-row [data-offer-countdown] {
-        font-size: 1rem;
+        font-size: 1.12rem;
       }
 
       .offer-timer-support {
-        font-size: 0.6875rem;
+        font-size: 0.78rem;
         line-height: 1.2;
       }
 
       .founder-cta {
         flex: 0 0 auto;
-        padding: 0.58rem 0.9rem;
-        font-size: 0.8125rem;
+        padding: 0.68rem 1.05rem;
+        font-size: 0.9rem;
         font-weight: 500;
         width: auto;
       }
@@ -2471,21 +2475,22 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        flex: 0 0 var(--ticker-h);
         min-height: var(--ticker-h);
         height: var(--ticker-h);
-        padding: 0.3rem 0 0.4rem;
+        padding: 0.45rem 0 0.55rem;
         border-top: none;
         background: linear-gradient(180deg, var(--bg-elevated), var(--bg));
         overflow: hidden;
       }
 
       .featured-in-header {
-        margin-bottom: 0.35rem;
+        margin-bottom: 0.45rem;
         padding-top: 0;
       }
 
       .featured-in-header p {
-        font-size: 0.62rem;
+        font-size: 0.7rem;
         letter-spacing: 0.12em;
         color: var(--text-muted);
       }
@@ -2496,15 +2501,15 @@
       }
 
       .ticker-logo {
-        height: 40px;
-        min-width: 96px;
-        padding: 0.3rem 0.6rem;
-        border-radius: 10px;
+        height: 46px;
+        min-width: 108px;
+        padding: 0.35rem 0.7rem;
+        border-radius: 11px;
       }
 
       .ticker-logo img {
-        height: 22px;
-        max-width: 86px;
+        height: 26px;
+        max-width: 96px;
       }
 
       .founder-hero-photo {
@@ -2512,10 +2517,10 @@
         grid-column: auto;
         grid-row: auto;
         width: 100%;
-        max-width: 68px;
+        max-width: 76px;
         height: auto;
         aspect-ratio: 4 / 5;
-        border-radius: 10px;
+        border-radius: 11px;
         margin: 0;
         border: none;
         box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
@@ -2527,9 +2532,9 @@
       }
 
       .founder-eyebrow {
-        font-size: 0.625rem;
+        font-size: 0.72rem;
         letter-spacing: 0;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.3rem;
       }
 
       .ticker-group {
@@ -2601,34 +2606,42 @@
 
       @media (max-height: 700px) {
         :root {
-          --ticker-h: 5.15rem;
+          --ticker-h: 5.75rem;
+        }
+
+        .founder-hero {
+          padding: 0.7rem 0 0.5rem;
         }
 
         .founder-hero-grid {
-          grid-template-columns: 60px minmax(0, 1fr);
-          gap: 0.45rem 0.6rem;
+          grid-template-columns: 68px minmax(0, 1fr);
+          gap: 0.5rem 0.65rem;
         }
 
         .founder-hero-photo {
-          max-width: 60px;
+          max-width: 68px;
         }
 
         .founder-name {
-          font-size: 1.35rem;
+          font-size: 1.5rem;
+        }
+
+        .founder-title {
+          font-size: 0.95rem;
         }
 
         .offer-line {
-          margin-bottom: 0.4rem;
+          margin-bottom: 0.5rem;
         }
 
         .ticker-logo {
-          height: 36px;
-          min-width: 88px;
+          height: 42px;
+          min-width: 100px;
         }
 
         .ticker-logo img {
-          height: 20px;
-          max-width: 80px;
+          height: 24px;
+          max-width: 88px;
         }
       }
 
