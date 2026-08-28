@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Build an Instagram-style app with AI in a guided, hands-on adult code class in Toronto or Newmarket. 8–10 seats. Reserve your spot now.">
+  <meta name="theme-color" content="#111111">
+  <meta property="og:title" content="Adult AI Code Class — Build an App With AI">
+  <meta property="og:description" content="Build and deploy a real Instagram-style app in a guided, in-person adult code class. Toronto / Newmarket. 8–10 hands-on seats.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://christopher-walsh-apps.com/codeclass">
+  <link rel="canonical" href="https://christopher-walsh-apps.com/codeclass">
+  <link rel="icon" href="public/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="public/favicon.png">
+  <title>Adult AI Code Class — Build an App With AI</title>
+  <style>
+    :root {
+      --ink: #111111;
+      --paper: #f3f1ec;
+      --paper-bright: #fbfaf7;
+      --muted: #aaa69d;
+      --line: rgba(255, 255, 255, 0.18);
+      --acid: #d9ff39;
+      --orange: #ff6338;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --display: Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Black", sans-serif;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .wrap { width: min(calc(100% - 48px), var(--max)); margin: 0 auto; }
+
+    .site-header {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .wordmark {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .header-link {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .header-link:hover { color: var(--paper); }
+
+    .hero {
+      position: relative;
+      min-height: min(780px, calc(100svh - 62px));
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero::before {
+      content: "AI";
+      position: absolute;
+      right: -0.04em;
+      bottom: -0.28em;
+      color: rgba(255, 255, 255, 0.035);
+      font-family: var(--display);
+      font-size: min(48vw, 620px);
+      line-height: 0.8;
+      letter-spacing: -0.08em;
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+      align-items: end;
+      gap: 48px;
+      padding: 82px 0 92px;
+    }
+    .kicker {
+      margin: 0 0 22px;
+      color: var(--acid);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 780px;
+      margin-bottom: 26px;
+      font-family: var(--display);
+      font-size: clamp(4.5rem, 12vw, 10rem);
+      font-weight: 900;
+      line-height: 0.82;
+      letter-spacing: -0.055em;
+      text-transform: uppercase;
+    }
+    .hero-lead {
+      max-width: 620px;
+      margin-bottom: 30px;
+      color: #ddd9d1;
+      font-size: clamp(18px, 2.1vw, 25px);
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+    }
+    .hero-note {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hero-note strong { color: var(--paper); }
+    .hero-aside {
+      justify-self: end;
+      width: min(100%, 360px);
+      border-top: 3px solid var(--acid);
+      padding-top: 18px;
+    }
+    .hero-aside p {
+      margin-bottom: 22px;
+      color: #d4d0c8;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 22px;
+      border: 2px solid var(--acid);
+      background: var(--acid);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-align: center;
+      text-transform: uppercase;
+      transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+    }
+    .button:hover {
+      background: transparent;
+      color: var(--acid);
+      transform: translateY(-2px);
+    }
+    .button-dark {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .button-dark:hover { color: var(--ink); background: transparent; }
+    .button-arrow { margin-left: 16px; font-size: 18px; line-height: 0; }
+
+    .section {
+      padding: 100px 0;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    .section-dark {
+      color: var(--paper);
+      background: var(--ink);
+    }
+    .section-intro {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 62px;
+    }
+    .section-label {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .section-label::before {
+      content: "";
+      display: inline-block;
+      width: 28px;
+      height: 3px;
+      margin: 0 12px 3px 0;
+      background: var(--orange);
+    }
+    .section h2 {
+      max-width: 760px;
+      margin-bottom: 18px;
+      font-family: var(--display);
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-weight: 900;
+      line-height: 0.86;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+    .section-copy {
+      max-width: 600px;
+      margin: 0;
+      color: #625f59;
+      font-size: 19px;
+      line-height: 1.35;
+    }
+
+    .builder {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.6fr) minmax(0, 1.4fr);
+      gap: 56px;
+      align-items: center;
+    }
+    .builder-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      filter: grayscale(100%);
+      mix-blend-mode: multiply;
+    }
+    .builder-copy {
+      border-top: 1px solid rgba(17, 17, 17, 0.25);
+      padding-top: 22px;
+    }
+    .builder-copy p {
+      max-width: 640px;
+      margin-bottom: 24px;
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+    .builder-copy small {
+      display: block;
+      max-width: 560px;
+      color: #625f59;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .build-section { padding-top: 92px; }
+    .build-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .build-step {
+      min-height: 205px;
+      padding: 22px 20px 26px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .step-number {
+      display: block;
+      margin-bottom: 46px;
+      color: var(--acid);
+      font-family: var(--display);
+      font-size: 30px;
+      line-height: 1;
+    }
+    .build-step h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .build-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .clone {
+      position: relative;
+      overflow: hidden;
+      padding: 110px 0;
+      background: var(--acid);
+      color: var(--ink);
+    }
+    .clone::after {
+      content: "01—04";
+      position: absolute;
+      right: -0.03em;
+      bottom: -0.2em;
+      font-family: var(--display);
+      font-size: min(27vw, 360px);
+      line-height: 0.8;
+      letter-spacing: -0.08em;
+      opacity: 0.1;
+    }
+    .clone-inner { position: relative; z-index: 1; }
+    .clone h2 { max-width: 850px; margin-bottom: 32px; }
+    .clone p {
+      max-width: 570px;
+      margin-bottom: 34px;
+      font-size: 22px;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+
+    .press {
+      padding: 64px 0 70px;
+      background: var(--paper-bright);
+      color: var(--ink);
+      border-top: 1px solid rgba(17, 17, 17, 0.16);
+    }
+    .press-title {
+      margin: 0 0 26px;
+      color: #625f59;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .press-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .press-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 64px;
+      padding: 13px 16px;
+      background: #ffffff;
+      border: 1px solid rgba(17, 17, 17, 0.12);
+    }
+    .press-logo img {
+      width: auto;
+      max-width: 100%;
+      max-height: 30px;
+      filter: grayscale(100%);
+    }
+
+    .reserve {
+      padding: 100px 0 110px;
+      background: var(--orange);
+      color: var(--ink);
+    }
+    .reserve-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: end;
+    }
+    .reserve h2 { margin-bottom: 24px; }
+    .reserve-lead {
+      max-width: 560px;
+      margin-bottom: 30px;
+      font-size: 23px;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+    .contact {
+      border-top: 1px solid rgba(17, 17, 17, 0.35);
+      padding-top: 18px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .contact strong { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+    .contact a { text-decoration: underline; text-underline-offset: 3px; }
+
+    .site-footer {
+      padding: 22px 0 90px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; }
+
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      left: 12px;
+      z-index: 20;
+      padding: 4px;
+      background: var(--acid);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    }
+    .mobile-cta a {
+      display: block;
+      padding: 13px 14px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 800px) {
+      .wrap { width: min(calc(100% - 32px), var(--max)); }
+      .hero { min-height: auto; }
+      .hero-inner {
+        display: block;
+        padding: 62px 0 68px;
+      }
+      .hero::before { right: -0.08em; bottom: -0.05em; font-size: 65vw; }
+      h1 { max-width: 600px; font-size: clamp(4.1rem, 18vw, 7rem); }
+      .hero-aside { width: 100%; margin-top: 54px; }
+      .section { padding: 72px 0; }
+      .section-intro, .builder, .reserve-grid { display: block; }
+      .section-intro { margin-bottom: 44px; }
+      .section-label { margin-bottom: 28px; }
+      .builder-photo { width: min(62vw, 270px); margin-bottom: 34px; }
+      .build-grid { grid-template-columns: repeat(2, 1fr); }
+      .build-step { min-height: 180px; padding: 18px 14px 20px; }
+      .step-number { margin-bottom: 34px; }
+      .clone { padding: 76px 0 86px; }
+      .press-grid { grid-template-columns: repeat(2, 1fr); }
+      .press-logo:last-child { grid-column: span 2; }
+      .reserve { padding: 76px 0 90px; }
+      .reserve .button { width: 100%; }
+      .contact { margin-top: 44px; }
+      .site-footer { padding-bottom: 86px; }
+      .footer-inner { display: block; }
+      .footer-inner span { display: block; margin-top: 8px; }
+      .mobile-cta { display: block; }
+    }
+
+    @media (max-width: 420px) {
+      .wordmark { font-size: 11px; }
+      .header-link { font-size: 10px; }
+      .hero-inner { padding-top: 48px; }
+      h1 { font-size: clamp(3.8rem, 18vw, 5.2rem); }
+      .hero-lead { font-size: 18px; }
+      .build-grid { grid-template-columns: 1fr; }
+      .build-step { min-height: 0; }
+      .press-grid { grid-template-columns: 1fr 1fr; }
+      .press-logo { padding: 10px; }
+      .reserve h2 { font-size: 3.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="index.html">Christopher Walsh</a>
+      <a class="header-link" href="#reserve">Reserve your spot <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div>
+          <p class="kicker">Adult AI Code Class / In Person</p>
+          <h1>Build an app<br>with AI</h1>
+          <p class="hero-lead">Design, build and deploy a real Instagram-style app in a guided, in-person adult code class.</p>
+          <div class="hero-note">
+            <span><strong>8–10 seats</strong></span>
+            <span>Toronto / Newmarket</span>
+            <span>Hands-on</span>
+          </div>
+        </div>
+        <aside class="hero-aside">
+          <p>Learn how to build a production-ready app from first screen to live deployment.</p>
+          <!-- Replace the mailto fallback with your Stripe Checkout URL when ready. -->
+          <a class="button" href="mailto:play3dinc@gmail.com?subject=Reserve%20my%20Adult%20AI%20Code%20Class%20spot">Reserve your spot <span class="button-arrow" aria-hidden="true">↗</span></a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-intro">
+          <p class="section-label">Learn from a builder</p>
+          <div>
+            <h2>Build full app<br>in your first class.</h2>
+            <p class="section-copy">A Canadian app developer whose technology has helped teams raise millions, reach acquisition and earn international media coverage.</p>
+          </div>
+        </div>
+        <div class="builder">
+          <img class="builder-photo" src="public/chris.jpeg" alt="Christopher Walsh, Canadian app developer" width="640" height="640" loading="lazy">
+          <div class="builder-copy">
+            <p>You will build a functional social app — from first screen to live deployment.</p>
+            <small>This is a guided, hands-on class designed for adults who want to understand how real apps are designed, built, connected and launched with AI.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark build-section">
+      <div class="wrap">
+        <div class="section-intro">
+          <p class="section-label">What you’ll build</p>
+          <div>
+            <h2>A full<br>Instagram<br>clone.</h2>
+            <p class="section-copy" style="color:#aaa69d;">Learn the core workflow behind a production-ready social app.</p>
+          </div>
+        </div>
+        <div class="build-grid">
+          <article class="build-step">
+            <span class="step-number">01</span>
+            <h3>Design</h3>
+            <p>Interface, assets and responsive UX</p>
+          </article>
+          <article class="build-step">
+            <span class="step-number">02</span>
+            <h3>Build</h3>
+            <p>Create, read, update and delete</p>
+          </article>
+          <article class="build-step">
+            <span class="step-number">03</span>
+            <h3>Connect</h3>
+            <p>Database, login, profiles and storage</p>
+          </article>
+          <article class="build-step">
+            <span class="step-number">04</span>
+            <h3>Launch</h3>
+            <p>Hosting, deployment and real app workflow</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="clone">
+      <div class="wrap clone-inner">
+        <p class="section-label">Learn how to build production-ready</p>
+        <h2>Ready to build?</h2>
+        <p>Let’s build your app.</p>
+        <!-- Replace the mailto fallback with your Stripe Checkout URL when ready. -->
+        <a class="button button-dark" href="mailto:play3dinc@gmail.com?subject=Reserve%20my%20Adult%20AI%20Code%20Class%20spot">Reserve your spot <span class="button-arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="press" aria-label="Work featured in">
+      <div class="wrap">
+        <p class="press-title">Work featured in</p>
+        <div class="press-grid">
+          <div class="press-logo"><img src="public/news/yahoo-news-logo.png" alt="Yahoo News" width="120" height="44" loading="lazy"></div>
+          <div class="press-logo"><img src="public/news/NYP_New_York_Post_logo_wordmark.png" alt="New York Post" width="150" height="30" loading="lazy"></div>
+          <div class="press-logo"><img src="public/news/CBS_News_logo8x6.png" alt="CBS News" width="120" height="40" loading="lazy"></div>
+          <div class="press-logo"><img src="public/news/The_Independent_logo_wordmark.png" alt="The Independent" width="150" height="28" loading="lazy"></div>
+          <div class="press-logo"><img src="public/news/Reuters_Logo.png" alt="Reuters" width="120" height="32" loading="lazy"></div>
+          <div class="press-logo"><img src="public/news/the-business-journals-logo-vector.png" alt="The Business Journals" width="120" height="42" loading="lazy"></div>
+          <div class="press-logo"><img src="public/news/NewsBreak_logo.png" alt="NewsBreak" width="110" height="36" loading="lazy"></div>
+          <div class="press-logo"><img src="public/news/tin.png" alt="The News International" width="110" height="36" loading="lazy"></div>
+          <div class="press-logo"><img src="public/news/MorningBrew.png" alt="Morning Brew" width="130" height="34" loading="lazy"></div>
+          <div class="press-logo"><img src="public/news/dvoice.png" alt="Daily Voice" width="110" height="36" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reserve" id="reserve">
+      <div class="wrap reserve-grid">
+        <div>
+          <p class="section-label">Ready to build?</p>
+          <h2>Let’s build<br>your app.</h2>
+          <p class="reserve-lead">8–10 seats. Toronto / Newmarket. Hands-on, in person.</p>
+          <!-- Replace the mailto fallback with your Stripe Checkout URL when ready. -->
+          <a class="button button-dark" href="mailto:play3dinc@gmail.com?subject=Reserve%20my%20Adult%20AI%20Code%20Class%20spot">Reserve your spot <span class="button-arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <div class="contact">
+          <strong>Questions or group bookings</strong>
+          <a href="tel:+19059798389">Call 905 979 8389</a><br>
+          <a href="mailto:play3dinc@gmail.com">Email play3dinc@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>Adult AI Code Class / In Person</span>
+      <span>Christopher Walsh</span>
+    </div>
+  </footer>
+
+  <div class="mobile-cta">
+    <!-- Replace the mailto fallback with your Stripe Checkout URL when ready. -->
+    <a href="mailto:play3dinc@gmail.com?subject=Reserve%20my%20Adult%20AI%20Code%20Class%20spot">Reserve your spot now ↗</a>
+  </div>
+</body>
+</html>
