@@ -108,7 +108,7 @@
       max-width: 780px;
       margin-bottom: 26px;
       font-family: var(--display);
-      font-size: clamp(4.5rem, 12vw, 10rem);
+      font-size: clamp(3.5rem, 8vw, 7rem);
       font-weight: 900;
       line-height: 0.82;
       letter-spacing: -0.055em;
@@ -133,6 +133,7 @@
       text-transform: uppercase;
     }
     .hero-note strong { color: var(--paper); }
+    .hero-cta { margin-top: 28px; }
     .hero-aside {
       justify-self: end;
       width: min(100%, 360px);
@@ -321,13 +322,13 @@
     }
 
     .press {
-      padding: 64px 0 70px;
+      padding: 22px 0 24px;
       background: var(--paper-bright);
       color: var(--ink);
       border-top: 1px solid rgba(17, 17, 17, 0.16);
     }
     .press-title {
-      margin: 0 0 26px;
+      margin: 0 0 12px;
       color: #625f59;
       font-size: 11px;
       font-weight: 900;
@@ -336,16 +337,44 @@
       text-transform: uppercase;
     }
     .press-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
+      overflow: hidden;
+    }
+    .press-track {
+      display: flex;
+      width: max-content;
+      animation: press-ticker 42s linear infinite;
+    }
+    .press-track:hover,
+    .press-track:focus-within { animation-play-state: paused; }
+    .press-group {
+      display: flex;
+      flex-shrink: 0;
+      gap: 8px;
+      padding-right: 8px;
+    }
+    @keyframes press-ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .press-track { animation: none; }
+    }
+    .press-top .press-grid {
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .press-top .press-grid { overflow-x: hidden; }
+    .press-top {
+      border-top: 0;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.16);
     }
     .press-logo {
+      flex: 0 0 112px;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 64px;
-      padding: 13px 16px;
+      height: 46px;
+      padding: 9px 11px;
       background: #ffffff;
       border: 1px solid rgba(17, 17, 17, 0.12);
     }
@@ -423,7 +452,7 @@
         padding: 62px 0 68px;
       }
       .hero::before { right: -0.08em; bottom: -0.05em; font-size: 65vw; }
-      h1 { max-width: 600px; font-size: clamp(4.1rem, 18vw, 7rem); }
+      h1 { max-width: 600px; font-size: clamp(3.5rem, 15vw, 5.8rem); }
       .hero-aside { width: 100%; margin-top: 54px; }
       .section { padding: 72px 0; }
       .section-intro, .builder, .reserve-grid { display: block; }
@@ -434,8 +463,8 @@
       .build-step { min-height: 180px; padding: 18px 14px 20px; }
       .step-number { margin-bottom: 34px; }
       .clone { padding: 76px 0 86px; }
-      .press-grid { grid-template-columns: repeat(2, 1fr); }
-      .press-logo:last-child { grid-column: span 2; }
+      .press { padding: 18px 0 20px; }
+      .press-top .press-logo { flex: 0 0 112px; }
       .reserve { padding: 76px 0 90px; }
       .reserve .button { width: 100%; }
       .contact { margin-top: 44px; }
@@ -449,7 +478,7 @@
       .wordmark { font-size: 11px; }
       .header-link { font-size: 10px; }
       .hero-inner { padding-top: 48px; }
-      h1 { font-size: clamp(3.8rem, 18vw, 5.2rem); }
+      h1 { font-size: clamp(3.3rem, 16vw, 4.8rem); }
       .hero-lead { font-size: 18px; }
       .build-grid { grid-template-columns: 1fr; }
       .build-step { min-height: 0; }
@@ -468,6 +497,40 @@
   </header>
 
   <main>
+    <section class="press press-top" aria-label="Work featured in">
+      <div class="wrap">
+        <p class="press-title">Work featured in</p>
+        <div class="press-grid">
+          <div class="press-track">
+            <div class="press-group">
+              <div class="press-logo"><img src="public/news/yahoo-news-logo.png" alt="Yahoo News" width="120" height="44" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/NYP_New_York_Post_logo_wordmark.png" alt="New York Post" width="150" height="30" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/CBS_News_logo8x6.png" alt="CBS News" width="120" height="40" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/The_Independent_logo_wordmark.png" alt="The Independent" width="150" height="28" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/Reuters_Logo.png" alt="Reuters" width="120" height="32" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/the-business-journals-logo-vector.png" alt="The Business Journals" width="120" height="42" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/NewsBreak_logo.png" alt="NewsBreak" width="110" height="36" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/tin.png" alt="The News International" width="110" height="36" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/MorningBrew.png" alt="Morning Brew" width="130" height="34" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/dvoice.png" alt="Daily Voice" width="110" height="36" loading="lazy"></div>
+            </div>
+            <div class="press-group" aria-hidden="true">
+              <div class="press-logo"><img src="public/news/yahoo-news-logo.png" alt="" width="120" height="44" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/NYP_New_York_Post_logo_wordmark.png" alt="" width="150" height="30" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/CBS_News_logo8x6.png" alt="" width="120" height="40" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/The_Independent_logo_wordmark.png" alt="" width="150" height="28" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/Reuters_Logo.png" alt="" width="120" height="32" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/the-business-journals-logo-vector.png" alt="" width="120" height="42" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/NewsBreak_logo.png" alt="" width="110" height="36" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/tin.png" alt="" width="110" height="36" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/MorningBrew.png" alt="" width="130" height="34" loading="lazy"></div>
+              <div class="press-logo"><img src="public/news/dvoice.png" alt="" width="110" height="36" loading="lazy"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="hero">
       <div class="wrap hero-inner">
         <div>
@@ -479,30 +542,12 @@
             <span>Toronto / Newmarket</span>
             <span>Hands-on</span>
           </div>
+          <!-- Replace the mailto fallback with your Stripe Checkout URL when ready. -->
+          <a class="button hero-cta" href="mailto:play3dinc@gmail.com?subject=Reserve%20my%20Adult%20AI%20Code%20Class%20spot">Reserve your spot <span class="button-arrow" aria-hidden="true">↗</span></a>
         </div>
         <aside class="hero-aside">
           <p>Learn how to build a production-ready app from first screen to live deployment.</p>
-          <!-- Replace the mailto fallback with your Stripe Checkout URL when ready. -->
-          <a class="button" href="mailto:play3dinc@gmail.com?subject=Reserve%20my%20Adult%20AI%20Code%20Class%20spot">Reserve your spot <span class="button-arrow" aria-hidden="true">↗</span></a>
         </aside>
-      </div>
-    </section>
-
-    <section class="press" aria-label="Work featured in">
-      <div class="wrap">
-        <p class="press-title">Work featured in</p>
-        <div class="press-grid">
-          <div class="press-logo"><img src="public/news/yahoo-news-logo.png" alt="Yahoo News" width="120" height="44" loading="lazy"></div>
-          <div class="press-logo"><img src="public/news/NYP_New_York_Post_logo_wordmark.png" alt="New York Post" width="150" height="30" loading="lazy"></div>
-          <div class="press-logo"><img src="public/news/CBS_News_logo8x6.png" alt="CBS News" width="120" height="40" loading="lazy"></div>
-          <div class="press-logo"><img src="public/news/The_Independent_logo_wordmark.png" alt="The Independent" width="150" height="28" loading="lazy"></div>
-          <div class="press-logo"><img src="public/news/Reuters_Logo.png" alt="Reuters" width="120" height="32" loading="lazy"></div>
-          <div class="press-logo"><img src="public/news/the-business-journals-logo-vector.png" alt="The Business Journals" width="120" height="42" loading="lazy"></div>
-          <div class="press-logo"><img src="public/news/NewsBreak_logo.png" alt="NewsBreak" width="110" height="36" loading="lazy"></div>
-          <div class="press-logo"><img src="public/news/tin.png" alt="The News International" width="110" height="36" loading="lazy"></div>
-          <div class="press-logo"><img src="public/news/MorningBrew.png" alt="Morning Brew" width="130" height="34" loading="lazy"></div>
-          <div class="press-logo"><img src="public/news/dvoice.png" alt="Daily Voice" width="110" height="36" loading="lazy"></div>
-        </div>
       </div>
     </section>
 
