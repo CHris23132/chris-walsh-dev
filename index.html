@@ -933,6 +933,12 @@
       color: var(--ink);
     }
 
+    .submit-button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .site-footer {
       padding: 22px 0 90px;
       background: var(--ink);
@@ -1496,13 +1502,12 @@
           </div>
 
           <p class="form-note">
-            Submitting opens a pre-filled email to Christopher so the form works without an extra backend.
-            If your current site already stores inquiries in Firebase, replace the submit handler below with that existing logic.
+            Your information is kept confidential and used only to respond to your inquiry.
           </p>
 
           <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
 
-          <button class="button submit-button" type="submit">
+          <button class="button submit-button" type="submit" id="contact-submit">
             Send project details
             <span class="button-arrow" aria-hidden="true">↗</span>
           </button>
@@ -1522,44 +1527,79 @@
     <a href="#contact">Book a free app strategy call ↗</a>
   </div>
 
-  <script>
-    document.getElementById('projectForm').addEventListener('submit', function (event) {
+  <script type="module">
+    import { db, collection, addDoc, serverTimestamp } from './firebase.js';
+
+    const form = document.getElementById('projectForm');
+    const submitBtn = document.getElementById('contact-submit');
+    const formStatus = document.getElementById('formStatus');
+    const defaultSubmitHtml = submitBtn.innerHTML;
+
+    function showStatus(text, type) {
+      formStatus.style.display = 'block';
+      formStatus.textContent = text;
+      formStatus.style.borderColor = type === 'error' ? '#ff6338' : 'rgba(17,17,17,.2)';
+      formStatus.style.color = type === 'error' ? '#ff6338' : '#111111';
+    }
+
+    function trim(value) {
+      return typeof value === 'string' ? value.trim() : '';
+    }
+
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
-      var form = new FormData(event.currentTarget);
-      var name = (form.get('name') || '').toString().trim();
-      var email = (form.get('email') || '').toString().trim();
-      var company = (form.get('company') || '').toString().trim();
-      var service = (form.get('service') || '').toString().trim();
-      var project = (form.get('project') || '').toString().trim();
-      var timeline = (form.get('timeline') || '').toString().trim();
-      var budget = (form.get('budget') || '').toString().trim();
+      if (!form.reportValidity()) {
+        return;
+      }
 
-      var subject = 'New project inquiry from ' + name;
+      const serviceSelect = form.service;
+      const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
+      const timelineSelect = form.timeline;
+      const budgetSelect = form.budget;
 
-      var body = [
-        'Name: ' + name,
-        'Email: ' + email,
-        company ? 'Company: ' + company : '',
-        'Project type: ' + service,
-        timeline ? 'Ideal timeline: ' + timeline : '',
-        budget ? 'Project budget: ' + budget : '',
-        '',
-        'Project:',
-        project
-      ].filter(Boolean).join('\n');
+      const timelineValue = trim(timelineSelect.value);
+      const budgetValue = trim(budgetSelect.value);
+      const timelineParts = [
+        timelineValue ? 'Timeline: ' + timelineValue : '',
+        budgetValue ? 'Budget: ' + budgetValue : ''
+      ].filter(Boolean);
 
-      reportConversion();
+      const entry = {
+        contactName: trim(form.name.value),
+        email: trim(form.email.value),
+        company: trim(form.company.value),
+        serviceType: serviceSelect.value,
+        serviceLabel: selectedOption ? selectedOption.textContent.trim() : '',
+        projectDescription: trim(form.project.value),
+        timeline: timelineParts.join(' | '),
+        budget: budgetValue,
+        status: 'pending',
+        source: 'chris_walsh_dev_site',
+        leadType: 'project_inquiry',
+        offerDiscount: 25,
+        submittedAt: serverTimestamp()
+      };
 
-      var status = document.getElementById('formStatus');
-      status.style.display = 'block';
-      status.textContent = 'Opening your email app with the project details pre-filled.';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      showStatus('Sending your project details…');
 
-      window.location.href =
-        'mailto:play3dinc@gmail.com?subject=' +
-        encodeURIComponent(subject) +
-        '&body=' +
-        encodeURIComponent(body);
+      try {
+        await addDoc(collection(db, 'contactInquiries'), entry);
+        if (typeof reportConversion === 'function') {
+          reportConversion();
+        }
+        form.reset();
+        showStatus('Message sent. I’ll review your project details and get back to you within one business day.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = defaultSubmitHtml;
+      } catch (error) {
+        console.error('Contact submission failed:', error);
+        showStatus('Something went wrong sending your inquiry. Please try again.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = defaultSubmitHtml;
+      }
     });
   </script>
 </body>
