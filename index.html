@@ -951,8 +951,26 @@
     .footer-inner {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 20px;
+      flex-wrap: wrap;
     }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 18px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      transition: color 160ms ease;
+    }
+
+    .footer-links a:hover { color: var(--paper); }
 
     .mobile-cta {
       display: none;
@@ -1055,8 +1073,9 @@
       .field-full, .form-note, .form-status, .submit-button { grid-column: 1; }
       .submit-button { width: 100%; }
 
-      .footer-inner { display: block; }
+      .footer-inner { display: flex; flex-direction: column; align-items: flex-start; }
       .footer-inner span { display: block; margin-top: 7px; }
+      .footer-links { margin-top: 10px; }
       .site-footer { padding-bottom: 92px; }
       .mobile-cta { display: block; }
     }
@@ -1519,6 +1538,10 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <span>Christopher Walsh / Senior Full-Stack Developer</span>
+      <ul class="footer-links">
+        <li><a href="codeclass.html">Code Class</a></li>
+        <li><a href="public/dist/index.html">Repeat Retail</a></li>
+      </ul>
       <span>Toronto, Canada / Available remotely</span>
     </div>
   </footer>
