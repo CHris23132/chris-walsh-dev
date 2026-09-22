@@ -273,6 +273,9 @@ form.addEventListener('submit', async event => {
     await addDoc(collection(db, 'contactInquiries'), entry);
     status.textContent = 'Request received. We’ll be in touch about your custom mockup.';
     status.classList.add('success');
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead');
+    }
     window.siteAnalytics.track('lead_form_submit', { industry: activeKey });
     form.reset();
   } catch (error) {
