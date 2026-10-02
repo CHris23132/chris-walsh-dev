@@ -4,6 +4,9 @@ import {
   getFirestore,
   collection,
   addDoc,
+  getDocs,
+  query,
+  orderBy,
   serverTimestamp
 } from 'https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js';
 
@@ -27,5 +30,8 @@ export {
   db,
   collection,
   addDoc,
+  getDocs,
+  query,
+  orderBy,
   serverTimestamp
 };

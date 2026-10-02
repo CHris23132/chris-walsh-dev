@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Contact Inquiries (local)</title>
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --tile: #111827;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font: inherit;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    button:hover { border-color: #9ca3af; }
+    button:disabled { opacity: 0.6; cursor: wait; }
+
+    main {
+      width: min(920px, calc(100% - 32px));
+      margin: 20px auto 56px;
+    }
+
+    .status {
+      margin: 0 0 18px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .status.error {
+      color: #b91c1c;
+      border-color: #fecaca;
+      background: #fef2f2;
+    }
+
+    .day-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 22px;
+    }
+
+    .day-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .day-nav a:hover { border-color: #9ca3af; }
+    .day-nav .count {
+      min-width: 1.4rem;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: #111827;
+      color: #fff;
+      font-size: 0.72rem;
+      text-align: center;
+    }
+
+    .day-group {
+      margin-bottom: 28px;
+      scroll-margin-top: 84px;
+    }
+
+    .day-tile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: var(--tile);
+      color: #fff;
+    }
+
+    .day-tile h2 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .day-tile .day-count {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.82rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .day-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    article {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 18px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    .row-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px 16px;
+      margin-bottom: 8px;
+    }
+
+    .who {
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+
+    .when {
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .chip.muted {
+      background: #f3f4f6;
+      color: #4b5563;
+    }
+
+    .details {
+      display: grid;
+      gap: 10px;
+    }
+
+    .field {
+      display: grid;
+      grid-template-columns: 128px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      font-size: 0.92rem;
+    }
+
+    .field:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .field.block {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .label {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding-top: 2px;
+    }
+
+    .value {
+      margin: 0;
+      word-break: break-word;
+    }
+
+    .value a { color: var(--accent); text-decoration: none; }
+    .value a:hover { text-decoration: underline; }
+
+    .project-box {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .project-box p {
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+
+    .project-box p:last-child { margin-bottom: 0; }
+
+    .project-box ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 6px;
+    }
+
+    .project-box li {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      gap: 8px;
+      font-size: 0.88rem;
+    }
+
+    .project-box .k {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 40px 16px;
+      color: var(--muted);
+      background: #fff;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .field { grid-template-columns: 1fr; gap: 4px; }
+      .project-box li { grid-template-columns: 1fr; gap: 2px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>contactInquiries</h1>
+      <div class="meta">Local viewer only — not linked from the site</div>
+    </div>
+    <button type="button" id="reload">Refresh</button>
+  </header>
+
+  <main>
+    <p class="status" id="status">Loading…</p>
+    <div class="day-nav" id="day-nav" hidden></div>
+    <div id="list"></div>
+  </main>
+
+  <script type="module">
+    import { db, collection, getDocs, query, orderBy } from './firebase.js';
+
+    const statusEl = document.getElementById('status');
+    const listEl = document.getElementById('list');
+    const dayNavEl = document.getElementById('day-nav');
+    const reloadBtn = document.getElementById('reload');
+
+    const HIDDEN_EMPTY = new Set([
+      'website', 'timeline', 'budget', 'phone', 'company', 'goals', 'offerCode'
+    ]);
+
+    function toDate(value) {
+      if (!value) return null;
+      if (typeof value.toDate === 'function') return value.toDate();
+      if (value instanceof Date) return value;
+      if (typeof value === 'string' || typeof value === 'number') return new Date(value);
+      if (value.seconds != null) return new Date(value.seconds * 1000);
+      return null;
+    }
+
+    function dayKey(date) {
+      if (!date || Number.isNaN(date.getTime())) return 'unknown';
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, '0');
+      const d = String(date.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    function formatDayLabel(date) {
+      if (!date || Number.isNaN(date.getTime())) return 'Unknown date';
+      const today = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+
+      const sameDay = (a, b) =>
+        a.getFullYear() === b.getFullYear() &&
+        a.getMonth() === b.getMonth() &&
+        a.getDate() === b.getDate();
+
+      const full = date.toLocaleDateString(undefined, {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+      });
+
+      if (sameDay(date, today)) return `Today · ${full}`;
+      if (sameDay(date, yesterday)) return `Yesterday · ${full}`;
+      return full;
+    }
+
+    function formatTime(date) {
+      if (!date || Number.isNaN(date.getTime())) return 'No time';
+      return date.toLocaleTimeString(undefined, {
+        hour: 'numeric',
+        minute: '2-digit'
+      });
+    }
+
+    function escapeHtml(text) {
+      return String(text)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function isEmpty(value) {
+      if (value == null) return true;
+      if (typeof value === 'string' && value.trim() === '') return true;
+      if (Array.isArray(value) && value.length === 0) return true;
+      return false;
+    }
+
+    function parseProjectDescription(text) {
+      if (!text || typeof text !== 'string') return null;
+      const lines = text.split(/\n+/).map(line => line.trim()).filter(Boolean);
+      if (!lines.length) return null;
+
+      const intro = [];
+      const details = [];
+
+      lines.forEach(line => {
+        const match = line.match(/^([^:]{2,40}):\s*(.+)$/);
+        if (match) details.push({ key: match[1], value: match[2] });
+        else intro.push(line);
+      });
+
+      return { intro, details };
+    }
+
+    function renderProjectDescription(text) {
+      const parsed = parseProjectDescription(text);
+      if (!parsed) {
+        return `<div class="field block"><div class="label">Project</div><div class="value">—</div></div>`;
+      }
+
+      const introHtml = parsed.intro
+        .map(line => `<p>${escapeHtml(line)}</p>`)
+        .join('');
+
+      const detailsHtml = parsed.details.length
+        ? `<ul>${parsed.details.map(item => `
+            <li>
+              <span class="k">${escapeHtml(item.key)}</span>
+              <span>${escapeHtml(item.value)}</span>
+            </li>`).join('')}</ul>`
+        : '';
+
+      return `
+        <div class="field block">
+          <div class="label">Project</div>
+          <div class="project-box">
+            ${introHtml || ''}
+            ${detailsHtml}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderLinkValue(label, value) {
+      if (isEmpty(value)) return '—';
+      const safe = escapeHtml(value);
+      if (label === 'email') return `<a href="mailto:${safe}">${safe}</a>`;
+      if (label === 'phone') {
+        const tel = String(value).replace(/[^\d+]/g, '');
+        return `<a href="tel:${escapeHtml(tel)}">${safe}</a>`;
+      }
+      if (label === 'website') {
+        const href = String(value).startsWith('http') ? value : `https://${value}`;
+        return `<a href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${safe}</a>`;
+      }
+      if (Array.isArray(value)) return escapeHtml(value.join(', '));
+      return escapeHtml(String(value));
+    }
+
+    function renderField(label, value, opts = {}) {
+      if (isEmpty(value) && (opts.hideEmpty || HIDDEN_EMPTY.has(label))) return '';
+      return `
+        <div class="field${opts.block ? ' block' : ''}">
+          <div class="label">${escapeHtml(opts.title || label)}</div>
+          <div class="value">${renderLinkValue(label, value)}</div>
+        </div>
+      `;
+    }
+
+    function renderInquiry(docSnap) {
+      const data = docSnap.data();
+      const date = toDate(data.submittedAt);
+      const name = data.contactName || data.firstName || 'Untitled inquiry';
+      const chips = [
+        data.leadType,
+        data.serviceLabel || data.serviceType,
+        data.status
+      ].filter(Boolean);
+
+      return `
+        <article>
+          <div class="row-top">
+            <div class="who">${escapeHtml(name)}</div>
+            <div class="when">${escapeHtml(formatTime(date))}</div>
+          </div>
+          <div class="chips">
+            ${chips.map((chip, index) => `<span class="chip${index ? ' muted' : ''}">${escapeHtml(chip)}</span>`).join('')}
+          </div>
+          <div class="details">
+            ${renderField('email', data.email, { title: 'Email' })}
+            ${renderField('phone', data.phone, { title: 'Phone', hideEmpty: true })}
+            ${renderField('company', data.company, { title: 'Company', hideEmpty: true })}
+            ${renderField('website', data.website, { title: 'Website', hideEmpty: true })}
+            ${renderField('serviceLabel', data.serviceLabel || data.serviceType, { title: 'Interest' })}
+            ${renderProjectDescription(data.projectDescription)}
+            ${renderField('timeline', data.timeline, { title: 'Timeline', hideEmpty: true })}
+            ${renderField('budget', data.budget, { title: 'Budget', hideEmpty: true })}
+            ${renderField('goals', data.goals, { title: 'Goals', hideEmpty: true })}
+            ${renderField('source', data.source, { title: 'Source' })}
+          </div>
+        </article>
+      `;
+    }
+
+    function groupByDay(docs) {
+      const groups = new Map();
+
+      docs.forEach(docSnap => {
+        const date = toDate(docSnap.data().submittedAt);
+        const key = dayKey(date);
+        if (!groups.has(key)) {
+          groups.set(key, {
+            key,
+            date,
+            label: formatDayLabel(date),
+            docs: []
+          });
+        }
+        groups.get(key).docs.push(docSnap);
+      });
+
+      return [...groups.values()];
+    }
+
+    function renderGroups(groups) {
+      dayNavEl.hidden = groups.length < 2;
+      dayNavEl.innerHTML = groups.map(group => `
+        <a href="#day-${escapeHtml(group.key)}">
+          <span>${escapeHtml(group.label.replace(/^Today · |^Yesterday · /, ''))}</span>
+          <span class="count">${group.docs.length}</span>
+        </a>
+      `).join('');
+
+      listEl.innerHTML = groups.map(group => `
+        <section class="day-group" id="day-${escapeHtml(group.key)}">
+          <div class="day-tile">
+            <h2>${escapeHtml(group.label)}</h2>
+            <div class="day-count">${group.docs.length} inquir${group.docs.length === 1 ? 'y' : 'ies'}</div>
+          </div>
+          <div class="day-list">
+            ${group.docs.map(renderInquiry).join('')}
+          </div>
+        </section>
+      `).join('');
+    }
+
+    async function loadInquiries() {
+      reloadBtn.disabled = true;
+      statusEl.className = 'status';
+      statusEl.textContent = 'Loading contactInquiries…';
+      listEl.innerHTML = '';
+      dayNavEl.hidden = true;
+      dayNavEl.innerHTML = '';
+
+      try {
+        let snapshot;
+        try {
+          snapshot = await getDocs(query(collection(db, 'contactInquiries'), orderBy('submittedAt', 'desc')));
+        } catch (orderError) {
+          console.warn('orderBy submittedAt failed, falling back to unsorted fetch:', orderError);
+          snapshot = await getDocs(collection(db, 'contactInquiries'));
+        }
+
+        const docs = snapshot.docs.slice().sort((a, b) => {
+          const aDate = toDate(a.data().submittedAt)?.getTime() || 0;
+          const bDate = toDate(b.data().submittedAt)?.getTime() || 0;
+          return bDate - aDate;
+        });
+
+        if (!docs.length) {
+          statusEl.textContent = '0 inquiries found.';
+          listEl.innerHTML = '<div class="empty">No documents in contactInquiries yet.</div>';
+          return;
+        }
+
+        const groups = groupByDay(docs);
+        statusEl.textContent = `${docs.length} inquir${docs.length === 1 ? 'y' : 'ies'} · ${groups.length} day${groups.length === 1 ? '' : 's'} · newest first`;
+        renderGroups(groups);
+      } catch (error) {
+        console.error(error);
+        statusEl.className = 'status error';
+        statusEl.textContent = `Failed to load inquiries: ${error.message || error}`;
+      } finally {
+        reloadBtn.disabled = false;
+      }
+    }
+
+    reloadBtn.addEventListener('click', loadInquiries);
+    loadInquiries();
+  </script>
+</body>
+</html>
