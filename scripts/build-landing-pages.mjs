@@ -45,9 +45,9 @@ const STAT_REVIEWS = ['5.0', 'Across 23 verified client reviews'];
 const STAT_APPS = ['40+', 'Production apps shipped'];
 const STAT_FUNDRAISE = ['$MM+', 'Technology behind a multi-million-dollar fundraise'];
 const STAT_YEARS = ['6 YRS', 'Full stack: mobile, web, backend, cloud and AI'];
-const STAT_SIGNUPS = ['2.06M', 'Sign-ups on the DraftKings contest platform at Low6'];
-const STAT_ACTIVE = ['1.15M', 'Active users on that platform'];
-const STAT_ENTRIES = ['7.15M', 'Contest entries'];
+const STAT_SIGNUPS = ['2M+', 'User sign-ups on a production platform I helped build and maintain'];
+const STAT_ACTIVE = ['1.1M+', 'Active users on production apps I deployed and maintained'];
+const STAT_ENTRIES = ['7M+', 'Entries in the production database I helped maintain'];
 const STAT_ACQUISITION = ['M&A', 'Software that helped position a company for acquisition'];
 
 const CASE_TRAVEL = {
@@ -68,10 +68,11 @@ const CASE_OPERATIONS = {
   result: 'Helped position the company for acquisition by an industry leader.'
 };
 
-const CASE_DRAFTKINGS = {
-  title: 'DraftKings<br>platform',
-  body: 'Senior full-stack developer on the DraftKings contest platform at Low6, with end-to-end ownership: architecture, APIs, real-time game logic, integrations, deployment and performance.',
-  result: '2,058,082 sign-ups · 1,149,095 active users · 7,148,135 contest entries.'
+const CASE_SCALE = {
+  title: 'Production<br>at scale',
+  body: 'As a senior full-stack developer on a high-traffic consumer platform, I built features, shipped deployments and maintained the live apps and production database.',
+  result: '2M+ sign-ups · 1.1M+ active users · 7M+ entries.',
+  note: 'Platform name withheld for client confidentiality.'
 };
 
 const PAGES = [
@@ -93,7 +94,7 @@ const PAGES = [
         ['5.0', 'Across 23 verified client reviews.']
       ]
     },
-    stats: [STAT_APPS, STAT_FUNDRAISE, STAT_REVIEWS, STAT_YEARS],
+    stats: [STAT_APPS, STAT_FUNDRAISE, STAT_ACTIVE, STAT_REVIEWS],
     problems: {
       audience: 'founders',
       copy: 'What founders usually tell me on the first call.',
@@ -107,7 +108,7 @@ const PAGES = [
     outcomes: {
       h2: 'Built by someone<br>who’s been the CTO.',
       copy: 'The proof that matters when you’re starting from zero.',
-      cases: [CASE_TRAVEL, CASE_APPS],
+      cases: [CASE_TRAVEL, CASE_APPS, CASE_SCALE],
       ctaText: 'Want the same thinking applied to your idea?'
     },
     capabilities: {
@@ -166,7 +167,7 @@ const PAGES = [
         ['40+', 'Production apps shipped across the full stack.']
       ]
     },
-    stats: [STAT_REVIEWS, STAT_APPS, STAT_FUNDRAISE, STAT_YEARS],
+    stats: [STAT_REVIEWS, STAT_APPS, STAT_ACTIVE, STAT_FUNDRAISE],
     problems: {
       audience: 'businesses adopting AI',
       copy: 'Where AI projects usually stall.',
@@ -191,11 +192,7 @@ const PAGES = [
           body: 'Production integrations with OpenAI and Gemini models, connected to real application data, user accounts and workflows.',
           result: 'Built into shipped software, not prototypes.'
         },
-        {
-          title: 'Full-stack<br>delivery',
-          body: 'AI only works when the product around it works. I build the backend, interface and deployment around the model.',
-          result: '40+ production apps shipped.'
-        }
+        CASE_SCALE
       ],
       ctaText: 'Have a workflow you want AI to handle?'
     },
@@ -251,7 +248,7 @@ const PAGES = [
       tag: 'Operational proof',
       items: [
         ['M&A', 'Operations software that helped position a company for acquisition by an industry leader.'],
-        ['1.15M', 'Active users on the DraftKings contest platform I worked on at Low6.'],
+        ['1.1M+', 'Active users on production apps I deployed and maintained.'],
         ['5.0', 'Across 23 verified client reviews.']
       ]
     },
@@ -269,7 +266,7 @@ const PAGES = [
     outcomes: {
       h2: 'Software that<br>moves the business.',
       copy: 'Operational impact, and reliability proven at scale.',
-      cases: [CASE_OPERATIONS, CASE_DRAFTKINGS],
+      cases: [CASE_OPERATIONS, CASE_SCALE, CASE_APPS],
       ctaText: 'Want to see what custom software could replace in your business?'
     },
     capabilities: {
@@ -328,7 +325,7 @@ const PAGES = [
         ['6 YRS', 'Across mobile, web, backend, cloud and AI.']
       ]
     },
-    stats: [STAT_APPS, STAT_REVIEWS, STAT_YEARS, STAT_FUNDRAISE],
+    stats: [STAT_APPS, STAT_REVIEWS, STAT_ACTIVE, STAT_FUNDRAISE],
     problems: {
       audience: 'Toronto businesses',
       copy: 'What business owners tell me before an app build.',
@@ -348,7 +345,8 @@ const PAGES = [
           body: 'Native and cross-platform apps across iOS and Android, including subscriptions, real-time data, computer vision, AI and location-based features.',
           result: '40+ production apps shipped.'
         },
-        CASE_TRAVEL
+        CASE_TRAVEL,
+        CASE_SCALE
       ],
       ctaText: 'Want to know what your app would take to build?'
     },
@@ -409,7 +407,7 @@ const PAGES = [
         ['5.0', 'Across 23 verified client reviews.']
       ]
     },
-    stats: [STAT_REVIEWS, STAT_APPS, STAT_YEARS, ['0', 'Agency handoffs. You work with the builder.']],
+    stats: [STAT_REVIEWS, STAT_APPS, STAT_ACTIVE, ['0', 'Agency handoffs. You work with the builder.']],
     problems: {
       audience: 'Shopify merchants',
       copy: 'What merchants tell me before we start.',
@@ -433,7 +431,8 @@ const PAGES = [
           title: 'Production<br>software',
           body: 'End-to-end ownership of production apps: architecture, APIs, integrations, deployment and performance.',
           result: '40+ production apps shipped.'
-        }
+        },
+        CASE_SCALE
       ],
       ctaText: 'Have a store change you want shipped fast?'
     },
@@ -479,7 +478,7 @@ const PAGES = [
     slug: 'web-application-development',
     nav: 'Web Applications',
     h1: 'Custom Web Application Development',
-    description: 'Custom web application development for dashboards, portals and marketplaces from the developer behind a DraftKings-scale platform. Book a free strategy call.',
+    description: 'Custom web application development for dashboards, portals and marketplaces from a senior developer who has maintained production apps for 1.1M+ active users. Book a free strategy call.',
     serviceType: 'Custom web application development',
     priceRange: '$10,000–$40,000',
     kicker: 'Web Applications / Toronto + Remote',
@@ -488,8 +487,8 @@ const PAGES = [
     proofCard: {
       tag: 'Platform-scale proof',
       items: [
-        ['2.06M', 'Sign-ups on the DraftKings contest platform at Low6.'],
-        ['7.15M', 'Contest entries on that platform.'],
+        ['2M+', 'User sign-ups on a production platform I helped build and maintain.'],
+        ['7M+', 'Entries in the production database I helped maintain.'],
         ['CTO', 'Former CTO of TravelSpoken, a full-stack travel platform.']
       ]
     },
@@ -507,7 +506,7 @@ const PAGES = [
     outcomes: {
       h2: 'Proven at<br>real scale.',
       copy: 'Real-time, high-traffic platforms with full-stack ownership.',
-      cases: [CASE_DRAFTKINGS, CASE_TRAVEL, CASE_OPERATIONS],
+      cases: [CASE_SCALE, CASE_TRAVEL, CASE_OPERATIONS],
       ctaText: 'Want this kind of platform experience on your project?'
     },
     capabilities: {
@@ -537,7 +536,7 @@ const PAGES = [
     },
     faq: [
       { q: 'How long does a typical project take?', a: 'It depends on scope and integrations. Most platforms launch with a focused first release, then grow in phases. You get a timeline after the strategy call, tied to a defined feature list.' },
-      { q: 'Can you build something that handles high traffic?', a: 'Yes. I was a senior full-stack developer on the DraftKings contest platform at Low6, which handled 2,058,082 sign-ups, 1,149,095 active users and 7,148,135 contest entries. The same architecture and performance thinking goes into every platform I build.' },
+      { q: 'Can you build something that handles high traffic?', a: 'Yes. As a senior full-stack developer on a high-traffic consumer platform, I built features, shipped deployments and maintained the production apps and database through 2M+ sign-ups, 1.1M+ active users and 7M+ entries. The same architecture and performance thinking goes into every platform I build.' },
       { q: 'Can you take over an existing web app?', a: 'Often, yes. I start by reviewing the current code and architecture, then recommend whether to improve, refactor or rebuild specific parts.' },
       OWNERSHIP_FAQ,
       DAY_TO_DAY_FAQ,
@@ -743,7 +742,7 @@ ${jsonLd(page)}
           <div class="hero-proof">
             <span><strong>★★★★★ 5.0</strong> / 23 verified reviews</span>
             <span><strong>40+ apps</strong> shipped</span>
-            <span><strong>DraftKings-scale</strong> platform</span>
+            <span><strong>1.1M+ users</strong> in production</span>
           </div>
 
           <p class="hero-small">You work with the builder. No agency handoff.</p>
@@ -805,7 +804,8 @@ ${jsonLd(page)}
             <div>
               <h3>${heading(item.title)}</h3>
               <p>${esc(item.body)}</p>
-              <p class="case-result">${esc(item.result)}</p>
+              <p class="case-result">${esc(item.result)}</p>${item.note ? `
+              <p class="case-note">${esc(item.note)}</p>` : ''}
             </div>
           </article>`).join('\n          ')}
         </div>
@@ -859,7 +859,8 @@ ${jsonLd(page)}
           <div class="builder-copy">
             <p class="big">${esc(page.builderBig)}</p>
             <p class="small">
-              6 years across the full stack — mobile (iOS/Android), web, backend, cloud and AI.
+              6 years across the full stack — mobile (iOS/Android), web, backend, cloud and AI —
+              including deploying and maintaining production apps and databases for 1.1M+ active users.
               That means fewer handoffs, faster decisions and one person accountable for the result.
             </p>
           </div>
