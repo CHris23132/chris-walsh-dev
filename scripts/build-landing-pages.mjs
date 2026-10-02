@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://christopher-walsh-apps.com';
-const BOOKING_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3pNb-9yBix_IW2isM2TIiLZkflD19caZP7u_6qIVi4RfSasZiwWS6_nLRgZC2rgFWlghzm2v1L?gv=true';
+const BOOKING_URL = 'https://calendly.com/play3dinc/30min';
 const PHONE_DISPLAY = '905 979 8389';
 const PHONE_TEL = '+19059798389';
 const EMAIL = 'play3dinc@gmail.com';
