@@ -8,6 +8,10 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://christopher-walsh-apps.com';
 const BOOKING_URL = 'https://calendly.com/play3dinc/30min';
+const BOOKING_EMBED_URL = `${BOOKING_URL}?hide_gdpr_banner=1`;
+const REPLY_PROMISE = 'I reply to every inquiry within one business day.';
+// Set to a root-relative path (e.g. '/public/intro.mp4') to replace the builder photo with a video.
+const INTRO_VIDEO = '';
 const PHONE_DISPLAY = '905 979 8389';
 const PHONE_TEL = '+19059798389';
 const EMAIL = 'play3dinc@gmail.com';
@@ -41,6 +45,23 @@ const DAY_TO_DAY_FAQ = {
   a: 'You work directly with me — no account manager and no agency handoff. You get regular progress updates, working builds to review, and quick answers when decisions come up.'
 };
 
+const START_FAQ = {
+  q: 'How fast can we start?',
+  a: 'Quickly. Book a strategy call and we can usually talk within a few days. If we’re a fit, you get a written scope and estimate shortly after, and work starts as soon as you approve it — no long sales process.'
+};
+
+const SMALL_FAQ = {
+  q: 'What if I only need a small feature, not a full platform?',
+  a: 'That’s fine — not every project is a full build. A single feature, an integration, a fix or a review of existing code can be scoped and quoted on its own. The strategy call is free either way, so it costs nothing to ask.'
+};
+
+const NDA_FAQ = {
+  q: 'Do you sign NDAs?',
+  a: 'Yes. I’m happy to sign your NDA before you share details — send it over before or after booking. Your idea and information are kept confidential either way.'
+};
+
+const BUDGET_OPTIONS = ['Under $5K', '$5K–$10K', '$10K–$25K', '$25K–$50K', '$50K+', 'Not sure yet'];
+
 const STAT_REVIEWS = ['5.0', 'Across 23 verified client reviews'];
 const STAT_APPS = ['40+', 'Production apps shipped'];
 const STAT_FUNDRAISE = ['$MM+', 'Technology behind a multi-million-dollar fundraise'];
@@ -72,7 +93,7 @@ const CASE_SCALE = {
   title: 'Production<br>at scale',
   body: 'As a senior full-stack developer on a high-traffic consumer platform, I built features, shipped deployments and maintained the live apps and production database.',
   result: '2M+ sign-ups · 1.1M+ active users · 7M+ entries.',
-  note: 'Platform name withheld for client confidentiality.'
+  note: 'Low6 — DraftKings contest platform.'
 };
 
 const PAGES = [
@@ -109,7 +130,7 @@ const PAGES = [
       h2: 'Built by someone<br>who’s been the CTO.',
       copy: 'The proof that matters when you’re starting from zero.',
       cases: [CASE_TRAVEL, CASE_APPS, CASE_SCALE],
-      ctaText: 'Want the same thinking applied to your idea?'
+      ctaNoun: 'your startup'
     },
     capabilities: {
       audience: 'founders',
@@ -194,7 +215,7 @@ const PAGES = [
         },
         CASE_SCALE
       ],
-      ctaText: 'Have a workflow you want AI to handle?'
+      ctaNoun: 'your business'
     },
     capabilities: {
       audience: 'your business',
@@ -267,7 +288,7 @@ const PAGES = [
       h2: 'Software that<br>moves the business.',
       copy: 'Operational impact, and reliability proven at scale.',
       cases: [CASE_OPERATIONS, CASE_SCALE, CASE_APPS],
-      ctaText: 'Want to see what custom software could replace in your business?'
+      ctaNoun: 'your business'
     },
     capabilities: {
       audience: 'your operations',
@@ -348,7 +369,7 @@ const PAGES = [
         CASE_TRAVEL,
         CASE_SCALE
       ],
-      ctaText: 'Want to know what your app would take to build?'
+      ctaNoun: 'your app'
     },
     capabilities: {
       audience: 'your business',
@@ -434,7 +455,7 @@ const PAGES = [
         },
         CASE_SCALE
       ],
-      ctaText: 'Have a store change you want shipped fast?'
+      ctaNoun: 'your store'
     },
     capabilities: {
       audience: 'your store',
@@ -507,7 +528,7 @@ const PAGES = [
       h2: 'Proven at<br>real scale.',
       copy: 'Real-time, high-traffic platforms with full-stack ownership.',
       cases: [CASE_SCALE, CASE_TRAVEL, CASE_OPERATIONS],
-      ctaText: 'Want this kind of platform experience on your project?'
+      ctaNoun: 'your platform'
     },
     capabilities: {
       audience: 'your platform',
@@ -564,7 +585,7 @@ function heading(value) {
 
 const pad = n => String(n).padStart(2, '0');
 
-const bookingAttrs = `href="${esc(BOOKING_URL)}" target="_blank" rel="noopener" onclick="reportConversion()"`;
+const bookingAttrs = 'href="#book"';
 const phoneAttrs = `href="tel:${PHONE_TEL}" onclick="reportConversion()"`;
 
 function bookButton(className = 'button') {
@@ -574,9 +595,53 @@ function bookButton(className = 'button') {
           </a>`;
 }
 
+function builderMedia() {
+  if (INTRO_VIDEO) {
+    return `<video
+            class="builder-photo"
+            src="${esc(INTRO_VIDEO)}"
+            poster="/public/chris-640.jpg"
+            controls
+            playsinline
+            preload="none"
+            aria-label="Christopher Walsh explains how he works and what happens on the strategy call"
+          ></video>`;
+  }
+  return `<img
+            class="builder-photo"
+            src="/public/chris-640.jpg"
+            alt="Christopher Walsh, senior full-stack developer in Toronto"
+            width="640"
+            height="631"
+            loading="lazy"
+            decoding="async"
+          >`;
+}
+
+function ctaNote() {
+  return `<p class="cta-note">${esc(REPLY_PROMISE)}</p>`;
+}
+
+function inlineCta(line) {
+  return `<div class="inline-cta">
+          ${bookButton('button button-dark')}
+          <div>
+            <p>${esc(line)} Or call <a class="text-link" ${phoneAttrs}>${PHONE_DISPLAY}</a>.</p>
+            ${ctaNote()}
+          </div>
+        </div>`;
+}
+
+// Timeline question first, cost question last, shared questions in between.
+function faqFor(page) {
+  const [first, ...rest] = page.faq;
+  const last = rest.pop();
+  return [first, START_FAQ, ...rest, SMALL_FAQ, NDA_FAQ, last];
+}
+
 function pressBar() {
   const logos = hidden => PRESS.map(([file, alt, w, h]) =>
-    `<div class="press-logo"><img src="/public/news/${file}" alt="${hidden ? '' : esc(alt)}" width="${w}" height="${h}"></div>`
+    `<div class="press-logo"><img src="/public/news/sm/${file}" alt="${hidden ? '' : esc(alt)}" width="${w}" height="${h}" loading="lazy" decoding="async"></div>`
   ).join('\n              ');
 
   return `<section class="press" aria-label="Work featured in">
@@ -607,7 +672,7 @@ function jsonLd(page) {
         name: `Christopher Walsh — ${page.h1}`,
         description: page.description,
         url,
-        image: `${SITE}/public/chris.jpeg`,
+        image: `${SITE}/public/chris-640.jpg`,
         telephone: '+1-905-979-8389',
         email: EMAIL,
         priceRange: page.priceRange,
@@ -631,7 +696,7 @@ function jsonLd(page) {
       {
         '@type': 'FAQPage',
         '@id': `${url}#faq`,
-        mainEntity: page.faq.map(item => ({
+        mainEntity: faqFor(page).map(item => ({
           '@type': 'Question',
           name: item.q,
           acceptedAnswer: { '@type': 'Answer', text: item.a }
@@ -734,18 +799,18 @@ ${jsonLd(page)}
           <h1>${esc(page.h1)}</h1>
           <p class="hero-lead">${esc(page.lead)}</p>
 
-          <div class="hero-actions">
-            ${bookButton()}
-            <a class="button button-outline" ${phoneAttrs}>Call ${PHONE_DISPLAY}</a>
-          </div>
-
           <div class="hero-proof">
             <span><strong>★★★★★ 5.0</strong> / 23 verified reviews</span>
             <span><strong>40+ apps</strong> shipped</span>
             <span><strong>1.1M+ users</strong> in production</span>
           </div>
 
-          <p class="hero-small">You work with the builder. No agency handoff.</p>
+          <div class="hero-actions">
+            ${bookButton()}
+            <a class="button button-outline" ${phoneAttrs}>Call ${PHONE_DISPLAY}</a>
+          </div>
+
+          ${ctaNote()}
         </div>
 
         <aside class="proof-card" aria-label="${esc(page.proofCard.tag)}">
@@ -810,10 +875,7 @@ ${jsonLd(page)}
           </article>`).join('\n          ')}
         </div>
 
-        <div class="inline-cta">
-          ${bookButton('button button-dark')}
-          <p>${esc(page.outcomes.ctaText)} Or call <a class="text-link" ${phoneAttrs}>${PHONE_DISPLAY}</a>.</p>
-        </div>
+        ${inlineCta(`Want this for ${page.outcomes.ctaNoun}? Book a free 30-minute strategy call.`)}
       </div>
     </section>
 
@@ -848,14 +910,7 @@ ${jsonLd(page)}
         </div>
 
         <div class="builder">
-          <img
-            class="builder-photo"
-            src="/public/chris.jpeg"
-            alt="Christopher Walsh, senior full-stack developer in Toronto"
-            width="640"
-            height="640"
-            loading="lazy"
-          >
+          ${builderMedia()}
           <div class="builder-copy">
             <p class="big">${esc(page.builderBig)}</p>
             <p class="small">
@@ -912,6 +967,8 @@ ${jsonLd(page)}
             </ul>
           </div>
         </div>
+
+        ${inlineCta(`Want a real estimate for ${page.outcomes.ctaNoun}? Book a free 30-minute strategy call.`)}
       </div>
     </section>
 
@@ -946,7 +1003,7 @@ ${jsonLd(page)}
         </div>
 
         <div class="faq-list">
-          ${page.faq.map(item => `<details class="faq-item">
+          ${faqFor(page).map(item => `<details class="faq-item">
             <summary>${esc(item.q)}</summary>
             <p>${esc(item.a)}</p>
           </details>`).join('\n          ')}
@@ -954,23 +1011,62 @@ ${jsonLd(page)}
       </div>
     </section>
 
-    <section class="strategy">
-      <div class="wrap strategy-inner">
-        <div>
-          <p class="section-label">Free 30-minute strategy call</p>
-          <h2>Have an idea?<br>Start here.</h2>
-          <p class="strategy-lead">${esc(page.final.lead)}</p>
-          ${bookButton('button button-dark')}
-        </div>
-
-        <div>
+    <section class="strategy" id="book">
+      <div class="wrap">
+        <div class="strategy-head">
+          <div>
+            <p class="section-label">Free 30-minute strategy call</p>
+            <h2>Have an idea?<br>Start here.</h2>
+            <p class="strategy-lead">${esc(page.final.lead)}</p>
+          </div>
           <div class="strategy-list">
             ${page.final.list.map((item, index) => `<p>${pad(index + 1)} / ${esc(item)}</p>`).join('\n            ')}
           </div>
-          <div class="strategy-contact">
-            <a ${phoneAttrs}>Call ${PHONE_DISPLAY}</a><br>
-            <a href="mailto:${EMAIL}">Email ${EMAIL}</a>
+        </div>
+
+        <div class="strategy-body">
+          <div class="booking">
+            <div class="booking-embed" data-calendly-url="${esc(BOOKING_EMBED_URL)}" aria-label="Book a free strategy call">
+              <p class="booking-loading">Loading available times…</p>
+            </div>
+            <p class="booking-fallback">
+              Calendar not loading? <a href="${esc(BOOKING_URL)}" target="_blank" rel="noopener">Open it in a new tab ↗</a>
+            </p>
           </div>
+
+          <form class="email-card" id="email-form" novalidate>
+            <h3>Prefer email?</h3>
+            <p class="email-card-copy">Send a few details instead. ${esc(REPLY_PROMISE)}</p>
+
+            <label for="lead-name">Name</label>
+            <input id="lead-name" name="name" type="text" autocomplete="name" required>
+
+            <label for="lead-email">Email</label>
+            <input id="lead-email" name="email" type="email" autocomplete="email" required>
+
+            <label for="lead-project">Project description</label>
+            <textarea id="lead-project" name="project" rows="4" required placeholder="What are you building, and what does success look like?"></textarea>
+
+            <label for="lead-budget">Budget range</label>
+            <select id="lead-budget" name="budget" required>
+              <option value="" selected disabled>Select a range</option>
+              ${BUDGET_OPTIONS.map(option => `<option>${esc(option)}</option>`).join('\n              ')}
+            </select>
+
+            <div class="hp-field" aria-hidden="true">
+              <label for="lead-website">Website</label>
+              <input id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <button class="button email-submit" type="submit">Send my project details</button>
+            <p class="email-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <div class="strategy-contact">
+          <a ${phoneAttrs}>Call ${PHONE_DISPLAY}</a>
+          <a href="mailto:${EMAIL}">Email ${EMAIL}</a>
+          ${ctaNote()}
         </div>
       </div>
     </section>
@@ -978,9 +1074,126 @@ ${jsonLd(page)}
 
   ${footer(page.slug)}
 
-  <div class="mobile-cta">
-    <a ${bookingAttrs}>Book my free strategy call ↗</a>
+  <div class="scroll-cta" id="scroll-cta">
+    <div class="wrap scroll-cta-inner">
+      <p><strong>Free 30-minute strategy call</strong> <span>${esc(REPLY_PROMISE)}</span></p>
+      <a class="scroll-cta-button" ${bookingAttrs}>Book free strategy call ↗</a>
+    </div>
   </div>
+
+  <script>
+    (function () {
+      var hero = document.querySelector('.hero');
+      var book = document.getElementById('book');
+      var bar = document.getElementById('scroll-cta');
+      var embed = document.querySelector('.booking-embed');
+      var pastHero = false;
+      var atBook = false;
+
+      function updateBar() {
+        var show = pastHero && !atBook;
+        bar.classList.toggle('is-visible', show);
+        bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+      }
+
+      var calendlyRequested = false;
+      function loadCalendly() {
+        if (calendlyRequested) return;
+        calendlyRequested = true;
+        var script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        script.onload = function () {
+          window.Calendly.initInlineWidget({ url: embed.dataset.calendlyUrl, parentElement: embed });
+        };
+        script.onerror = function () {
+          embed.querySelector('.booking-loading').textContent = 'The calendar couldn’t load here. Use the link below or the email form.';
+        };
+        document.head.appendChild(script);
+      }
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          var entry = entries[0];
+          pastHero = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+          updateBar();
+        }).observe(hero);
+
+        new IntersectionObserver(function (entries) {
+          atBook = entries[0].isIntersecting;
+          updateBar();
+        }, { rootMargin: '0px 0px -25% 0px' }).observe(book);
+
+        new IntersectionObserver(function (entries, observer) {
+          if (entries[0].isIntersecting) {
+            loadCalendly();
+            observer.disconnect();
+          }
+        }, { rootMargin: '1200px 0px' }).observe(embed);
+      } else {
+        loadCalendly();
+      }
+
+      document.querySelectorAll('a[href="#book"]').forEach(function (link) {
+        link.addEventListener('click', loadCalendly);
+      });
+
+      window.addEventListener('message', function (event) {
+        if (!/^https:\\/\\/([a-z0-9-]+\\.)?calendly\\.com$/.test(event.origin)) return;
+        if (event.data && event.data.event === 'calendly.event_scheduled') {
+          reportConversion();
+        }
+      });
+    })();
+  </script>
+
+  <script type="module">
+    const form = document.getElementById('email-form');
+    const status = form.querySelector('.email-status');
+    const submit = form.querySelector('.email-submit');
+
+    function showStatus(message, isError) {
+      status.textContent = message;
+      status.classList.toggle('is-error', Boolean(isError));
+    }
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const fields = form.elements;
+      if (fields.website.value) return;
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      submit.disabled = true;
+      showStatus('Sending your project details…');
+
+      try {
+        const { db, collection, addDoc, serverTimestamp } = await import('/firebase.js');
+        await addDoc(collection(db, 'contactInquiries'), {
+          name: fields.name.value.trim(),
+          email: fields.email.value.trim(),
+          projectDescription: fields.project.value.trim(),
+          budget: fields.budget.value,
+          serviceType: ${JSON.stringify(page.serviceType)},
+          serviceLabel: ${JSON.stringify(page.h1)},
+          landingPage: ${JSON.stringify(`/${page.slug}/`)},
+          status: 'pending',
+          source: 'landing_page',
+          leadType: 'email_inquiry',
+          submittedAt: serverTimestamp()
+        });
+        reportConversion();
+        form.innerHTML = '<h3>Thanks — got it.</h3><p class="email-card-copy">${esc(REPLY_PROMISE)} Keep an eye on your inbox.</p>';
+      } catch (error) {
+        console.error('Inquiry submit failed', error);
+        submit.disabled = false;
+        showStatus('Something went wrong. Please email ${EMAIL} or call ${PHONE_DISPLAY}.', true);
+      }
+    });
+  </script>
 </body>
 </html>
 `;
