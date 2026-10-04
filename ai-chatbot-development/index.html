@@ -187,6 +187,16 @@
             Book my free strategy call
             <span class="button-arrow" aria-hidden="true">↗</span>
           </a>
+            <button class="video-cta" type="button" data-video-open>
+              <span class="video-cta-thumb" aria-hidden="true">
+                <img src="/public/chris-walsh-intro-poster.jpg" alt="" width="64" height="64">
+                <span>▶</span>
+              </span>
+              <span class="video-cta-text">
+                <strong>Watch my 1:22 intro</strong>
+                <span>See how I work before you book.</span>
+              </span>
+            </button>
             <a class="button button-outline" href="tel:+19059798389" onclick="reportConversion()">Call 905 979 8389</a>
           </div>
 
@@ -669,6 +679,11 @@
     </div>
   </footer>
 
+  <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-label="Christopher Walsh intro video" hidden>
+    <button class="video-modal-close" type="button" aria-label="Close video" data-video-close>×</button>
+    <video src="/public/chris-walsh-intro-web.mp4" poster="/public/chris-walsh-intro-poster.jpg" playsinline controls preload="none"></video>
+  </div>
+
   <div class="scroll-cta" id="scroll-cta">
     <div class="wrap scroll-cta-inner">
       <p><strong>Free 30-minute strategy call</strong> <span>I reply to every inquiry within one business day.</span></p>
@@ -740,9 +755,46 @@
         video.addEventListener('play', function () {
           if (frame.classList.contains('is-playing')) return;
           frame.classList.add('is-playing');
-          if (typeof gtag === 'function') gtag('event', 'intro_video_play');
+          if (typeof gtag === 'function') gtag('event', 'intro_video_play', { placement: 'hero_panel' });
         });
       });
+
+      var modal = document.getElementById('video-modal');
+      if (modal) {
+        var modalVideo = modal.querySelector('video');
+        var opener = null;
+        var trackedModal = false;
+
+        var openModal = function (event) {
+          opener = event.currentTarget;
+          modal.hidden = false;
+          document.documentElement.style.overflow = 'hidden';
+          modal.querySelector('[data-video-close]').focus();
+          modalVideo.play();
+          if (!trackedModal && typeof gtag === 'function') {
+            trackedModal = true;
+            gtag('event', 'intro_video_play', { placement: 'mobile_cta' });
+          }
+        };
+
+        var closeModal = function () {
+          modalVideo.pause();
+          modal.hidden = true;
+          document.documentElement.style.overflow = '';
+          if (opener) opener.focus();
+        };
+
+        document.querySelectorAll('[data-video-open]').forEach(function (button) {
+          button.addEventListener('click', openModal);
+        });
+        modal.querySelector('[data-video-close]').addEventListener('click', closeModal);
+        modal.addEventListener('click', function (event) {
+          if (event.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape' && !modal.hidden) closeModal();
+        });
+      }
 
       document.querySelectorAll('a[href="#book"]').forEach(function (link) {
         link.addEventListener('click', loadCalendly);

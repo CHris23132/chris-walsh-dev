@@ -589,6 +589,29 @@ function heroMedia(page) {
         </aside>`;
 }
 
+function videoCta(page) {
+  if (!(page.video || INTRO_VIDEO)) return '';
+  return `<button class="video-cta" type="button" data-video-open>
+              <span class="video-cta-thumb" aria-hidden="true">
+                <img src="${INTRO_POSTER}" alt="" width="64" height="64">
+                <span>▶</span>
+              </span>
+              <span class="video-cta-text">
+                <strong>Watch my ${INTRO_LENGTH} intro</strong>
+                <span>See how I work before you book.</span>
+              </span>
+            </button>`;
+}
+
+function videoModal(page) {
+  const video = page.video || INTRO_VIDEO;
+  if (!video) return '';
+  return `<div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-label="Christopher Walsh intro video" hidden>
+    <button class="video-modal-close" type="button" aria-label="Close video" data-video-close>×</button>
+    <video src="${esc(video)}" poster="${INTRO_POSTER}" playsinline controls preload="none"></video>
+  </div>`;
+}
+
 function ctaNote() {
   return `<p class="cta-note">${esc(REPLY_PROMISE)}</p>`;
 }
@@ -778,6 +801,7 @@ ${jsonLd(page)}
 
           <div class="hero-actions">
             ${bookButton()}
+            ${videoCta(page)}
             <a class="button button-outline" ${phoneAttrs}>Call ${PHONE_DISPLAY}</a>
           </div>
 
@@ -1047,6 +1071,8 @@ ${jsonLd(page)}
 
   ${footer(page.slug)}
 
+  ${videoModal(page)}
+
   <div class="scroll-cta" id="scroll-cta">
     <div class="wrap scroll-cta-inner">
       <p><strong>Free 30-minute strategy call</strong> <span>${esc(REPLY_PROMISE)}</span></p>
@@ -1118,9 +1144,46 @@ ${jsonLd(page)}
         video.addEventListener('play', function () {
           if (frame.classList.contains('is-playing')) return;
           frame.classList.add('is-playing');
-          if (typeof gtag === 'function') gtag('event', 'intro_video_play');
+          if (typeof gtag === 'function') gtag('event', 'intro_video_play', { placement: 'hero_panel' });
         });
       });
+
+      var modal = document.getElementById('video-modal');
+      if (modal) {
+        var modalVideo = modal.querySelector('video');
+        var opener = null;
+        var trackedModal = false;
+
+        var openModal = function (event) {
+          opener = event.currentTarget;
+          modal.hidden = false;
+          document.documentElement.style.overflow = 'hidden';
+          modal.querySelector('[data-video-close]').focus();
+          modalVideo.play();
+          if (!trackedModal && typeof gtag === 'function') {
+            trackedModal = true;
+            gtag('event', 'intro_video_play', { placement: 'mobile_cta' });
+          }
+        };
+
+        var closeModal = function () {
+          modalVideo.pause();
+          modal.hidden = true;
+          document.documentElement.style.overflow = '';
+          if (opener) opener.focus();
+        };
+
+        document.querySelectorAll('[data-video-open]').forEach(function (button) {
+          button.addEventListener('click', openModal);
+        });
+        modal.querySelector('[data-video-close]').addEventListener('click', closeModal);
+        modal.addEventListener('click', function (event) {
+          if (event.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape' && !modal.hidden) closeModal();
+        });
+      }
 
       document.querySelectorAll('a[href="#book"]').forEach(function (link) {
         link.addEventListener('click', loadCalendly);
