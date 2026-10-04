@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>MVP App Development for Startups | Christopher Walsh</title>
-  <meta name="description" content="MVP app development for startups from a former startup CTO with 40+ apps shipped. Book a free strategy call.">
+  <meta name="description" content="MVP app development for startups from a developer with startup CTO experience and 40+ apps shipped. Book a free strategy call.">
   <meta name="theme-color" content="#111111">
 
   <meta property="og:title" content="MVP App Development for Startups | Christopher Walsh">
-  <meta property="og:description" content="MVP app development for startups from a former startup CTO with 40+ apps shipped. Book a free strategy call.">
+  <meta property="og:description" content="MVP app development for startups from a developer with startup CTO experience and 40+ apps shipped. Book a free strategy call.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://christopher-walsh-apps.com/mvp-app-development/">
   <meta property="og:image" content="https://christopher-walsh-apps.com/public/chris.jpeg">
@@ -45,7 +45,7 @@
       "@type": "ProfessionalService",
       "@id": "https://christopher-walsh-apps.com/mvp-app-development/#service",
       "name": "Christopher Walsh — MVP App Development for Startups",
-      "description": "MVP app development for startups from a former startup CTO with 40+ apps shipped. Book a free strategy call.",
+      "description": "MVP app development for startups from a developer with startup CTO experience and 40+ apps shipped. Book a free strategy call.",
       "url": "https://christopher-walsh-apps.com/mvp-app-development/",
       "image": "https://christopher-walsh-apps.com/public/chris-640.jpg",
       "telephone": "+1-905-979-8389",
@@ -174,7 +174,7 @@
         <div>
           <p class="kicker">MVP Development / Toronto + Remote</p>
           <h1>MVP App Development for Startups</h1>
-          <p class="hero-lead">Go from idea to a launched product real users can download — built by a former startup CTO who has shipped 40+ apps.</p>
+          <p class="hero-lead">Go from idea to a launched product real users can download — built by a developer with startup CTO experience and 40+ apps shipped.</p>
 
           <div class="hero-proof">
             <span><strong>★★★★★ 5.0</strong> / 23 verified reviews</span>
@@ -193,12 +193,25 @@
           <p class="cta-note">I reply to every inquiry within one business day.</p>
         </div>
 
-        <aside class="proof-card" aria-label="Why founders call me">
-          <span class="proof-card-tag">Why founders call me</span>
-          <ul>
-            <li><strong>40+</strong><span>Production apps taken from idea to launch.</span></li>
-            <li><strong>CTO</strong><span>Former CTO of TravelSpoken. The technology contributed to a multi-million-dollar fundraise.</span></li>
-            <li><strong>5.0</strong><span>Across 23 verified client reviews.</span></li>
+        <aside class="hero-media has-video" aria-label="Meet Christopher Walsh">
+          <div class="video-frame">
+            <video
+              src="/public/chris-walsh-intro-web.mp4"
+              poster="/public/chris-walsh-intro-poster.jpg"
+              playsinline
+              preload="none"
+              aria-label="Christopher Walsh explains how he works and what happens on the strategy call"
+            ></video>
+            <button class="video-play" type="button">
+              <span class="video-play-icon" aria-hidden="true">▶</span>
+              Watch<span class="video-play-long"> the intro</span> · 1:22
+            </button>
+          </div>
+          <ul class="credentials">
+            <li><strong>1.1M+</strong><span>Active users · a public company’s high-traffic platform</span></li>
+            <li><strong>CTO experience</strong><span>The last startup I worked with · multi-million-dollar fundraise</span></li>
+            <li><strong>40+</strong><span>Production apps shipped</span></li>
+            <li><strong>5.0★</strong><span>23 verified client reviews</span></li>
           </ul>
         </aside>
       </div>
@@ -309,7 +322,7 @@
             <span class="case-num">01</span>
             <div>
               <h3>Travel<br>platform</h3>
-              <p>As CTO of TravelSpoken, I built a full-stack travel platform spanning booking, social content, payments, integrations and AI-powered trip planning.</p>
+              <p>As CTO of the last startup I worked with, I built a full-stack travel platform spanning booking, social content, payments, integrations and AI-powered trip planning.</p>
               <p class="case-result">Technology contributed to a multi-million-dollar fundraise.</p>
             </div>
           </article>
@@ -327,7 +340,7 @@
               <h3>Production<br>at scale</h3>
               <p>As a senior full-stack developer on a high-traffic consumer platform, I built features, shipped deployments and maintained the live apps and production database.</p>
               <p class="case-result">2M+ sign-ups · 1.1M+ active users · 7M+ entries.</p>
-              <p class="case-note">Low6 — DraftKings contest platform.</p>
+              <p class="case-note">A public company’s high-traffic platform.</p>
             </div>
           </article>
         </div>
@@ -623,8 +636,7 @@
             </select>
 
             <div class="hp-field" aria-hidden="true">
-              <label for="lead-website">Website</label>
-              <input id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off">
+              <input name="website" type="text" tabindex="-1" autocomplete="off">
             </div>
 
             <button class="button email-submit" type="submit">Send my project details</button>
@@ -716,6 +728,21 @@
       } else {
         loadCalendly();
       }
+
+      document.querySelectorAll('.video-frame').forEach(function (frame) {
+        var video = frame.querySelector('video');
+        var play = frame.querySelector('.video-play');
+        if (!video || !play) return;
+        play.addEventListener('click', function () {
+          video.controls = true;
+          video.play();
+        });
+        video.addEventListener('play', function () {
+          if (frame.classList.contains('is-playing')) return;
+          frame.classList.add('is-playing');
+          if (typeof gtag === 'function') gtag('event', 'intro_video_play');
+        });
+      });
 
       document.querySelectorAll('a[href="#book"]').forEach(function (link) {
         link.addEventListener('click', loadCalendly);

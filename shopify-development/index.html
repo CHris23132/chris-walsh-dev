@@ -193,12 +193,25 @@
           <p class="cta-note">I reply to every inquiry within one business day.</p>
         </div>
 
-        <aside class="proof-card" aria-label="Why merchants call me">
-          <span class="proof-card-tag">Why merchants call me</span>
-          <ul>
-            <li><strong>PAY</strong><span>Built payments and third-party integrations into the TravelSpoken platform as CTO.</span></li>
-            <li><strong>40+</strong><span>Production apps shipped, end to end.</span></li>
-            <li><strong>5.0</strong><span>Across 23 verified client reviews.</span></li>
+        <aside class="hero-media has-video" aria-label="Meet Christopher Walsh">
+          <div class="video-frame">
+            <video
+              src="/public/chris-walsh-intro-web.mp4"
+              poster="/public/chris-walsh-intro-poster.jpg"
+              playsinline
+              preload="none"
+              aria-label="Christopher Walsh explains how he works and what happens on the strategy call"
+            ></video>
+            <button class="video-play" type="button">
+              <span class="video-play-icon" aria-hidden="true">▶</span>
+              Watch<span class="video-play-long"> the intro</span> · 1:22
+            </button>
+          </div>
+          <ul class="credentials">
+            <li><strong>1.1M+</strong><span>Active users · a public company’s high-traffic platform</span></li>
+            <li><strong>CTO experience</strong><span>The last startup I worked with · multi-million-dollar fundraise</span></li>
+            <li><strong>40+</strong><span>Production apps shipped</span></li>
+            <li><strong>5.0★</strong><span>23 verified client reviews</span></li>
           </ul>
         </aside>
       </div>
@@ -309,7 +322,7 @@
             <span class="case-num">01</span>
             <div>
               <h3>Payments &amp;<br>integrations</h3>
-              <p>As CTO of TravelSpoken, I built a full-stack platform spanning booking, payments, social content and third-party integrations.</p>
+              <p>As CTO of the last startup I worked with, I built a full-stack platform spanning booking, payments, social content and third-party integrations.</p>
               <p class="case-result">Technology contributed to a multi-million-dollar fundraise.</p>
             </div>
           </article>
@@ -327,7 +340,7 @@
               <h3>Production<br>at scale</h3>
               <p>As a senior full-stack developer on a high-traffic consumer platform, I built features, shipped deployments and maintained the live apps and production database.</p>
               <p class="case-result">2M+ sign-ups · 1.1M+ active users · 7M+ entries.</p>
-              <p class="case-note">Low6 — DraftKings contest platform.</p>
+              <p class="case-note">A public company’s high-traffic platform.</p>
             </div>
           </article>
         </div>
@@ -623,8 +636,7 @@
             </select>
 
             <div class="hp-field" aria-hidden="true">
-              <label for="lead-website">Website</label>
-              <input id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off">
+              <input name="website" type="text" tabindex="-1" autocomplete="off">
             </div>
 
             <button class="button email-submit" type="submit">Send my project details</button>
@@ -716,6 +728,21 @@
       } else {
         loadCalendly();
       }
+
+      document.querySelectorAll('.video-frame').forEach(function (frame) {
+        var video = frame.querySelector('video');
+        var play = frame.querySelector('.video-play');
+        if (!video || !play) return;
+        play.addEventListener('click', function () {
+          video.controls = true;
+          video.play();
+        });
+        video.addEventListener('play', function () {
+          if (frame.classList.contains('is-playing')) return;
+          frame.classList.add('is-playing');
+          if (typeof gtag === 'function') gtag('event', 'intro_video_play');
+        });
+      });
 
       document.querySelectorAll('a[href="#book"]').forEach(function (link) {
         link.addEventListener('click', loadCalendly);

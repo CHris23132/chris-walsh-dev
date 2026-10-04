@@ -67,3 +67,6 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+
+# Master video exceeds GitHub's 100MB file limit; the site uses public/chris-walsh-intro-web.mp4
+public/chris-walsh-intro.mp4

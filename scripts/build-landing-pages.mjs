@@ -10,8 +10,17 @@ const SITE = 'https://christopher-walsh-apps.com';
 const BOOKING_URL = 'https://calendly.com/play3dinc/30min';
 const BOOKING_EMBED_URL = `${BOOKING_URL}?hide_gdpr_banner=1`;
 const REPLY_PROMISE = 'I reply to every inquiry within one business day.';
-// Set to a root-relative path (e.g. '/public/intro.mp4') to replace the builder photo with a video.
-const INTRO_VIDEO = '';
+// Hero video (vertical 9:16). A page's own `video` field overrides it.
+const INTRO_VIDEO = '/public/chris-walsh-intro-web.mp4';
+const INTRO_POSTER = '/public/chris-walsh-intro-poster.jpg';
+const INTRO_LENGTH = '1:22';
+
+const CREDENTIALS = [
+  ['1.1M+', 'Active users · a public company’s high-traffic platform'],
+  ['CTO experience', 'The last startup I worked with · multi-million-dollar fundraise'],
+  ['40+', 'Production apps shipped'],
+  ['5.0★', '23 verified client reviews']
+];
 const PHONE_DISPLAY = '905 979 8389';
 const PHONE_TEL = '+19059798389';
 const EMAIL = 'play3dinc@gmail.com';
@@ -73,7 +82,7 @@ const STAT_ACQUISITION = ['M&A', 'Software that helped position a company for ac
 
 const CASE_TRAVEL = {
   title: 'Travel<br>platform',
-  body: 'As CTO of TravelSpoken, I built a full-stack travel platform spanning booking, social content, payments, integrations and AI-powered trip planning.',
+  body: 'As CTO of the last startup I worked with, I built a full-stack travel platform spanning booking, social content, payments, integrations and AI-powered trip planning.',
   result: 'Technology contributed to a multi-million-dollar fundraise.'
 };
 
@@ -93,7 +102,7 @@ const CASE_SCALE = {
   title: 'Production<br>at scale',
   body: 'As a senior full-stack developer on a high-traffic consumer platform, I built features, shipped deployments and maintained the live apps and production database.',
   result: '2M+ sign-ups · 1.1M+ active users · 7M+ entries.',
-  note: 'Low6 — DraftKings contest platform.'
+  note: 'A public company’s high-traffic platform.'
 };
 
 const PAGES = [
@@ -101,20 +110,12 @@ const PAGES = [
     slug: 'mvp-app-development',
     nav: 'MVP Development',
     h1: 'MVP App Development for Startups',
-    description: 'MVP app development for startups from a former startup CTO with 40+ apps shipped. Book a free strategy call.',
+    description: 'MVP app development for startups from a developer with startup CTO experience and 40+ apps shipped. Book a free strategy call.',
     serviceType: 'MVP app development',
     priceRange: '$15,000–$50,000',
     kicker: 'MVP Development / Toronto + Remote',
     watermark: 'MVP',
-    lead: 'Go from idea to a launched product real users can download — built by a former startup CTO who has shipped 40+ apps.',
-    proofCard: {
-      tag: 'Why founders call me',
-      items: [
-        ['40+', 'Production apps taken from idea to launch.'],
-        ['CTO', 'Former CTO of TravelSpoken. The technology contributed to a multi-million-dollar fundraise.'],
-        ['5.0', 'Across 23 verified client reviews.']
-      ]
-    },
+    lead: 'Go from idea to a launched product real users can download — built by a developer with startup CTO experience and 40+ apps shipped.',
     stats: [STAT_APPS, STAT_FUNDRAISE, STAT_ACTIVE, STAT_REVIEWS],
     problems: {
       audience: 'founders',
@@ -180,14 +181,6 @@ const PAGES = [
     kicker: 'AI Development / Toronto + Remote',
     watermark: 'AI',
     lead: 'Custom AI chatbots and agents that answer customers, automate workflows and plug into the tools your business already runs on — built for production, not a demo.',
-    proofCard: {
-      tag: 'Production AI experience',
-      items: [
-        ['AI', 'Built AI-powered trip planning into the TravelSpoken platform as CTO.'],
-        ['LLM', 'Production OpenAI and Gemini integrations in shipped software.'],
-        ['40+', 'Production apps shipped across the full stack.']
-      ]
-    },
     stats: [STAT_REVIEWS, STAT_APPS, STAT_ACTIVE, STAT_FUNDRAISE],
     problems: {
       audience: 'businesses adopting AI',
@@ -205,7 +198,7 @@ const PAGES = [
       cases: [
         {
           title: 'AI trip<br>planning',
-          body: 'As CTO of TravelSpoken, I built AI-powered trip planning into a full-stack travel platform alongside booking, payments and integrations.',
+          body: 'As CTO of the last startup I worked with, I built AI-powered trip planning into a full-stack travel platform alongside booking, payments and integrations.',
           result: 'Platform technology contributed to a multi-million-dollar fundraise.'
         },
         {
@@ -265,14 +258,6 @@ const PAGES = [
     kicker: 'Custom Software / Toronto + Remote',
     watermark: 'OPS',
     lead: 'Replace spreadsheets, disconnected tools and manual work with software built around how your business actually runs.',
-    proofCard: {
-      tag: 'Operational proof',
-      items: [
-        ['M&A', 'Operations software that helped position a company for acquisition by an industry leader.'],
-        ['1.1M+', 'Active users on production apps I deployed and maintained.'],
-        ['5.0', 'Across 23 verified client reviews.']
-      ]
-    },
     stats: [STAT_ACQUISITION, STAT_SIGNUPS, STAT_ACTIVE, STAT_ENTRIES],
     problems: {
       audience: 'growing businesses',
@@ -338,14 +323,6 @@ const PAGES = [
     kicker: 'iPhone + Android / Toronto',
     watermark: 'APP',
     lead: 'iPhone and Android apps for Toronto businesses — designed, built and launched on the App Store and Google Play by a local developer with 40+ apps shipped.',
-    proofCard: {
-      tag: 'Mobile track record',
-      items: [
-        ['40+', 'Production apps shipped across iOS and Android.'],
-        ['5.0', '“Exceptional mobile app skills” — from 23 verified client reviews.'],
-        ['6 YRS', 'Across mobile, web, backend, cloud and AI.']
-      ]
-    },
     stats: [STAT_APPS, STAT_REVIEWS, STAT_ACTIVE, STAT_FUNDRAISE],
     problems: {
       audience: 'Toronto businesses',
@@ -420,14 +397,6 @@ const PAGES = [
     kicker: 'Shopify Development / Toronto + Remote',
     watermark: 'SHOP',
     lead: 'Custom Shopify apps, storefront improvements and integrations that help your store sell more and run with less manual work.',
-    proofCard: {
-      tag: 'Why merchants call me',
-      items: [
-        ['PAY', 'Built payments and third-party integrations into the TravelSpoken platform as CTO.'],
-        ['40+', 'Production apps shipped, end to end.'],
-        ['5.0', 'Across 23 verified client reviews.']
-      ]
-    },
     stats: [STAT_REVIEWS, STAT_APPS, STAT_ACTIVE, ['0', 'Agency handoffs. You work with the builder.']],
     problems: {
       audience: 'Shopify merchants',
@@ -445,7 +414,7 @@ const PAGES = [
       cases: [
         {
           title: 'Payments &<br>integrations',
-          body: 'As CTO of TravelSpoken, I built a full-stack platform spanning booking, payments, social content and third-party integrations.',
+          body: 'As CTO of the last startup I worked with, I built a full-stack platform spanning booking, payments, social content and third-party integrations.',
           result: 'Technology contributed to a multi-million-dollar fundraise.'
         },
         {
@@ -505,14 +474,6 @@ const PAGES = [
     kicker: 'Web Applications / Toronto + Remote',
     watermark: 'WEB',
     lead: 'Dashboards, customer portals and marketplaces built to handle real traffic — by a senior full-stack developer who worked on a platform with over two million sign-ups.',
-    proofCard: {
-      tag: 'Platform-scale proof',
-      items: [
-        ['2M+', 'User sign-ups on a production platform I helped build and maintain.'],
-        ['7M+', 'Entries in the production database I helped maintain.'],
-        ['CTO', 'Former CTO of TravelSpoken, a full-stack travel platform.']
-      ]
-    },
     stats: [STAT_SIGNUPS, STAT_ACTIVE, STAT_ENTRIES, STAT_APPS],
     problems: {
       audience: 'teams building web platforms',
@@ -595,27 +556,37 @@ function bookButton(className = 'button') {
           </a>`;
 }
 
-function builderMedia() {
-  if (INTRO_VIDEO) {
-    return `<video
-            class="builder-photo"
-            src="${esc(INTRO_VIDEO)}"
-            poster="/public/chris-640.jpg"
-            controls
-            playsinline
-            preload="none"
-            aria-label="Christopher Walsh explains how he works and what happens on the strategy call"
-          ></video>`;
-  }
-  return `<img
-            class="builder-photo"
-            src="/public/chris-640.jpg"
-            alt="Christopher Walsh, senior full-stack developer in Toronto"
-            width="640"
-            height="631"
-            loading="lazy"
-            decoding="async"
-          >`;
+function heroMedia(page) {
+  const video = page.video || INTRO_VIDEO;
+  const frame = video
+    ? `<video
+              src="${esc(video)}"
+              poster="${INTRO_POSTER}"
+              playsinline
+              preload="none"
+              aria-label="Christopher Walsh explains how he works and what happens on the strategy call"
+            ></video>
+            <button class="video-play" type="button">
+              <span class="video-play-icon" aria-hidden="true">▶</span>
+              Watch<span class="video-play-long"> the intro</span> · ${INTRO_LENGTH}
+            </button>`
+    : `<img
+              src="/public/chris-640.jpg"
+              alt="Christopher Walsh, senior full-stack developer in Toronto"
+              width="640"
+              height="631"
+              fetchpriority="high"
+            >
+            <span class="video-caption">Christopher Walsh · Toronto</span>`;
+
+  return `<aside class="hero-media${video ? ' has-video' : ''}" aria-label="Meet Christopher Walsh">
+          <div class="video-frame">
+            ${frame}
+          </div>
+          <ul class="credentials">
+            ${CREDENTIALS.map(([big, text]) => `<li><strong>${esc(big)}</strong><span>${esc(text)}</span></li>`).join('\n            ')}
+          </ul>
+        </aside>`;
 }
 
 function ctaNote() {
@@ -813,12 +784,7 @@ ${jsonLd(page)}
           ${ctaNote()}
         </div>
 
-        <aside class="proof-card" aria-label="${esc(page.proofCard.tag)}">
-          <span class="proof-card-tag">${esc(page.proofCard.tag)}</span>
-          <ul>
-            ${page.proofCard.items.map(([big, text]) => `<li><strong>${esc(big)}</strong><span>${esc(text)}</span></li>`).join('\n            ')}
-          </ul>
-        </aside>
+        ${heroMedia(page)}
       </div>
     </section>
 
@@ -910,7 +876,15 @@ ${jsonLd(page)}
         </div>
 
         <div class="builder">
-          ${builderMedia()}
+          <img
+            class="builder-photo"
+            src="/public/chris-640.jpg"
+            alt="Christopher Walsh, senior full-stack developer in Toronto"
+            width="640"
+            height="631"
+            loading="lazy"
+            decoding="async"
+          >
           <div class="builder-copy">
             <p class="big">${esc(page.builderBig)}</p>
             <p class="small">
@@ -1054,8 +1028,7 @@ ${jsonLd(page)}
             </select>
 
             <div class="hp-field" aria-hidden="true">
-              <label for="lead-website">Website</label>
-              <input id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off">
+              <input name="website" type="text" tabindex="-1" autocomplete="off">
             </div>
 
             <button class="button email-submit" type="submit">Send my project details</button>
@@ -1133,6 +1106,21 @@ ${jsonLd(page)}
       } else {
         loadCalendly();
       }
+
+      document.querySelectorAll('.video-frame').forEach(function (frame) {
+        var video = frame.querySelector('video');
+        var play = frame.querySelector('.video-play');
+        if (!video || !play) return;
+        play.addEventListener('click', function () {
+          video.controls = true;
+          video.play();
+        });
+        video.addEventListener('play', function () {
+          if (frame.classList.contains('is-playing')) return;
+          frame.classList.add('is-playing');
+          if (typeof gtag === 'function') gtag('event', 'intro_video_play');
+        });
+      });
 
       document.querySelectorAll('a[href="#book"]').forEach(function (link) {
         link.addEventListener('click', loadCalendly);

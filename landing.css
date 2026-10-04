@@ -133,10 +133,10 @@ h1, h2, h3, p { margin-top: 0; }
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
-  gap: 56px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: 52px;
   align-items: center;
-  padding: 78px 0 88px;
+  padding: 56px 0 64px;
 }
 
 .kicker {
@@ -209,52 +209,137 @@ h1 {
   vertical-align: 1px;
 }
 
-.proof-card {
+.hero-media {
   border-top: 3px solid var(--acid);
   background: #191919;
-  padding: 26px 24px 28px;
 }
 
-.proof-card-tag {
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #0b0b0b;
+}
+
+.video-frame img,
+.video-frame video {
   display: block;
-  margin-bottom: 18px;
-  color: var(--acid);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-frame img {
+  object-position: center 22%;
+  filter: grayscale(1) contrast(1.05);
+}
+
+.video-caption {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 9px;
+  background: rgba(17, 17, 17, 0.82);
+  color: var(--paper);
   font-size: 10px;
   font-weight: 900;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  pointer-events: none;
 }
 
-.proof-card ul {
+.video-frame.is-playing .video-caption,
+.video-frame.is-playing .video-play { display: none; }
+
+.hero-media.has-video {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+}
+
+.has-video .video-frame { aspect-ratio: 9 / 16; }
+
+.has-video .credentials {
+  grid-template-columns: 1fr;
+  align-content: stretch;
+  border-left: 1px solid var(--line);
+}
+
+.has-video .credentials li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 0;
+}
+
+.has-video .credentials li:first-child { border-top: 0; }
+
+.video-play {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 15px 11px 11px;
+  border: 0;
+  background: var(--acid);
+  color: var(--ink);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transform: translateX(-50%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: background 160ms ease;
+}
+
+.video-play:hover { background: var(--paper); }
+
+.video-play-icon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  background: var(--ink);
+  color: var(--acid);
+  font-size: 10px;
+}
+
+.credentials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.proof-card li {
-  padding: 16px 0;
+.credentials li {
+  padding: 15px 18px 16px;
   border-top: 1px solid var(--line);
 }
 
-.proof-card li:first-child { border-top: 0; padding-top: 0; }
-.proof-card li:last-child { padding-bottom: 0; }
+.credentials li:nth-child(odd) { border-right: 1px solid var(--line); }
 
-.proof-card strong {
+.credentials strong {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
+  color: var(--paper);
   font-family: var(--display);
-  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-size: clamp(1.6rem, 2.3vw, 2.1rem);
   font-weight: 900;
   line-height: 0.9;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
 }
 
-.proof-card span {
+.credentials span {
   display: block;
   color: #d0cbc3;
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 /* Buttons */
@@ -1206,7 +1291,15 @@ h1 {
   .hero-actions .button { width: 100%; margin-bottom: 10px; }
   .hero-actions .button:last-child { margin-bottom: 0; }
   .hero-proof { margin-bottom: 18px; }
-  .proof-card { margin-top: 44px; }
+  .hero-media { margin-top: 40px; }
+  .credentials li { padding: 13px 14px 14px; }
+  .hero-media.has-video { grid-template-columns: 54% 46%; }
+  .has-video .credentials li { padding: 10px 12px; }
+  .has-video .credentials strong { font-size: 1.45rem; }
+  .has-video .credentials span { font-size: 11px; }
+  .video-play { bottom: 12px; padding: 8px 11px 8px 8px; font-size: 10px; }
+  .video-play-icon { width: 20px; height: 20px; }
+  .video-play-long { display: none; }
 
   .press { padding: 15px 0 16px; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
