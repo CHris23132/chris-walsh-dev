@@ -1,11 +1,14 @@
 // Generates the ICP landing pages at /<slug>/index.html.
 // Edit the PAGES data below, then run: node scripts/build-landing-pages.mjs
 
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+// GitHub Pages caches CSS for 10 minutes; a content hash forces fresh CSS whenever it changes.
+const CSS_VERSION = createHash('md5').update(readFileSync(join(ROOT, 'landing.css'))).digest('hex').slice(0, 8);
 const SITE = 'https://christopher-walsh-apps.com';
 const BOOKING_URL = 'https://calendly.com/play3dinc/30min';
 const BOOKING_EMBED_URL = `${BOOKING_URL}?hide_gdpr_banner=1`;
@@ -748,7 +751,7 @@ function renderPage(page) {
   <link rel="canonical" href="${url}">
   <link rel="icon" href="/public/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/public/favicon.png">
-  <link rel="stylesheet" href="/landing.css">
+  <link rel="stylesheet" href="/landing.css?v=${CSS_VERSION}">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11158452612"></script>
