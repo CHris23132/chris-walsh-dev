@@ -14,15 +14,15 @@ const BOOKING_URL = 'https://calendly.com/play3dinc/30min';
 const BOOKING_EMBED_URL = `${BOOKING_URL}?hide_gdpr_banner=1`;
 const REPLY_PROMISE = 'I reply to every inquiry within one business day.';
 // Hero video (vertical 9:16). A page's own `video` field overrides it.
-const INTRO_VIDEO = '/public/chris-walsh-intro-web.mp4';
+const INTRO_VIDEO = '/public/chris-walsh-intro-2-web.mp4';
 const INTRO_POSTER = '/public/chris-walsh-intro-poster.jpg';
-const INTRO_LENGTH = '1:22';
+const INTRO_LENGTH = '1:17';
 
 const CREDENTIALS = [
   ['1.1M+', 'Active users · a public company’s high-traffic platform'],
   ['CTO experience', 'The last startup I worked with · multi-million-dollar fundraise'],
   ['40+', 'Production apps shipped'],
-  ['5.0★', '23 verified client reviews']
+  ['5.0★', '25 verified client reviews']
 ];
 const PHONE_DISPLAY = '905 979 8389';
 const PHONE_TEL = '+19059798389';
@@ -74,7 +74,7 @@ const NDA_FAQ = {
 
 const BUDGET_OPTIONS = ['Under $5K', '$5K–$10K', '$10K–$25K', '$25K–$50K', '$50K+', 'Not sure yet'];
 
-const STAT_REVIEWS = ['5.0', 'Across 23 verified client reviews'];
+const STAT_REVIEWS = ['5.0', 'Across 25 verified client reviews'];
 const STAT_APPS = ['40+', 'Production apps shipped'];
 const STAT_FUNDRAISE = ['$MM+', 'Technology behind a multi-million-dollar fundraise'];
 const STAT_YEARS = ['6 YRS', 'Full stack: mobile, web, backend, cloud and AI'];
@@ -320,7 +320,7 @@ const PAGES = [
     slug: 'mobile-app-development-toronto',
     nav: 'Mobile Apps Toronto',
     h1: 'Mobile App Developer Toronto',
-    description: 'Mobile app developer in Toronto building iPhone and Android apps, with 40+ apps shipped and 5.0 stars across 23 reviews. Book a free strategy call.',
+    description: 'Mobile app developer in Toronto building iPhone and Android apps, with 40+ apps shipped and 5.0 stars across 25 reviews. Book a free strategy call.',
     serviceType: 'Mobile app development',
     priceRange: '$20,000+',
     kicker: 'iPhone + Android / Toronto',
@@ -754,11 +754,15 @@ function renderPage(page) {
   <link rel="stylesheet" href="/landing.css?v=${CSS_VERSION}">
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11158452612"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11202136687"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
+    gtag('config', 'AW-11202136687');
+  </script>
+  <script>
     gtag('config', 'AW-11158452612');
 
     function reportConversion() {
@@ -797,7 +801,7 @@ ${jsonLd(page)}
           <p class="hero-lead">${esc(page.lead)}</p>
 
           <div class="hero-proof">
-            <span><strong>★★★★★ 5.0</strong> / 23 verified reviews</span>
+            <span><strong>★★★★★ 5.0</strong> / 25 verified reviews</span>
             <span><strong>40+ apps</strong> shipped</span>
             <span><strong>1.1M+ users</strong> in production</span>
           </div>
@@ -978,7 +982,7 @@ ${jsonLd(page)}
         <div class="reviews-head">
           <p class="section-label">Verified client reviews</p>
           <div>
-            <h2>5.0 stars.<br>23 reviews.</h2>
+            <h2>5.0 stars.<br>25 reviews.</h2>
             <p class="reviews-lead">Strong communication, fast execution and software delivered with care.</p>
           </div>
         </div>
@@ -1195,7 +1199,11 @@ ${jsonLd(page)}
       window.addEventListener('message', function (event) {
         if (!/^https:\\/\\/([a-z0-9-]+\\.)?calendly\\.com$/.test(event.origin)) return;
         if (event.data && event.data.event === 'calendly.event_scheduled') {
-          reportConversion();
+          gtag('event', 'conversion', {
+            'send_to': 'AW-11158452612/VFmUCKPJ9pAdEITz4cgp',
+            'value': 1.0,
+            'currency': 'CAD'
+          });
         }
       });
     })();
@@ -1205,6 +1213,7 @@ ${jsonLd(page)}
     const form = document.getElementById('email-form');
     const status = form.querySelector('.email-status');
     const submit = form.querySelector('.email-submit');
+    let inquiryConversionSent = false;
 
     function showStatus(message, isError) {
       status.textContent = message;
@@ -1239,7 +1248,14 @@ ${jsonLd(page)}
           leadType: 'email_inquiry',
           submittedAt: serverTimestamp()
         });
-        reportConversion();
+        if (!inquiryConversionSent) {
+          inquiryConversionSent = true;
+          gtag('event', 'conversion', {
+            'send_to': 'AW-11158452612/Lb16CKbJ9pAdEITz4cgp',
+            'value': 1.0,
+            'currency': 'CAD'
+          });
+        }
         form.innerHTML = '<h3>Thanks — got it.</h3><p class="email-card-copy">${esc(REPLY_PROMISE)} Keep an eye on your inbox.</p>';
       } catch (error) {
         console.error('Inquiry submit failed', error);

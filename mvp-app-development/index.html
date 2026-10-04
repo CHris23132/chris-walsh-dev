@@ -19,11 +19,15 @@
   <link rel="stylesheet" href="/landing.css?v=93da81d5">
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11158452612"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11202136687"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
+    gtag('config', 'AW-11202136687');
+  </script>
+  <script>
     gtag('config', 'AW-11158452612');
 
     function reportConversion() {
@@ -177,7 +181,7 @@
           <p class="hero-lead">Go from idea to a launched product real users can download — built by a developer with startup CTO experience and 40+ apps shipped.</p>
 
           <div class="hero-proof">
-            <span><strong>★★★★★ 5.0</strong> / 23 verified reviews</span>
+            <span><strong>★★★★★ 5.0</strong> / 25 verified reviews</span>
             <span><strong>40+ apps</strong> shipped</span>
             <span><strong>1.1M+ users</strong> in production</span>
           </div>
@@ -193,7 +197,7 @@
                 <span>▶</span>
               </span>
               <span class="video-cta-text">
-                <strong>Watch my 1:22 intro</strong>
+                <strong>Watch my 1:17 intro</strong>
                 <span>See how I work before you book.</span>
               </span>
             </button>
@@ -206,7 +210,7 @@
         <aside class="hero-media has-video" aria-label="Meet Christopher Walsh">
           <div class="video-frame">
             <video
-              src="/public/chris-walsh-intro-web.mp4"
+              src="/public/chris-walsh-intro-2-web.mp4"
               poster="/public/chris-walsh-intro-poster.jpg"
               playsinline
               preload="none"
@@ -214,14 +218,14 @@
             ></video>
             <button class="video-play" type="button">
               <span class="video-play-icon" aria-hidden="true">▶</span>
-              Watch<span class="video-play-long"> the intro</span> · 1:22
+              Watch<span class="video-play-long"> the intro</span> · 1:17
             </button>
           </div>
           <ul class="credentials">
             <li><strong>1.1M+</strong><span>Active users · a public company’s high-traffic platform</span></li>
             <li><strong>CTO experience</strong><span>The last startup I worked with · multi-million-dollar fundraise</span></li>
             <li><strong>40+</strong><span>Production apps shipped</span></li>
-            <li><strong>5.0★</strong><span>23 verified client reviews</span></li>
+            <li><strong>5.0★</strong><span>25 verified client reviews</span></li>
           </ul>
         </aside>
       </div>
@@ -277,7 +281,7 @@
         </div>
         <div class="stat">
           <strong>5.0</strong>
-          <span>Across 23 verified client reviews</span>
+          <span>Across 25 verified client reviews</span>
         </div>
       </div>
     </section>
@@ -519,7 +523,7 @@
         <div class="reviews-head">
           <p class="section-label">Verified client reviews</p>
           <div>
-            <h2>5.0 stars.<br>23 reviews.</h2>
+            <h2>5.0 stars.<br>25 reviews.</h2>
             <p class="reviews-lead">Strong communication, fast execution and software delivered with care.</p>
           </div>
         </div>
@@ -681,7 +685,7 @@
 
   <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-label="Christopher Walsh intro video" hidden>
     <button class="video-modal-close" type="button" aria-label="Close video" data-video-close>×</button>
-    <video src="/public/chris-walsh-intro-web.mp4" poster="/public/chris-walsh-intro-poster.jpg" playsinline controls preload="none"></video>
+    <video src="/public/chris-walsh-intro-2-web.mp4" poster="/public/chris-walsh-intro-poster.jpg" playsinline controls preload="none"></video>
   </div>
 
   <div class="scroll-cta" id="scroll-cta">
@@ -803,7 +807,11 @@
       window.addEventListener('message', function (event) {
         if (!/^https:\/\/([a-z0-9-]+\.)?calendly\.com$/.test(event.origin)) return;
         if (event.data && event.data.event === 'calendly.event_scheduled') {
-          reportConversion();
+          gtag('event', 'conversion', {
+            'send_to': 'AW-11158452612/VFmUCKPJ9pAdEITz4cgp',
+            'value': 1.0,
+            'currency': 'CAD'
+          });
         }
       });
     })();
@@ -813,6 +821,7 @@
     const form = document.getElementById('email-form');
     const status = form.querySelector('.email-status');
     const submit = form.querySelector('.email-submit');
+    let inquiryConversionSent = false;
 
     function showStatus(message, isError) {
       status.textContent = message;
@@ -847,7 +856,14 @@
           leadType: 'email_inquiry',
           submittedAt: serverTimestamp()
         });
-        reportConversion();
+        if (!inquiryConversionSent) {
+          inquiryConversionSent = true;
+          gtag('event', 'conversion', {
+            'send_to': 'AW-11158452612/Lb16CKbJ9pAdEITz4cgp',
+            'value': 1.0,
+            'currency': 'CAD'
+          });
+        }
         form.innerHTML = '<h3>Thanks — got it.</h3><p class="email-card-copy">I reply to every inquiry within one business day. Keep an eye on your inbox.</p>';
       } catch (error) {
         console.error('Inquiry submit failed', error);
