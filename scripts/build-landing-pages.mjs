@@ -1236,7 +1236,7 @@ ${jsonLd(page)}
       try {
         const { db, collection, addDoc, serverTimestamp } = await import('/firebase.js');
         await addDoc(collection(db, 'contactInquiries'), {
-          name: fields.name.value.trim(),
+          contactName: fields.name.value.trim(),
           email: fields.email.value.trim(),
           projectDescription: fields.project.value.trim(),
           budget: fields.budget.value,

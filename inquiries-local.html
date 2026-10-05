@@ -467,7 +467,7 @@
     function renderInquiry(docSnap) {
       const data = docSnap.data();
       const date = toDate(data.submittedAt);
-      const name = data.contactName || data.firstName || 'Untitled inquiry';
+      const name = data.contactName || data.name || data.firstName || 'Untitled inquiry';
       const chips = [
         data.leadType,
         data.serviceLabel || data.serviceType,
