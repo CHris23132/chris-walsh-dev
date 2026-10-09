@@ -717,8 +717,6 @@ function renderPage(page) {
     gtag('config', 'AW-11202136687');
   </script>
   <script>
-    gtag('config', 'AW-11158452612');
-
     function reportConversion() {
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', {
@@ -1121,15 +1119,20 @@ ${jsonLd(page)}
         link.addEventListener('click', loadCalendly);
       });
 
+      var bookingsSent = {};
       window.addEventListener('message', function (event) {
         if (!/^https:\\/\\/([a-z0-9-]+\\.)?calendly\\.com$/.test(event.origin)) return;
-        if (event.data && event.data.event === 'calendly.event_scheduled') {
-          gtag('event', 'conversion', {
-            'send_to': 'AW-11158452612/VFmUCKPJ9pAdEITz4cgp',
-            'value': 1.0,
-            'currency': 'CAD'
-          });
-        }
+        if (!event.data || event.data.event !== 'calendly.event_scheduled') return;
+        var payload = event.data.payload || {};
+        var bookingId = (payload.invitee && payload.invitee.uri) || (payload.event && payload.event.uri) || 'booking';
+        if (bookingsSent[bookingId]) return;
+        bookingsSent[bookingId] = true;
+        if (typeof gtag !== 'function') return;
+        gtag('event', 'conversion', {
+          'send_to': 'AW-11158452612/VFmUCKPJ9pAdEITz4cgp',
+          'value': 1.0,
+          'currency': 'CAD'
+        });
       });
     })();
   </script>

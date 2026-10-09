@@ -1,7 +1,5 @@
 'use strict';
 
-import { db, collection, addDoc, serverTimestamp } from '../../firebase.js';
-
 // Optional video sales letter. Set this to true after adding a URL below.
 const VSL_ENABLED = false;
 const VSL_CONFIG = {
@@ -118,7 +116,6 @@ function applyIndustry(config) {
   $('#additional').value = config.additional;
   const benefitItems = $$('.experience-copy li');
   config.benefits.forEach((benefit, index) => { if (benefitItems[index]) benefitItems[index].textContent = benefit; });
-  if (config.businessType) $('[name="businessType"]').value = config.businessType;
   if (activeKey !== 'general') document.title = `${config.eyebrow} | Free Custom Loyalty App Mockup`;
 }
 
@@ -175,14 +172,39 @@ roiFields.forEach(field => field.addEventListener('input', () => {
 
 const modal = $('#lead-modal');
 const modalPanel = $('.modal-panel');
+const bookingEmbed = $('.booking-embed', modal);
 let lastFocused = null;
-let formStarted = false;
+let calendlyRequested = false;
+let bookingTracked = false;
+
+function bookingUrl() {
+  const url = new URL(bookingEmbed.dataset.calendlyUrl);
+  url.searchParams.set('hide_gdpr_banner', '1');
+  url.searchParams.set('utm_source', 'repeat_retail');
+  url.searchParams.set('utm_campaign', activeKey);
+  return url.toString();
+}
+
+function loadCalendly() {
+  if (calendlyRequested) return;
+  calendlyRequested = true;
+  const script = document.createElement('script');
+  script.src = 'https://assets.calendly.com/assets/external/widget.js';
+  script.async = true;
+  script.onload = () => window.Calendly.initInlineWidget({ url: bookingUrl(), parentElement: bookingEmbed });
+  script.onerror = () => {
+    calendlyRequested = false;
+    $('.booking-loading', bookingEmbed).textContent = 'The calendar could not load. Use the link below to book.';
+  };
+  document.head.append(script);
+}
 
 function openForm(event) {
   lastFocused = event?.currentTarget || document.activeElement;
   modal.hidden = false;
   document.body.classList.add('modal-open');
-  requestAnimationFrame(() => $('[name="firstName"]', modal).focus());
+  loadCalendly();
+  requestAnimationFrame(() => $('.modal-close', modal).focus());
   window.siteAnalytics.track('lead_form_open', { source: event?.currentTarget?.dataset.event || 'site_cta', industry: activeKey });
 }
 
@@ -192,17 +214,20 @@ function closeForm() {
   if (lastFocused) lastFocused.focus();
 }
 
-$$('[data-open-form]').forEach(button => button.addEventListener('click', event => {
-  const eventName = button.dataset.event;
-  if (eventName) window.siteAnalytics.track(eventName, { industry: activeKey });
-  openForm(event);
-}));
+$$('[data-open-form]').forEach(button => {
+  button.addEventListener('click', event => {
+    const eventName = button.dataset.event;
+    if (eventName) window.siteAnalytics.track(eventName, { industry: activeKey });
+    openForm(event);
+  });
+  button.addEventListener('pointerenter', loadCalendly, { once: true });
+});
 $$('[data-close-form]').forEach(button => button.addEventListener('click', closeForm));
 document.addEventListener('keydown', event => {
   if (modal.hidden) return;
   if (event.key === 'Escape') closeForm();
   if (event.key === 'Tab') {
-    const focusable = $$('button:not([disabled]), input:not([disabled]), select:not([disabled])', modalPanel);
+    const focusable = $$('button:not([disabled]), a[href], iframe', modalPanel);
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
@@ -210,82 +235,15 @@ document.addEventListener('keydown', event => {
   }
 });
 
-const form = $('#lead-form');
-form.addEventListener('input', () => {
-  if (!formStarted) {
-    window.siteAnalytics.track('lead_form_start', { industry: activeKey });
-    formStarted = true;
+window.addEventListener('message', event => {
+  if (!/^https:\/\/([a-z0-9-]+\.)?calendly\.com$/.test(event.origin)) return;
+  if (event.data?.event !== 'calendly.event_scheduled' || bookingTracked) return;
+  bookingTracked = true;
+  if (typeof window.fbq === 'function') {
+    window.fbq('track', 'Lead');
+    window.fbq('track', 'Schedule');
   }
-});
-
-form.addEventListener('submit', async event => {
-  event.preventDefault();
-  const required = $$('[required]', form);
-  let firstInvalid = null;
-  required.forEach(field => {
-    const valid = field.checkValidity();
-    field.setAttribute('aria-invalid', String(!valid));
-    if (!valid && !firstInvalid) firstInvalid = field;
-  });
-  const status = $('#form-status');
-  status.className = 'form-status';
-  if (firstInvalid) {
-    status.textContent = 'Please complete the required fields and enter a valid email address.';
-    firstInvalid.focus();
-    return;
-  }
-
-  const submitButton = $('button[type="submit"]', form);
-  const formData = new FormData(form);
-  const payload = Object.fromEntries(formData.entries());
-  payload.goals = formData.getAll('goals');
-  payload.industryLanding = activeKey;
-
-  const trim = value => (typeof value === 'string' ? value.trim() : '');
-
-  const entry = {
-    contactName: trim(payload.firstName),
-    email: trim(payload.email),
-    company: trim(payload.businessName),
-    phone: trim(payload.phone),
-    website: trim(payload.website),
-    serviceType: 'retail-loyalty',
-    serviceLabel: trim(payload.businessType) || 'Retail Loyalty Mockup',
-    projectDescription: [
-      'Free loyalty app mockup request',
-      payload.businessType ? 'Business type: ' + trim(payload.businessType) : '',
-      payload.website ? 'Website / Instagram: ' + trim(payload.website) : '',
-      payload.goals && payload.goals.length ? 'Goals: ' + payload.goals.join(', ') : '',
-      'Industry landing: ' + activeKey
-    ].filter(Boolean).join('\n'),
-    timeline: '',
-    goals: payload.goals || [],
-    industryLanding: activeKey,
-    status: 'pending',
-    source: 'repeat_retail_loyalty',
-    leadType: 'loyalty_mockup',
-    submittedAt: serverTimestamp()
-  };
-
-  submitButton.disabled = true;
-  submitButton.textContent = 'Sending…';
-  try {
-    await addDoc(collection(db, 'contactInquiries'), entry);
-    status.textContent = 'Request received. We’ll be in touch about your custom mockup.';
-    status.classList.add('success');
-    if (typeof window.fbq === 'function') {
-      console.log('META LEAD FIRING');
-      window.fbq('track', 'Lead');
-    }
-    window.siteAnalytics.track('lead_form_submit', { industry: activeKey });
-    form.reset();
-  } catch (error) {
-    status.textContent = 'We could not send your request. Please try again or contact us directly.';
-    console.error(error);
-  } finally {
-    submitButton.disabled = false;
-    submitButton.innerHTML = 'Request My Free Mockup <span>→</span>';
-  }
+  window.siteAnalytics.track('booking_scheduled', { industry: activeKey });
 });
 
 $$('.industry-card').forEach(card => card.addEventListener('click', () => window.siteAnalytics.track('industry_card_click', { industry: card.dataset.industry })));
