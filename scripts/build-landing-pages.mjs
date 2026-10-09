@@ -154,13 +154,6 @@ const PAGES = [
       ['Build', 'Progress you can see and test, with decisions made fast and directly.'],
       ['Launch', 'App Store submission, production deployment and a plan for version two.']
     ],
-    pricing: {
-      audience: 'MVP',
-      range: '$15K–$50K',
-      copy: 'Where your MVP lands in that range comes down to scope. We define it together on the strategy call, so the estimate is tied to a real feature list.',
-      up: ['Separate native iOS and Android builds', 'Payments, subscriptions or marketplace logic', 'Real-time features or complex integrations', 'AI features in the first release'],
-      lean: ['Launching on one platform first', 'A tight version-one feature list', 'Proven services for login, payments and email', 'Fast decisions and quick feedback']
-    },
     faq: [
       { q: 'How long does a typical project take?', a: 'It depends on scope. After the strategy call you get a timeline tied to a defined version-one feature list, so you know what ships and when. A tight MVP moves much faster than a full platform, which is why scoping comes first.' },
       { q: 'What should be in version one vs later?', a: 'Version one should prove the core idea with real users: the one workflow they would pay for, accounts, and a way to measure whether it works. Nice-to-haves, admin polish and edge cases go on the roadmap for version two.' },
@@ -231,13 +224,6 @@ const PAGES = [
       ['Build', 'Test against real questions and real data, then tighten answers until they’re reliable.'],
       ['Launch', 'Deploy, review real conversations and keep improving accuracy.']
     ],
-    pricing: {
-      audience: 'AI chatbot and agent',
-      range: '$5K–$25K',
-      copy: 'The range depends on what the AI needs to know and what it needs to do. A focused assistant answering from your content sits at the lower end; agents that take action across several systems sit higher.',
-      up: ['Agents that take actions in other systems', 'Many data sources or integrations', 'Custom admin dashboards and analytics', 'Strict privacy or compliance requirements'],
-      lean: ['One focused use case to start', 'Content that’s already written down', 'An existing site or app to embed into', 'Standard hosted models from OpenAI or Gemini']
-    },
     faq: [
       { q: 'How long does a typical project take?', a: 'It depends on the use case and the number of systems involved. A focused assistant that answers from your existing content is a much smaller build than an agent connected to several tools. You get a timeline after the strategy call, tied to a defined first release.' },
       { q: 'How do you handle data privacy with AI features?', a: 'Privacy is designed in from the start: only the data a feature needs is sent to the model, access follows your existing permissions, and providers and settings are chosen to fit your requirements. We cover this on the strategy call before anything is built.' },
@@ -296,13 +282,6 @@ const PAGES = [
       ['Build', 'Ship in stages your team can use and give feedback on early.'],
       ['Launch', 'Roll out, migrate data, get your team onboarded and iterate on real usage.']
     ],
-    pricing: {
-      audience: 'custom business software',
-      range: '$10K–$40K',
-      copy: 'The range depends on how many workflows, user roles and existing systems are involved. Starting with the highest-value workflow keeps the first phase focused and the return visible.',
-      up: ['Many user roles and permissions', 'Integrations with several existing systems', 'Migrating large or messy historical data', 'Customer-facing portals on top of internal tools'],
-      lean: ['One department or workflow first', 'Clean, well-defined data', 'Standard integrations with modern APIs', 'A phased rollout']
-    },
     faq: [
       { q: 'How long does a typical project take?', a: 'It depends on how many workflows and integrations are involved. Most projects are delivered in phases, so your team starts using the highest-value part first. You get a timeline after the strategy call.' },
       { q: 'Can it integrate with the software we already use?', a: 'Usually, yes — most modern tools have APIs. Each integration is confirmed during the strategy call and architecture phase, before you commit to a build.' },
@@ -369,14 +348,6 @@ const PAGES = [
       ['Build', 'Test builds on your own phone throughout, with direct feedback loops.'],
       ['Launch', 'App Store and Google Play submission, release support and the next update.']
     ],
-    pricing: {
-      audience: 'mobile app',
-      range: '$20K+',
-      startsAt: true,
-      copy: 'Where your app lands depends on platforms, features and the backend behind it. A focused first release keeps the starting point lean; separate native apps and real-time features add to it.',
-      up: ['Separate native iOS and Android apps', 'Subscriptions, payments or marketplace logic', 'Real-time features, maps or chat', 'A custom backend and admin dashboard'],
-      lean: ['One platform or cross-platform first', 'A focused first release', 'Existing design and brand assets', 'Proven services for login, payments and notifications']
-    },
     faq: [
       { q: 'How long does a typical project take?', a: 'It depends on platforms and features. After the strategy call you get a timeline tied to a defined first-release feature list, including time for App Store and Google Play review.' },
       { q: 'Do I need an iPhone app, an Android app, or both?', a: 'It depends on your customers. Cross-platform with React Native reaches both from one codebase; native makes sense when you need maximum performance or platform-specific features. We decide this on the strategy call.' },
@@ -447,13 +418,6 @@ const PAGES = [
       ['Build', 'Develop on a duplicate theme or development store so your live store keeps selling.'],
       ['Launch', 'Ship, verify orders and checkout, then iterate based on real sales data.']
     ],
-    pricing: {
-      audience: 'Shopify',
-      range: '$5K–$20K',
-      copy: 'Theme improvements on an existing store sit at the lower end. Custom apps and integrations with warehouse or accounting systems sit higher. You get a fixed scope before work starts.',
-      up: ['Custom public or private Shopify apps', 'Integrations with ERP, warehouse or accounting systems', 'Complex product, pricing or subscription logic', 'Migrating from another platform'],
-      lean: ['Theme changes on an existing store', 'One integration at a time', 'Clear requirements and examples', 'Using proven apps where they fit']
-    },
     faq: [
       { q: 'How long does a typical project take?', a: 'Theme changes and small features move quickly; custom apps and integrations take longer. You get a timeline after the strategy call, tied to a defined scope.' },
       { q: 'Will working on my store affect live sales?', a: 'No. Work happens on a duplicate theme or a development store, and changes go live only after you have reviewed them.' },
@@ -512,13 +476,6 @@ const PAGES = [
       ['Build', 'Ship working features in stages, with direct communication throughout.'],
       ['Launch', 'Deploy to production, monitor performance and keep iterating.']
     ],
-    pricing: {
-      audience: 'web application',
-      range: '$10K–$40K',
-      copy: 'The range depends on user roles, real-time requirements, payments and integrations. Starting with one core workflow gets a working platform live sooner and keeps the first phase focused.',
-      up: ['Real-time features or high traffic', 'Payments, billing or marketplace logic', 'Many user roles and permissions', 'Multiple third-party integrations'],
-      lean: ['One core workflow first', 'Standard login and payments', 'A phased feature rollout', 'Clear requirements up front']
-    },
     faq: [
       { q: 'How long does a typical project take?', a: 'It depends on scope and integrations. Most platforms launch with a focused first release, then grow in phases. You get a timeline after the strategy call, tied to a defined feature list.' },
       { q: 'Can you build something that handles high traffic?', a: 'Yes. As a senior full-stack developer on a high-traffic consumer platform, I built features, shipped deployments and maintained the production apps and database through 2M+ sign-ups, 1.1M+ active users and 7M+ entries. The same architecture and performance thinking goes into every platform I build.' },
@@ -729,9 +686,6 @@ function renderPage(page) {
   const url = `${SITE}/${page.slug}/`;
   const title = `${page.h1} | Christopher Walsh`;
   const caseCols = page.outcomes.cases.length;
-  const priceHeadline = page.pricing.startsAt
-    ? `Typical ${page.pricing.audience} projects start at ${page.pricing.range}.`
-    : `Typical ${page.pricing.audience} projects run ${page.pricing.range}.`;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -945,35 +899,6 @@ ${jsonLd(page)}
             <p>${esc(body)}</p>
           </article>`).join('\n          ')}
         </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="section-intro">
-          <p class="section-label">Pricing</p>
-          <div>
-            <h2>${esc(page.pricing.range)}</h2>
-            <p class="section-copy"><strong>${esc(priceHeadline)}</strong> ${esc(page.pricing.copy)}</p>
-          </div>
-        </div>
-
-        <div class="pricing-grid">
-          <div class="pricing-col">
-            <h3>Moves it up the range</h3>
-            <ul>
-              ${page.pricing.up.map(item => `<li>${esc(item)}</li>`).join('\n              ')}
-            </ul>
-          </div>
-          <div class="pricing-col">
-            <h3>Keeps it lean</h3>
-            <ul>
-              ${page.pricing.lean.map(item => `<li>${esc(item)}</li>`).join('\n              ')}
-            </ul>
-          </div>
-        </div>
-
-        ${inlineCta(`Want a real estimate for ${page.outcomes.ctaNoun}? Book a free 30-minute strategy call.`)}
       </div>
     </section>
 

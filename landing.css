@@ -870,44 +870,6 @@ h1 {
   line-height: 1.45;
 }
 
-/* Pricing */
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  border-top: 1px solid var(--line-dark);
-  border-left: 1px solid var(--line-dark);
-}
-
-.pricing-col {
-  padding: 24px 22px 28px;
-  border-right: 1px solid var(--line-dark);
-  border-bottom: 1px solid var(--line-dark);
-}
-
-.pricing-col h3 {
-  margin-bottom: 14px;
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.pricing-col ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.pricing-col li {
-  padding: 10px 0;
-  border-top: 1px solid var(--line-dark);
-  color: #3f3c37;
-  font-size: 15px;
-  line-height: 1.45;
-}
-
-.pricing-col li:first-child { border-top: 0; padding-top: 0; }
-
 /* Reviews */
 .reviews {
   position: relative;
@@ -1418,8 +1380,6 @@ h1 {
   .case-grid,
   .service-grid,
   .process-grid,
-  .pricing-grid { grid-template-columns: 1fr; }
-
   .pain { min-height: 0; }
   .case-card { min-height: 280px; }
   .service { min-height: 0; }
